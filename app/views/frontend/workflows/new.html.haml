@@ -1,0 +1,15 @@
+.module.form-module.max-width
+
+  .form
+    .toggle
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+    .result
+    %h2.padding-left-20px
+      Create Workflow
+    = render 'form'
+    .actions
+      %button.btn.speed-btn.submit-btn
+        Create Workflow
+
+  .cta

@@ -1,0 +1,30 @@
+%h1
+  Sản phẩm
+  .pull-right
+    = link_to new_category_path, class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-folder
+      Create new category
+    = link_to new_product_path, class: 'btn btn-sign-up-now btn-xs' do
+      %i.fa.fa-plus
+      Create new Product
+%hr
+
+-@category_products.each do |cat|
+  %h4
+    = cat.name
+    = link_to category_path(cat), class: 'btn btn-icon btn-xs', "data-tooltip" => 'Edit' do
+      %i.fa.fa-gear
+  %hr
+  .row
+    .col-md-12
+      %table.table
+        %thead
+          %tr
+            %th #
+            %th Product
+            %th
+        %tbody
+          - cat.products.each do |product|
+            = render 'product', product: product, cat: cat.name
+
+

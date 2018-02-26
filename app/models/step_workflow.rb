@@ -1,0 +1,2 @@
+class StepWorkflow < ApplicationRecord
+end

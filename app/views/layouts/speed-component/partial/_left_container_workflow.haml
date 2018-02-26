@@ -1,0 +1,20 @@
+%li.today-task-items.submenu
+  %div.col.md-12
+    %div.checkbox
+      %label.speed-lable-box
+        %input{:type => "checkbox"}
+        - if !params[:team_id].nil?
+          %a.todo-name.one-line-text.left{:href => frontend_team_workflows_path(team_id: params[:team_id], id: workflow.id)}
+            = workflow.name
+          %span.todo-option-left
+            = link_to edit_frontend_team_workflow_path(team_id: params[:team_id], id: workflow), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'edit-todo-left' do
+              Edit
+            %a{:href => "#!",class: 'edit-todo-left delete-workflow', data: workflow.id}
+              Delete
+        - else
+          %a.todo-name.one-line-text.left{:href => frontend_team_workflow_path(team_id: params[:id], id: workflow.id)}= workflow.name
+          %span.todo-option-left
+            = link_to edit_frontend_team_workflow_path(team_id: params[:id], id: workflow), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'edit-todo-left' do
+              Edit
+            %a{:href => "#!",class: 'edit-todo-left delete-workflow', data: workflow.id}
+              Delete

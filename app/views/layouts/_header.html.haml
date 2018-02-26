@@ -1,0 +1,63 @@
+- partner_types =  PartnerType.all
+%nav.navbar.navbar-default
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"}
+        = image_tag('logo.png', height:44)
+
+        / = image_tag('hairandwax-logo.png',:title => '', height:30,:alt => '')
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+
+        %li{class: "#{active_link('home_index')}"}
+          = link_to frontend_root_path, class: 'nav-link' do
+            Trang chủ
+            %span.sr-only (current)
+        %li{class: "#{active_link('users_index')}"}
+          = link_to admin_users_path, class: 'nav-link' do
+            Nhân sự
+
+        %li{class: "#{active_link('customers_index')}"}
+          = link_to admin_customers_path, class: 'nav-link' do
+            Khách hàng
+        %li{class: "#{active_link('products_index')}"}
+          = link_to admin_products_path, class: 'nav-link' do
+            Sản phẩm
+        %li{class: "#{active_link('partner_types_index')}"}
+          = link_to admin_partner_types_path, class: 'nav-link' do
+            Loại đối tác
+        %li{class: "#{active_link('partner_types_index')}"}
+          = link_to admin_permissions_path, class: 'nav-link' do
+            Permission
+        %li{class: "#{active_link('partner_types_index')}"}
+          = link_to admin_roles_path, class: 'nav-link' do
+            Role
+        %li{class: "dropdown #{active_link('partners_index')}"}
+          = link_to admin_partners_path, class: 'dropdown-toggle nav-link', "data-toggle"=>"dropdown", "role"=>"button", "aria-haspopup"=>"true", "aria-expanded"=>"false" do
+            Đối tác
+            %span.caret
+            %ul.dropdown-menu
+              - partner_types.each do |p|
+                %li
+                  = link_to admin_partners_path(params:{type: p.id}) do
+                    = p.name
+
+        %li{class: "#{active_link('orders_index')}"}
+          = link_to admin_orders_path, class: 'nav-link' do
+            Hóa đơn
+        %li{class: "#{active_link('properties_index')}"}
+          = link_to '/admin/settings', class: 'nav-link' do
+            Hệ thống
+
+      %ul.nav.navbar-nav.pull-right
+
+        %li{class: "#{active_link('')}"}
+          = link_to admin_root_path, class: 'nav-link' do
+            = "Hi #{current_user.fullname}"

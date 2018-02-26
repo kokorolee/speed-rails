@@ -1,0 +1,99 @@
+#todoDetailModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h2.modal-title
+      .modal-body
+        .row.form-todo-detail
+          .col-md-1
+            .checkbox
+              %label.speed-lable-box.show1line
+                %input{:type => "checkbox", :value => "18"}/
+                %span.cr.todos.todo-details
+                  Mark done
+                  %i.cr-icon.glyphicon.glyphicon-ok
+          .col-md-11.fix-padding-auto
+            .well-component
+              %h4.todo-name
+                Enter password fb?
+            .scroll-wrapper.wapper-content.box.content.wrapper-todo-team-list.scrollbar-rail{:style => "position: relative;"}
+              .wapper-content.box.content.wrapper-todo-team-list.scrollbar-rail.scroll-content.scroll-scrollx_visible.scroll-scrolly_visible{:style => "height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 276px;"}
+                %span.desc
+                  this todo at
+                  08/02
+                .well-component
+                  Deadline:
+                  %span.date
+                    08/02
+                .well-component
+                  Assigned to :
+                  %span.assignto
+                    Quan Vũ
+                    %span  
+                .well-component
+                  Related to :
+                  %span.relateto
+                .well-component
+                  Attachment:
+                  .row
+                    %form#new_datum.simple_form.new_datum{"accept-charset" => "UTF-8", :action => "/datums", "data-remote" => "true", :enctype => "multipart/form-data", :method => "post", :novalidate => "novalidate"}
+                      %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+                      .input.hidden.datum_todo_id
+                        %input#datum_todo_id.hidden.speed-input{:name => "datum[todo_id]", :type => "hidden", :value => "18"}/
+                      .col-md-4.img.attachment.add-attachment
+                        .wrapper-upload
+                          .image-upload
+                            %label.plus-files{:for => "file-input"}
+                              .btn-add-attachment
+                                +
+                                %br/
+                                Add
+                                .input.file.optional.datum_files
+                                  %label.file.optional{:for => "datum_files"} Add
+                                  %input#datum_files.file.optional{:name => "datum[files]", :type => "file"}/
+                .well-component.last
+                  Comments
+                .row.comment
+                  %form#new_comment.simple_form.new_comment{"accept-charset" => "UTF-8", :action => "/comments", "data-remote" => "true", :enctype => "multipart/form-data", :method => "post", :novalidate => "novalidate"}
+                    %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+                    .box-comment-wrapper
+                      .row.box-comment
+                        .box-comment-user
+                          .wrapper-img
+                            %img{:src => "#"}/
+                        .col-md-10.box-comment-input
+                          .input.text.required.comment_content
+                            %label.text.required{:for => "comment_content"}
+                              %abbr{:title => "required"} *
+                              Content
+                            %textarea#comment_content.text.required{:name => "comment[content]", :placeholder => "Write a comment..."}
+                          %span#btn_add_attach_file_comment.glyphicon.glyphicon-paperclip
+                        #uploadFile.col-md-10.upload-file
+                          .input.file.optional.comment_files
+                            %label.file.optional{:for => "comment_files"} Attach File
+                            %input#comment_files.file.optional.speed-input.hide{:name => "comment[files]", :type => "file"}/
+                        .col-md-10.box-comment-input.wrapper-attach-file-uploaded
+                        .col-md-10.box-comment-input.margin-left-70px
+                          .box-comment-sortby
+                            Sort by
+                            %select.custom-select.soft-comment
+                              %option{:selected => "selected", :value => "0"} Important
+                              %option{:value => "1"} Newest to oldest
+                    .input.hidden.comment_todo_id
+                      %input#todo_id.hidden{:name => "comment[todo_id]", :type => "hidden", :value => "18"}/
+                    .input.hidden.comment_user_id
+                      %input#comment_user_id.hidden{:name => "comment[user_id]", :type => "hidden", :value => "2"}/
+                  .comment-content-wrapper
+                    %input{:type => "hidden", :value => "2"}/
+              .scroll-element.scroll-x.scroll-scrollx_visible.scroll-scrolly_visible{:style => ""}
+                .scroll-element_outer
+                  .scroll-element_size
+                  .scroll-element_track
+                  .scroll-bar{:style => "width: 71px; left: 0px;"}
+              .scroll-element.scroll-y.scroll-scrollx_visible.scroll-scrolly_visible{:style => ""}
+                .scroll-element_outer
+                  .scroll-element_size
+                  .scroll-element_track
+                  .scroll-bar{:style => "height: 148px; top: 0px;"}

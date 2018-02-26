@@ -1,0 +1,18 @@
+%tr
+  %td= product.id
+  %td
+    %p.fullname= product.name
+    %p
+      %i.fa.fa-folder
+      = cat
+    %p
+      %i.fa.fa-dollar
+      Price:
+      = product.price
+    %p.note
+      %i.fa.fa-dollar
+      Discount:
+      = product.discount_price
+  %td.text-right
+    = link_to product_path(product), class: 'btn btn-icon btn-xs' do
+      %i.fa.fa-edit

@@ -1,0 +1,52 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper
+    -# =render "layouts/speed-component/partial/left_contaier_team"
+    %left-container.speed-border-radius
+      %div.container-speed-header
+        %div.left-header.speed-border-radius Team's todo list
+      %div.col-md-12.speed-search-box
+        -# = form_tag(frontend_team_todo_lists_path(:team_id => params[:team_id], :id => params[:id]), method: 'get') do
+        %form
+          %div.input-group
+            %input#search-todolist.form-control{:type =>"text", :placeholder =>"Search todo list by name", name: 'q', value: params[:q].to_s}
+            %span.input-group-btn
+              %button.btn.btn-default
+                %span.glyphicon.glyphicon-search
+      //Danh sach todo list ben trai
+      %div.team-name
+        .speed-team-name.one-line-text
+          = @team.name
+        %ul.container-today-task.wrapper-todo-team-list.remove-padding-left
+          - @team.todo_lists.where(:archived => [true]).each do |todo_list|
+            = render 'layouts/speed-component/partial/todo_details', todo_list: todo_list
+            -# cHUYỀN BIẾN VÀO VIEW KHÁC vd:  BIẾN: mặt nạ  (student: student)
+      = link_to new_frontend_todo_list_path(team_id: params[:id]), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'btn speed-btn btn-left-container' do
+        %i.fa.fa-plus
+        Add todo list
+    :javascript
+      $(document).ready( function() {
+        set_height_scroll('left-container', '.left-header', '.speed-search-box', '', '.speed-btn', '.wrapper-todo-team-list', 0);
+      });
+
+    %right-container.speed-border-radius
+      %div.right-header.speed-border-radius Archived Todo-list
+      %div.panle.speed-panel
+        .wrapper-todo-team-list
+          - @todo_lists.each do |todo_list|
+            %div.speed-panel-heading
+              = todo_list.name
+            .hash-tag
+              @
+              = todo_list.name
+
+            %a{:href => "#",class: 'btn speed-btn re-open-todo margin-left-20px', data: todo_list.id}
+              Re-open todo list
+            - todo_list.todos.order("position,due_date ASC").where(:archived => [nil,false]).limit(3).each do |todo_detail|
+              = render 'layouts/speed-component/partial/todo_date_user' , todo_detail: todo_detail
+
+
+      - if @todos.present?
+        - @todos.where(:archived => [nil,false], :status => "undone").order("position,due_date ASC").each do |todo_detail|
+          %div.wrapper-todo-team
+            = render 'layouts/speed-component/partial/todo_date_user' , todo_detail: todo_detail

@@ -1,0 +1,213 @@
+- @user = User.find_by_id(@todo.user_id)
+.row.form-todo-detail
+  .toggle
+    %button.close.close-todo-name{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+  .col-md-1
+    %div.checkbox
+      %label.speed-lable-box.show1line
+        - if resource.status=="undone"
+          %input{:type => "checkbox", value: params[:id]}
+        -else
+          %input{:type => "checkbox", value: params[:id], checked: true}
+        %span.cr.todos.todo-details
+          Mark done
+          %i.cr-icon.glyphicon.glyphicon-ok
+
+  .col-md-11.fix-padding-auto
+    %div.well-component
+      %h4.todo-name
+        = @todo.name
+    .wapper-content.box.content.wrapper-todo-team-list.scrollbar-rail
+      %span.desc
+        = @user_create
+        = @actionavatar
+        this todo at
+        = @todo.created_at.strftime("%d/%m")
+      %div.well-component
+        Deadline:
+        %span.date
+          = @todo.due_date.strftime("%d/%m") if @todo.due_date.present?
+      %div.well-component
+        Assigned to :
+        %span.assignto
+          = @user.fullname
+          %span &nbsp |
+      %div.well-component
+        Related to :
+        %span.relateto
+          - count = @todo.users.count
+          - @todo.users.each.with_index do |user,index|
+            - if count > index + 1
+              = user.fullname
+              |
+            -else
+              = user.fullname
+      - if !@todo.location.nil?
+        %div.well-component
+          Location :
+          %span.relateto
+            = @todo.location
+      - if !@todo.desc.nil?
+        %div.well-component
+          Note:
+          %p.note
+            = @todo.desc
+      - if @todo.check_list_id.present?
+        %div.well-component
+          Check List
+          - StepCheckList.where(check_list_id: resource.check_list_id).each do |step|
+            %div.col-md-12
+              %div.checkbox.check_list
+                %label
+                  - name = "name-"+step.id.to_s
+                  - if !@todo.data_check_list.nil?
+                    - JSON.parse(@todo.data_check_list).each do |i|
+                      - if i[0]==name and i[1].to_s=="true"
+                        %input{:type => "checkbox", value: step.id, name: name, class: "checkbox", checked: true}
+                      -elsif i[0]==name and i[1].to_s=="false"
+                        %input{:type => "checkbox", value: step.id, name: name, class: "checkbox"}
+                  -else
+                    %input{:type => "checkbox", value: step.id, name: name, class: "checkbox"}
+                  %span.cr
+                    %i.cr-icon.glyphicon.glyphicon-ok
+                  %span.todos-content
+                    = step.name
+            -# Nút bắt đầu click vào nút này thì lưu lại thời gian khi click. Khi user mark chi tiết done task thì lấy thời gian hiện tại trừ cho thời gian đã lưu trước đó để ra thời gian thực hiện) nhằm hướng so lại nội với dung thời gian ước tính và deadlin
+        -# =if (@todo.try(:files))
+
+
+      %div.well-component
+        - if @todo.files_url.present?
+          Attachment:
+          %div.row
+            %div.col-md-4.img.attachment.add-attachment
+              .wrapper-upload
+                .image-upload
+                  %a{:href => @todo.files_url, target: "_blank"}
+                    -if ( @todo.files_url.include? 'gif') or ( @todo.files_url.include? 'png') or ( @todo.files_url.include? 'jpeg') or ( @todo.files_url.include? 'jpg')
+                      = image_tag(@todo.files_url)
+                    -else
+                      = image_tag("icons/file")
+      -# %div.well-component
+      -#   Attachment:
+      -#   %div.row
+      -#     - if Datum.where(todo_id: resource.id).present?
+      -#       - Datum.where(todo_id: resource.id).each do |f|
+      -#         %div.col-md-4.img.attachment.add-attachment
+      -#           .wrapper-upload
+      -#             %a{:href => f.files_url, target: "_blank"}
+      -#               .image-upload
+      -#                 -if ( f.files_url.include? 'gif') or ( f.files_url.include? 'png') or ( f.files_url.include? 'jpeg') or ( f.files_url.include? 'jpg')
+      -#                   = image_tag(f.files_url)
+      -#                 -else
+      -#                   = image_tag("icons/file")
+      -#
+      -#     - if @todo.files_url.present?
+      -#       %div.col-md-4.img.attachment.add-attachment
+      -#         .wrapper-upload
+      -#           .image-upload
+      -#             %a{:href => @todo.files_url, target: "_blank"}
+      -#               -if ( @todo.files_url.include? 'gif') or ( @todo.files_url.include? 'png') or ( @todo.files_url.include? 'jpeg') or ( @todo.files_url.include? 'jpg')
+      -#                 = image_tag(@todo.files_url)
+      -#               -else
+      -#                 = image_tag("icons/file")
+      -#     = simple_form_for @file, :url => "/datums", :method => :post, remote: true do |f|
+      -#       = f.input :todo_id, :as => :hidden, input_html: {class:'speed-input', value: resource.id}
+      -#       %div.col-md-4.img.attachment.add-attachment
+      -#         .wrapper-upload
+      -#           .image-upload
+      -#             %label.plus-files{:for => "file-input"}
+      -#               .btn-add-attachment
+      -#                 +
+      -#                 %br
+      -#                 Add
+      -#                 = f.input :files, label: 'Add'
+
+      %div.well-component.last
+        Comments
+      %div.row.comment
+        -# %div.col-md-1.avatar-commnet
+          - if @user.avatar.present?
+            %img{src: @user.avatar}
+          -else
+            = image_tag("icons/user")
+        = simple_form_for @commnet, :url => "/comments", :method => :post, remote: true do |f|
+          .box-comment-wrapper
+            .row.box-comment
+              .box-comment-user
+                .wrapper-img
+                  - if current_user.avatar.present?
+                    %img{src: current_user.avatar}
+                  -else
+                    = image_tag("icons/user")
+
+              .col-md-10.box-comment-input
+                = f.input :content, :placeholder =>"Write a comment...", :class =>"comment_content"
+                %span.glyphicon.glyphicon-paperclip#btn_add_attach_file_comment
+              #uploadFile.col-md-10.upload-file
+                -# %span
+                -#   .glyphicon.glyphicon-plus
+                = f.input :files, label: 'Attach File', lable_html: {id:"attach_file_comment", multiple:"multiple"}, input_html: {class:'speed-input hide'}
+              .col-md-10.box-comment-input.wrapper-attach-file-uploaded
+              .col-md-10.box-comment-input.margin-left-70px
+                .box-comment-sortby
+                  Sort by
+                  %select.custom-select.soft-comment#soft_commnet
+                    %option{:selected => "selected", :value => 0} Important
+                    %option{:value => 1} Newest to oldest
+          = f.input :todo_id, :as => :hidden, input_html: {:value => resource.id, id:"todo_id"}
+          = f.input :user_id, :as => :hidden, input_html: {:value => current_user.id}
+
+        .comment-content-wrapper
+          %input{:type => "hidden", value: current_user.id}
+          -Comment.where(todo_id: resource.id).order("importank,created_at DESC").each do |comment_todo|
+            .row.comment-content-user
+              .box-comment-user
+                .wrapper-img
+                  - if comment_todo.user.avatar
+                    %img{src: comment_todo.user.avatar}
+                  -else
+                    = image_tag("icons/user")
+              .col-md-10.comment-content{name: comment_todo.id}
+                .comment-username
+                  = comment_todo.user.fullname
+                .comment-user-role
+                  = Role.find_by_id(comment_todo.user.role_id).name
+                .comment-user-content
+                  = comment_todo.content
+                - if comment_todo.files_url.present?
+                  %div.row
+                    %div.col-md-4.img.attachment.add-attachment
+                      %a{:href => comment_todo.files_url, target: "_blank"}
+                        .wrapper-upload
+                          -if comment_todo.files_url.include? 'gif' or comment_todo.files_url.include? 'png' or comment_todo.files_url.include? 'jpeg' or comment_todo.files_url.include? 'jpg'
+                            = image_tag(comment_todo.files_url)
+                          -else
+                            = image_tag("icons/file")
+                    -# %div.col-md-8
+                    -#   %a{:href => comment_todo.files_url}
+                    -#     View detail
+                .form-hidden-comment
+                .comment-control
+                  - if (comment_todo.importank!=1)
+                    %a{:href =>"#", class: "mark-important"}
+                      %input{:type=>"hidden", value: comment_todo.id}
+                      %span.mark-important
+                        Mark this important
+                  - if (comment_todo.importank==1)
+                    -# %a{:href =>"#", class: "mark-important"}
+                    %span.mark-important
+                      Important
+                  - if (current_user.id==comment_todo.user_id)
+                    %span.glyphicon.glyphicon-asterisk
+                    %a{:href =>"#"}
+                      %span.edit.edit-comment
+                        Edit
+                    %span.glyphicon.glyphicon-asterisk
+
+                    %span.delete-comment
+                      = link_to 'Delete', frontend_comment_path(comment_todo), :method => 'delete', remote: true, :class =>"delete-comment"
+                      -# %a{:href => frontend_comment_path(comment_todo),:method => :delete}
+                      -# %span.delete
+                      -#   Delete

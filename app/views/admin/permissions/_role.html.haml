@@ -1,0 +1,9 @@
+%tr
+  %td= role.id
+  %td= role.name
+  %td= role.desc
+  %td.text-right
+    = link_to admin_role_path(role), data: {toggle: "modal"}, class: 'btn btn-xs btn-warning' do
+      %i.fa.fa-pencil
+    = link_to admin_role_path(role), method: :delete, confirm: ('Are you sure?'), class: 'btn btn-xs btn-danger' do
+      %i.fa.fa-trash

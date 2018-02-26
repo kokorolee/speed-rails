@@ -1,0 +1,61 @@
+%div.row.top-header
+  %div.col-md-3.header-left-container
+    %div.image.speed-img.speed-logo
+      -# %img.img.reponsive-img.speed-img-child{:src => "https://upload.wikimedia.org/wikipedia/commons/d/d4/Coca-Cola_Brasil_logo.png"}
+  %div.col-md-6.header-middle-container
+    %div.item.task-item
+      %span.todos.icon-gly.glyphicon.glyphicon-triangle-top.icon-triagle-top
+      %a.item-current{:href =>"/todos", "data-uri" => "/todos"}
+        Task
+    %div.item
+      %span.teams.icon-gly.glyphicon.glyphicon-triangle-top.icon-triagle-top
+      %ul.nav.item-current{"data-uri" => "/teams"}
+        %li.dropdown-speed
+          %a.dropdown-toggle{:href => "#"}
+            Team
+            %b.caret
+          %ul.dropdown-menu-speed
+            - current_user.teams.where(:archived => [nil, false]).each do |team|
+              %li
+                %a.one-line-text{:href => frontend_team_path(team)}
+                  = team.name
+                - if current_user.super_role =="team" or current_user.super_role=="team_member"
+                  %span.edit-team
+                    -# %a.glyphicon.glyphicon-edit{"data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTeamModal", class: 'btn btn-sign-up-now-without-bg btn-xs'}
+                    %a.glyphicon.glyphicon-edit{:href => edit_frontend_team_path(team), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'btn btn-sign-up-now-without-bg btn-xs'}
+                  %span.delete-team
+                    %a.glyphicon.glyphicon-remove{class: 'btn btn-sign-up-now-without-bg btn-xs', data: team.id }
+                    -# edit_frontend_team_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'btn btn-sign-up-now-without-bg btn-xs'}}
+            - if can? :create, Team
+              %li.add-team
+                -# %a{"data-target" => "#createTeamModal", "data-toggle" => "modal", :type => "button"}
+                  %i.fa.fa-plus
+                  Add todo list
+
+
+                = link_to new_frontend_team_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", "class" => "add-team" do
+                  %i.fa.fa-plus
+                  Add team
+    - if current_user.super_role.to_s=="team_member" or current_user.super_role.to_s=="member"
+      -# %div.item
+        %div.item
+          %span.todos.icon-gly.glyphicon.glyphicon-triangle-top.icon-triagle-top
+          %a.item-current{:href =>"/members", "data-uri" => "/members"}
+            Member
+  %div.col-md-3.header-right-container
+    %div.row.user-info.speed-img
+      %div.col-md-3.avatar
+        %img.img.reponsive-img.speed-img-child{:src => current_user.avatar_url}
+      %div.col-md-9.user-name
+        .btn-group.dropdown-speed
+          %button.btn-username.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button", :id => "dropdownMenuName"}
+            =current_user.fullname
+            %span.caret
+          %ul.dropdown-menu-speed
+            %li
+              %a{:href => frontend_user_path(current_user), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal"} My profile
+
+            %li
+              %a{:href => frontend_user_path(current_user), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal"} Change password
+            %li
+              = link_to('Logout', destroy_user_session_path, method: :delete)

@@ -1,0 +1,31 @@
+- todo.each do |t|
+  %div.wordload-member
+    %div.row.today-task-items
+      %input.todo_list_id{:type =>"hidden", :value => t[0]["todo_list_id"]}
+      %div.col-md-12.task-item
+        %span.glyphicon.glyphicon-option-vertical.icon-menu-task.view-member-workload
+        - if (t[0]["status"]=="undone")
+          %div.checkbox
+            %label.speed-lable-box
+              %input{:type => "checkbox", :value => t[0]["id"]}
+              -# %input{:type => "checkbox", :value => t[0]["id"], checked: true}
+              %span.cr.todos
+                %i.cr-icon.glyphicon.glyphicon-ok
+              %a.todo-name.one-line-text{:href => "#!"}
+                -# = link_to frontend_todo_path(t[0]['id'], todo_list_id: t[0]["todo_list_id"]), class: 'todo-name one-line-text' do
+                = t[0]["name"]
+              %span.task-todolist-name
+                &nbsp trong
+                = t[0]["todolist"]
+        - else (t[0]["status"]=="done" or t[0]["status"]=="late")
+          %div.checkbox
+            %label.speed-lable-box
+              %input{:type => "checkbox", :value => t[0]["id"], checked: true}
+              %span.cr.todos.input-checked
+                %i.cr-icon.glyphicon.glyphicon-ok
+              %a.todo-name.one-line-text{:href => "#!"}
+                -# = link_to frontend_todo_path(t[0]['id'], todo_list_id: t[0]["todo_list_id"]), class: 'todo-name one-line-text' do
+                = t[0]["name"]
+              %span.task-todolist-name
+                trong
+                = t[0]["todolist"]

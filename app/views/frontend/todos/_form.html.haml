@@ -1,0 +1,98 @@
+= simple_form_for [:frontend, resource], html: { class: 'form-group form-create-todo', multipart: true } do |f|
+  - if resource.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - resource.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    -# = f.input :user_id, :as => :hidden, input_html: {class:'speed-input',value: current_user.id}
+    -# = f.input :status, :as => :hidden, input_html: {class:'speed-input',value: "undone"}
+    = f.input :category, :as => :hidden, input_html: {class:'speed-input category', value: "1"}
+    = f.input :private, :as => :hidden, input_html: {class:'speed-input private', value: "2"}
+    -# - if params[:check_list_id]
+    -#   .col-md-12.margin-input
+    -#     = f.input :check_list_id, :as => :hidden, input_html: {class:'speed-input',value: params[:check_list_id]}
+    - if params[:todo_list_id]
+      .col-md-12.margin-input
+        = f.input :todo_list_id, :as => :hidden, input_html: {class:'speed-input', value: params[:todo_list_id]}
+    .col-md-12.margin-input
+      = f.input :name, label: 'Name', input_html: {class:'speed-input require', placeholder: "Enter your todo name"}
+    .col-md-12.margin-input.padding-bottom-20px
+      - if resource.todo_list.present?
+        - users = resource.todo_list.team.users
+      - else
+        - users = Team.find_by_id(TodoList.find_by_id(params[:todo_list_id]).team_id).users
+      = f.association :user, label: 'Assigned to:', collection: users.map{|u| [u.fullname, u.id] }, input_html: {class: 'speed-input require'},  selected: current_user.id
+    .col-md-12.margin-input
+      = f.association :users, label: 'Related to:', collection: users.map{|u| [u.fullname, u.id] }, input_html: {class: 'speed-input choz'}
+    .col-md-12.margin-input
+      = f.input :desc, label: 'Note', input_html: {class:'speed-input', placeholder: "Type something"}
+    .col-md-7.margin-input
+      .col-md-12.duedate
+        %span.col-md-4.deadline-title
+          Deadline
+        = f.date_field :due_date, label: 'Duedate',class: 'col-md-7 speed-input duedate-create-todo require', id:'datetimepicker1', :placeholder =>"Click here to set deadline", :type =>"text"
+    .col-md-5.margin-input.todo-type-hide.hide-op
+      .col-md-6.todo-type
+        %div.checkbox
+          %label.speed-lable-box#lable-metting.metting
+            - if resource.category.to_s=="2"
+              %input{:type => "checkbox", checked: true}
+            - else
+              %input{:type => "checkbox"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+            Metting
+      .col-md-6.todo-type
+        %div.checkbox
+          %label.speed-lable-box#private
+            - if resource.private.to_s=="private"
+              %input{:type => "checkbox", checked: true}
+            - else
+              %input{:type => "checkbox"}
+            %span.cr
+              %i.cr-icon.glyphicon.glyphicon-ok
+            Private
+    .col-md-12.margin-input#location
+
+    #uploadFile.col-md-6.upload-file
+      %span.glyphicon.glyphicon-plus
+        Attach File
+      = f.input :files, label: 'Attach File', input_html: {class:'speed-input'}
+    .col-md-6.adv-setting
+      %span#adv-setting
+        .glyphicon.glyphicon-cog
+        Advance settings
+
+    #createTodo.hide
+      .col-md-12.margin-input
+        %div.label-form Checklist
+        %select.user-role.speed-input.speed-select.check_list{name: "todo[check_list_id]"}
+          %option{value: nil}
+          - if params[:todo_list_id].present?
+            - CheckList.where(team_id: (TodoList.find_by_id(params[:todo_list_id]).team_id)).each do |checklist|
+              %option{value: checklist.id}
+                = checklist.name
+          -else
+            - CheckList.where(team_id: (TodoList.find_by_id(params[:id]).team_id)).each do |checklist|
+              %option{value: checklist.id}
+                = checklist.name
+        -# %div.wrapper-question
+        -#   %div.question
+        -#     %div.question-wrapper
+        -#   %div.add-question#add-question
+        -#     %span.glyphicon.glyphicon-plus
+        -#     Add question
+      .col-md-12.margin-input
+        = f.input :estimate, label: 'Estimate', input_html: {class:'speed-input', placeholder: 'Estimate time' ,value: 0, min: 0}
+      .col-md-12.margin-input.hide
+        = f.input :status, label: 'Status', input_html: {class:'speed-input margin-input'}, selected: 'undone'
+      .col-md-12.margin-input
+        - if resource.todo_list.present?
+          = f.input :parent_id, label: 'Dependence', collection: resource.todo_list.todos, input_html: {class: 'select-select2 speed-input'}
+        -else
+          = f.input :parent_id, label: 'Dependence', collection: TodoList.find_by_id(params[:todo_list_id]).todos, input_html: {class: 'select-select2 speed-input'}
+
+    -# .actions
+    -#   = f.submit 'Create Todo', class: "btn speed-btn submit-btn"

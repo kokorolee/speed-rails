@@ -1,0 +1,29 @@
+%h1
+  Nhân viên
+  .pull-right
+    = link_to new_user_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-filter
+    = link_to new_user_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-cloud-upload
+
+    = link_to new_user_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-cloud-download
+
+    = link_to new_user_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now btn-xs' do
+      %i.fa.fa-plus
+      Thêm mới
+%hr
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th #
+          %th Họ và tên
+          %th Email
+          %th Nhóm phân quyền
+          %th Kích hoạt
+          %th
+      %tbody
+        - @users.each do |user|
+          = render 'user', user: user

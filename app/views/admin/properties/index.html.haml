@@ -1,0 +1,43 @@
+%h1
+  Settings
+  .pull-right
+    = link_to new_group_property_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-folder
+      Create new group property
+    = link_to new_property_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now btn-xs' do
+      %i.fa.fa-plus
+      Create new property
+%hr
+.row
+  - GroupProperty::GROUP_TYPE.each do |g|
+    .col-md-4
+      .box
+        %h5= "#{g} Properties"
+        %hr
+        - @groups = @group_properties.where(group_type: g)
+        -@groups.each do |group|
+          %h6
+            = group.name
+            = link_to group_property_path(group), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-icon btn-xs margin-top--10 pull-right', "data-tooltip" => 'Edit' do
+              %span
+                %i.fa.fa-gear
+          %hr
+          .row
+          - if group.properties.blank?
+            %p.text-center= "Chưa có thông tin nào cho <strong>#{group.name}</strong>".html_safe
+          - group.properties.each do |property|
+            %p.fullname
+              = property.name
+            .btn-group.pull-right.margin-top--20
+              %span.btn.btn-icon.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+
+                %span.caret
+              %ul.dropdown-menu.width-60
+                %li
+                  %a{:href => "#"} Edit
+                %li
+                  %a{:href => "#"} Delete
+
+            %p.note= "#{property.property_type} field"
+
+

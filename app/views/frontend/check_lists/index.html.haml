@@ -1,0 +1,60 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper
+    %left-container.speed-border-radius
+      %div.container-speed-header
+        %div.left-header.speed-border-radius Checklist
+      %div.col-md-12.speed-search-box
+        -# = form_tag(frontend_team_path(resource.id), method: 'get') do
+        %form
+          %div.input-group
+            %input#search-todolist.form-control{:type =>"text", :placeholder =>"Search workflow name", name: 'q', value: params[:q].to_s}
+            %span.input-group-btn
+              %button.btn.btn-default{:type =>"button"}
+                %span.glyphicon.glyphicon-search
+      //Danh sach todo list ben trai
+      - @team = Team.find_by_id(params[:team_id])
+      %div.team-name.speed-panel
+        .speed-team-name.one-line-text
+          = @team.name
+          's check list
+
+        %ul.container-today-task.workflows.wrapper-todo-team-list.remove-padding-left
+          - CheckList.where(team_id: params[:team_id]).order("created_at DESC").each do |checklist|
+            = render 'layouts/speed-component/partial/left_container_checklist', workflow: checklist
+      = link_to new_frontend_team_check_list_path(params[:team_id]), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'btn speed-btn', id: 'createWorkflow' do
+        Create check list
+    %right-container.speed-border-radius
+      -if params[:id].nil?
+        %div.right-header.speed-border-radius Check List list
+        %div.panle.speed-panel
+      -else
+        %div.right-header.speed-border-radius Check List detail
+        %div.panle.speed-panel
+          %div.speed-panel-heading
+            = CheckList.find_by_id(params[:id]).name
+          .hash-tag
+            %div.row.workflow
+              %div.col-md-3.div-sum
+                = Todo.where(:check_list_id => params[:id], status: "undone").count
+                %span
+                  running
+              %div.col-md-3.div-sum
+                = Todo.where(:check_list_id => params[:id], status: ["late","done"]).count
+                %span
+                  complete
+          -# %li.today-task-items.submenu
+          %div.col.md-12.speed-workflow
+            %div.col-md-12.wrapper-todo-team-list.wrapper-step-workflow
+              - StepCheckList.where(check_list_id: params[:id]).each.with_index do |step,index|
+                %div.steps
+                  = index + 1
+                  \.
+                  = step.name
+-#           %a.btn.speed-btn.check-progress-btn{href: frontend_team_workflow_path(team_id: params[:team_id], id: params[:id])}
+-#             Check progress
+-# :javascript
+-#   $(document).ready( function() {
+-#     set_height_scroll('left-container', '.left-header', '.speed-search-box', '', '.speed-btn', '.wrapper-todo-team-list', 0);
+-#     set_height_scroll('right-container', '.right-header', '.speed-panel-heading', '.hash-tag', '.speed-btn', '.wrapper-workflow-step', 0);
+-#   });

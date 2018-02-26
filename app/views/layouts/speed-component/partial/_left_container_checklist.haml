@@ -1,0 +1,20 @@
+%li.today-task-items.submenu
+  %div.col.md-12
+    %div.checkbox
+      %label.speed-lable-box
+        %input{:type => "checkbox"}
+        - if !params[:team_id].nil?
+          %a.todo-name.one-line-text.left{:href => frontend_team_check_lists_path(team_id: params[:team_id], id: workflow.id)}
+            = workflow.name
+          %span.todo-option-left
+            = link_to edit_frontend_team_check_list_path(team_id: params[:team_id], id: workflow), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'edit-todo-left' do
+              Edit
+            = link_to frontend_team_check_list_path(team_id: params[:team_id],  id: workflow), method: "delete", confirm: ('Are you sure?'), class: 'edit-todo-left' do
+              Delete
+        - else
+          %a.todo-name.one-line-text.left{:href => frontend_team_check_list_path(team_id: params[:team_id])}= workflow.name
+          %span.todo-option-left
+            = link_to edit_frontend_team_check_list_path(team_id: params[:id]), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'edit-todo-left' do
+              Edit
+            = link_to frontend_team_check_list_path(team_id: params[:id]), method: :delete, confirm: ('Are you sure?'), class: 'edit-todo-left' do
+              Delete

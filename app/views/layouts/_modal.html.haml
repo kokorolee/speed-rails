@@ -1,0 +1,9 @@
+#foxyModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg{:role => "document"}
+    .modal-content
+
+#component-action.todo-option
+  .option
+    %a.todo-name.action-todo.edit-todo{:href => "#","data-backdrop" => "static", "data-id" => "0", "data-keyboard" => "false", "data-target" => "#createTodoModal", "data-toggle" => "modal"} Edit
+  .option
+    %a.todo-name.action-todo.delete-todo{"data-id" => "0", :href => "", "data" => ""} Delete

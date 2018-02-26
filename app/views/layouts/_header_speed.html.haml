@@ -1,0 +1,49 @@
+%header.navbar.speed-header
+  %div.row.top-header
+    %div.col-md-3.header-left-container
+      %div.image.speed-img.speed-logo
+        %img.img.reponsive-img.speed-img-child{:src => "https://upload.wikimedia.org/wikipedia/commons/d/d4/Coca-Cola_Brasil_logo.png"}
+    %div.col-md-6.header-middle-container
+      %div.item.active
+        %span.glyphicon.glyphicon-triangle-top.icon-triagle-top.active
+        Task
+      %div.item
+        %span.glyphicon.glyphicon-triangle-top.icon-triagle-top
+        Teams
+    %div.col-md-3.header-right-container
+      %div.row.user-info.speed-img
+        %div.col-md-3.avatar
+          %img.img.reponsive-img.speed-img-child{:src => "https://i.pinimg.com/736x/4c/a5/ff/4ca5ff157b88a90e2c1253d123f0f841--logodesign-geometric-designs.jpg"}
+        %div.col-md-9.user-name
+          %div.dropdown
+            %button.btn.dropdown-toggle.user-name{:type =>"button", :id => "dropdownMenuName", :data-toggle => "dropdown", :aria-haspopup => "true", :aria-expanded => "false" }
+              #{@user.fullname}
+              %span.caret
+            %ul.dropdown-menu{:aria-labelledby =>"dropdownMenuName"}
+              %li
+                %a{:href =>"#!"} Action
+              %li
+                %a{:href =>"#!"} Action
+              %li
+                %a{:href =>"#!"} Action
+              %li
+                %a{:href =>"#!"} Action
+
+
+  %div.bottom-header.tab.tab-speed
+    %ul.row.item-container
+      %li.col-md-2.offset-md1.item.active
+        %a{:href =>"/todo_todolist"}
+          %span Todo-List
+      %li.col-md-2.item
+        %a{:href =>"/todo_backlog"}
+          %span Backlog
+      %li.col-md-2.item
+        %a{:href =>"/todo_duesoon"}
+          %span DueSoon
+      %li.col-md-2.item
+        %a{:href =>"#todo_complete"}
+          %span Complete
+      %li.col-md-2.item
+        %a{:href =>"#todo_notifications"}
+          %span Notifications

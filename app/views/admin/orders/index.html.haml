@@ -1,0 +1,65 @@
+%h1
+  Hóa đơn
+  .pull-right
+    = link_to new_order_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now btn-xs' do
+      %i.fa.fa-plus
+      Create new order
+%hr
+= simple_form_for @order, html: { class: 'form-group', multipart: true } do |f|
+  .row
+    .col-md-3
+      .box
+        .text-center
+          = image_tag('hairandwax-logo.png',:title => '', height:30,:alt => '')
+          %h4 Receipt
+          %p= Time.now.strftime("%d/%m/%Y %H:%M")
+        %p ###################################
+        #order_items
+
+        %p ###################################
+        %h5
+          Total:
+          %span.pull-right VNĐ
+          %span.pull-right.price 0.0
+        %hr
+        %p
+          = link_to "#", class: 'btn btn-sign-up-now btn-xs margin-top--5' do
+            Tạo hoá đơn
+          = link_to "#", class: 'btn btn-sign-up-now btn-xs margin-top--5 pull-right' do
+            In hoá đơn
+
+    .col-md-6
+      .box
+        -@category_products.each do |cat|
+          %h4.clearfix
+            = cat.name
+            %span.pull-right.margin-top--10
+              %select.choz
+                - Customer.all.each do |customer|
+                  %option{value: customer.id}= customer.fullname
+
+          %hr
+          .row
+            - cat.products.each do |product|
+              .col-md-4
+                .product
+                  %h5.text-center= product.name
+                  %hr
+                  %select.choz{style: 'width: 100%;'}
+                    - User.all.each do |customer|
+                      %option{value: customer.id}= customer.fullname
+                  %hr
+                  .price
+                    = number_with_delimiter(product.price)
+                    %a.pull-right.add_to_cart.btn.btn-sign-up-now.btn-xs
+                      %i.fa.fa-check
+    .col-md-3
+      %table.table
+        %thead
+          %tr
+            %th #
+            %th Customer
+            %th
+        %tbody
+          -@orders.each do |order|
+            = render 'order', order: order

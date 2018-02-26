@@ -1,0 +1,57 @@
+=render "layouts/speed-component/header/header_speed_todo"
+%speed-container
+  %div.row.wrapper
+    -todo_users = current_user.todos.where(:status => 'undone').order("due_date ASC")
+    =render "layouts/speed-component/partial/today_task", todo_users: todo_users
+    %right-container.speed-border-radius.border-speed
+      %div.right-header.speed-border-radius Notification
+      %div.speed-panel.remove-padding-left
+        %ul.speed-tabs.speed-panel-wrapper.speed-panel-notification
+          %li.tab-link.current{"data-tab" => "unread"}
+            -# Unread
+          -# %li.tab-link{"data-tab" => "read"}
+          -#   Read
+        .speed-tabs-container.speed-padding-container.remove-padding-left
+          %todo-list-name.duesoons#idnotifi{name: @count}
+            %div.todo-list-panel.wrapper-todo-team-list.remove-padding-left#notificationsBody
+              %span.todo-list
+                %input#id_user{type: "hidden", value: current_user.id}
+                #unread.speed-tabs-content.current
+                  - @notifications.each do |notification|
+                    - if !notification['user_list'].nil?
+                      -if (notification['user_list'].include?(current_user.id.to_s))
+                        = render "read_notifi_partial", notification: notification
+                      -else
+                        =render "notifi_partial", notification: notification
+                    -else
+                      =render "notifi_partial", notification: notification
+-#                 #read.speed-tabs-content.current
+-#                   - @notifications.each do |notification|
+-#                     =render "notifi_partial", notification: notification
+-#               %div#notificationFooter
+-# -#
+-#     :javascript
+-#       $(document).ready( function() {
+-#         set_height_scroll('right-container', '.right-header', '.speed-panel-wrapper', '', '', '.wrapper-todo-team-list', 0);
+-#
+-#       });
+-#
+-# =render "layouts/speed-component/header/header_speed_todo"
+-# %speed-container.speed-team
+-#   %div.workloads-main.background
+-#     notifications
+-#     %ul.notificator
+-#       %input#id_user{type: "hidden", value: current_user.id}
+-#       %a#open_notification{href: "#"}
+-#         = render 'counter', counter: @notifications.count
+-#       %div#notificationContainer
+-#         %div#notificationTitle
+-#           Notifications
+-#         %div#notificationsBody.notifications
+-#           %ul#notificationList
+-#             - @notifications.each do |notification|
+-#               = render "notification", notification: notification
+-#         %div#notificationFooter
+-#     - if @notifications.count()>=10
+-#       %a{:href => "#", id: "more-notifications", class: "speed-btn btn"}
+-#         More notifications

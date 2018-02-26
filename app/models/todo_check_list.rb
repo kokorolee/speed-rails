@@ -1,0 +1,2 @@
+class TodoCheckList < ApplicationRecord
+end

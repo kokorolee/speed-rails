@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: 1
+  name: MyString
+  intro: MyString
+  warning: MyString
+  status: 1
+  can_modify: false
+  can_delete: false
+
+two:
+  label: 1
+  name: MyString
+  intro: MyString
+  warning: MyString
+  status: 1
+  can_modify: false
+  can_delete: false

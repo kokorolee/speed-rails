@@ -1,0 +1,7 @@
+%ul.nav.nav-pills
+  %li{class: "#{params[:interaction] == 'note' || params[:interaction].blank? ? 'active' : ''}", :role => "presentation"}
+    %a{:href => "?interaction=note"} New note
+  %li{class: "#{params[:interaction] == 'email' ? 'active' : ''}", :role => "presentation"}
+    %a{:href => "?interaction=email"} Email
+  %li{class: "#{params[:interaction] == 'sms' ? 'active' : ''}", :role => "presentation"}
+    %a{:href => "?interaction=sms"} SMS

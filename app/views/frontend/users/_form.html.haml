@@ -1,0 +1,77 @@
+= simple_form_for [:admin, resource], html: { class: 'form-group', multipart: true } do |f|
+  - if resource.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - resource.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :fullname, input_html:{class: 'speed-input require', placeholder: "Enter username"}
+  = f.input :email, input_html:{class: 'speed-input require', placeholder: "Enter email"}
+  -# = f.input :phone, input_html:{class: 'speed-input', placeholder: "Enter phone"}
+  %div.wrapper-input
+    = f.input :password, input_html:{class: 'speed-input speed-password require', placeholder: "Enter password"}
+    %div.checkbox.inline-checkbox
+      %label.speed-lable-box
+        %input{:type => "checkbox"}
+        %span.cr
+          %i.cr-icon.glyphicon.glyphicon-ok
+        Private
+
+  %div.label-form
+    -# %select.user-role.speed-input
+    -#   - Role.all.each do |r|
+    -#     %option
+    -#       =r.name
+      -# %option
+      -#   Admin
+      -# %option
+      -#   SM
+    -# = f.input :role, collection: Role.all.map{|u| [u.name, u.id] }, input_html: {value: params[:team_id]}
+    -if Role.find_by_id(current_user.role_id).name =="admin"
+      = f.input :role_id, collection: Role.all.map{|u| [u.name, u.id] }, input_html: {class: 'require speed-input choz'}
+    -else
+      = f.input :role_id, collection: Role.where("name != 'admin'").map{|u| [u.name, u.id] }, input_html: {class: 'user-role speed-input choz'}
+    -# = f.input :role ,label: "Title (role)", input_html: {class: 'speed-input choz', placeholder: "Enter role"}
+    -# = f.association :role_id, collection: Role.all.map{|u| [u.name, u.id] }, input_html: {class: 'choz'}
+    -# = f.input :role_id, input_html:{class: 'speed-input', placeholder: "Enter email"}
+
+  -# = f.input :password_confirm, input_html:{class: 'speed-input', placeholder: "Re-Enter password"}
+  %div.label-form Perission
+  = f.input :super_role, :as => :hidden, input_html: {class:'speed-input require',value: 0}
+  %div.wrapper-input
+    %div.checkbox.col-md-6.margin-0
+      %label.speed-lable-box.team-managerment
+        %input{:type => "checkbox"}
+        %span.cr
+          %i.cr-icon.glyphicon.glyphicon-ok
+        Team managerment
+    %div.checkbox.col-md-6.margin-0
+      %label.speed-lable-box.member-managerment
+        %input{:type => "checkbox"}
+        %span.cr
+          %i.cr-icon.glyphicon.glyphicon-ok
+        Member managerment
+  - @group_properties.each do |group|
+    - if group.properties.present?
+      %h4= group.name
+      .row
+        - if resource.property_matches.blank?
+          - group.properties.each do |p|
+            = f.simple_fields_for :property_matches, resource.property_matches.build do |f2|
+              .col-md-6
+                = f2.input :property_id, as: :hidden, input_html: {value: p.id}
+                = f2.input :property_key, as: :hidden, input_html: {value: p.internal_name}
+                = f2.input :property_value, label: p.name
+        - else
+          = f.simple_fields_for :property_matches do |f2|
+            .col-md-6
+              = f2.input :property_id, as: :hidden
+              = f2.input :property_key, as: :hidden
+              = f2.input :property_value, label: f2.object.property_key.capitalize
+
+
+
+  .actions
+    %button.btn.speed-btn.submit-btn
+      Create Member

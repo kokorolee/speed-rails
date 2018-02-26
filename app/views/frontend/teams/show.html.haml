@@ -1,0 +1,30 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper
+    =render "layouts/speed-component/partial/left_contaier_team"
+    %right-container.speed-border-radius
+      %div.right-header.speed-border-radius Todo-list
+      %div.panle.speed-panel
+        .wrapper-todo-team-list
+
+          -# - @todo_lists.each do |todo_list|
+          -#   .speed-panel-wrapper-todo-team
+          -#     %div.speed-panel-heading
+          -#       = todo_list.name
+          -#     - if todo_list.hash_tag.present?
+          -#       .hash-tag
+          -#         @
+          -#         = todo_list.hash_tag
+          -#     = link_to new_frontend_todo_path(todo_list_id: todo_list.id), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'btn speed-btn' do
+          -#       %i.fa.fa-plus
+          -#       Add todo
+          -#   .wrapper-todo-each-team-list
+          -#     - todo_list.todos.order("position,due_date DESC").where(:status => 'undone',:archived => [nil,false]).limit(3).each do |todo_detail|
+          -#       .wrapper-todo-team
+          -#         = render 'layouts/speed-component/partial/todo_date_user' , todo_detail: todo_detail
+          -#
+          -# - if @todos.present?
+          -#   .wrapper-todo-each-team-list
+          -#   - @todos.where(:archived => [nil,false], :status => "undone").order("position,due_date ASC").each do |todo|
+          -#     .wrapper-todo-team
+          -#     = render 'layouts/speed-component/partial/todo_date_user' , todo_detail: todo

@@ -1,0 +1,23 @@
+%tr
+  %td= customer.id
+  %td
+    %p.fullname= customer.fullname
+    %p.code= customer.code
+    %p.date
+      %i.fa.fa-calendar
+      = customer.created_at.strftime("%H:%M %d-%m-%Y")
+    %p.phone
+      %i.fa.fa-mobile
+      = customer.phone_number
+    %p.email
+      %i.fa.fa-envelope
+      = customer.email
+    %p.note= customer.note
+  %td
+  %td
+  %td
+  %td.text-right
+    = link_to customer_path(customer), class: 'btn btn-icon btn-xs', "data-keyboard" => false do
+      %i.fa.fa-eye
+    = link_to edit_customer_path(customer), class: 'btn btn-icon btn-xs', "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal" do
+      %i.fa.fa-edit

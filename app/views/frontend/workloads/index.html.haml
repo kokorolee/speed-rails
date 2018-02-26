@@ -1,0 +1,56 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper
+    %div.workloads-main.background
+      %div.workloads-head.speed-border-radius
+        = Team.find_by_id(params[:team_id]).name
+        ’s member workload
+      %div.col-md-12.speed-search-box.form-inline
+        - if params[:date].present?
+          - data =params[:date]
+        -else
+          - data = Date.today.strftime("%Y-%m-%d")
+        %div.input-group.form-group.speed-date-input
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
+          %input.form-control#datepicker-workload{:type =>"text",  value: data}
+        %div.input-group.form-group
+          %input.form-control#search-member{:type =>"text", :placeholder =>"Search member name"}
+          %span.input-group-btn
+            %button.btn.btn-default{:type =>"button"}
+              %span.glyphicon.glyphicon-search
+      %div.workloads-body.workloads-body-team.background
+        %table.table.table-fixed#workload-member
+          %thead
+            %tr.width-20-100
+              %th.col-xs-2.table-workload.sortStyle
+                Member
+                %span.fa.fa-sort.speed-sort-btn
+
+              %th.col-xs-2.table-workload.sortStyle
+                Work time
+                %span.fa.fa-sort.speed-sort-btn
+              %th.col-xs-2.table-workload.sortStyle
+                Task done
+                %span.fa.fa-sort.speed-sort-btn
+              %th.col-xs-2.table-workload.sortStyle
+                Task late
+                %span.fa.fa-sort.speed-sort-btn
+              %th.col-xs-2.table-workload.sortStyle
+                Task undone
+                %span.fa.fa-sort.speed-sort-btn
+          %tbody.show-workloads.wrapper-todo-team-list
+            - @result[0].each do |result|
+              %tr.result
+                %td.col-xs-2.table-workload
+                  %a{:href => view_member_frontend_team_workloads_path(team_id: params[:team_id], user: result[0]['id_user'], date: result[0]['date']),"data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#viewWorkloadModal" }
+                    = User.find_by_id(result[0]['id_user']).fullname
+                  %td.col-xs-2.table-workload
+                    = result[0]['estimate']
+                    hours
+                  %td.col-xs-2.table-workload
+                    = result[0]['done']
+                  %td.col-xs-2.table-workload
+                    = result[0]['late']
+                  %td.col-xs-2.table-workload
+                    = result[0]['undone']

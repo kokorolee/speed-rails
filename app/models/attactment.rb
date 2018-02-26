@@ -1,0 +1,2 @@
+class Attactment < ApplicationRecord
+end

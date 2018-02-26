@@ -1,0 +1,32 @@
+#createTeamModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h2.modal-title Create Team
+      .modal-body
+        %form#new_team.simple_form.form-group{"accept-charset" => "UTF-8", :action => "/teams", :enctype => "multipart/form-data", :method => "post", :novalidate => "novalidate"}
+          -# %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+          -# %input{:name => "authenticity_token", :type => "hidden", :value => "EEKPJIAtEWJGAO2lJcLGwMzXRJl1/ySVsdE/zqI6bTq5mdP5kWycB0lwj8so/yN/xcYqd1m17giyzjyuN+MziA=="}/
+          .row
+            .col-md-12
+              .input.string.required.team_name
+                %label.string.required{:for => "team_name"}
+                  Team Name
+                %input#team_name.string.required.speed-input.require{:name => "team[name]", :placeholder => "Enter team name", :type => "text"}/
+            .col-md-12
+              .input.text.optional.team_desc
+                %label.text.optional{:for => "team_desc"} Description
+                %textarea#team_desc.text.optional.speed-input{:name => "team[desc]", :placeholder => "Write Something"}
+            .col-md-12
+              .input.select.optional.team_users
+                %label.select.optional{:for => "team_user_ids"} Users
+                %input{:name => "team[user_ids][]", :type => "hidden", :value => ""}/
+                %select#team_user_ids.select.optional.choz.speed-input{:multiple => "multiple", :name => "team[user_ids][]", :style => "display: none;"}
+                  -@user =  User.all.each do |u|
+                    %option{:value => u.id}
+                      = u.fullname
+            .actions
+              %button.btn.speed-btn.submit-btn
+                Create New Todo

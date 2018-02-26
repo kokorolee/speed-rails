@@ -1,0 +1,8 @@
+= simple_form_for [:admin, resource], html: { class: 'form-group', multipart: true } do |f|
+  - if resource.errors.any?
+    - resource.errors.full_messages.each do |msg|
+      = render_flash_message(msg, 'error')
+  .form-group
+    = f.input :action, placeholder: 'Hoạt động', input_html: {class: 'form-control'}
+  .form-group.text-center
+    = f.submit 'Create', class: "btn btn-pink btn-upgrade"

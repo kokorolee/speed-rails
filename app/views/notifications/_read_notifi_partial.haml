@@ -1,0 +1,21 @@
+%div.wrapper-one-todo-list
+  %div.todo-list-name
+    = notification['parent_id']
+  %div.row.today-task-items
+    %div.col-md-12.task-item
+      %div.user-name-noti
+        = notification['user']
+      %div.event-noti
+        = notification['event']
+        on
+      %div.catagory-noti.limit-text
+        - if notification['category']=="todo list"
+          = link_to notification['url'], "data-keyboard" => false, "data-backdrop" => "static" do
+            -# %a{:href => "/","data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal"}
+            = notification['name']
+        -else
+          = link_to notification['url'] , "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal" do
+            = notification['name']
+      %div.timestamp-noti
+        at
+        = notification['date']

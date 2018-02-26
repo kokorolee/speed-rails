@@ -1,0 +1,53 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper
+    %div.workloads-main.background
+      %div.workloads-head.speed-border-radius
+        %span.glyphicon.glyphicon-chevron-left
+        %input{:type => "hidden", :value => params[:team_id]}
+        %select.list-workflow.select-select2#list-workflow{:data-allow-clear=>"true", :data-close-on-select=>"false"}
+          - Workflow.where(parent_id: params[:team_id], :archived => [nil, false]).each do |team|
+            - if (team.id.to_s == params[:id].to_s)
+              %option{selected: "selected", value: team.id}
+                = team.name
+            -else
+              %option{value: team.id}
+                = team.name
+
+      -# %span.glyphicon.glyphicon-triangle-bottom
+      %div.row.workflow-body.workflow-
+        %div.col-md-12
+          %div.pane.pane--tablel
+            %div.pane-hScroll
+              %div.pane-vScroll.wrapper-todo-team-list.remove-padding-left
+                %table
+                  %thead
+                    %th.name
+                    - StepWorkflow.where(workflow_id: params[:id]).each do |step|
+                      %th
+                        =step.name
+                    %th
+                      Finish
+                  %tbody
+                    - TodoList.where(category: "workflow", parent_id: params[:id], archived: [false, nil]).order("created_at DESC").each do |todolist|
+                      - id = "name-"+todolist.id.to_s
+                      %tr{class: id, name: todolist.id.to_s}
+                        %td.name
+                          %a.todo-name{:href => frontend_team_todo_list_path(team_id: todolist.team_id, id: todolist.id)}
+                            = todolist.name
+                        -# %td
+                        -#
+                        -#
+                        -# %td.context-menu-one.btn.btn-neutral{:title=>"Right click to Edit", :id => id}
+                        -#   %div
+                        -#     %i.fa.fa-dot-circle-o
+                        -#     %p
+                        -#       Chí Trần
+                        -#     %p.date
+                        -#       [15/12/2017]
+                        - id_last = 0
+                        - StepWorkflow.where(workflow_id: params[:id]).each do |step|
+                          - name = "name-"+todolist.id.to_s+'-'+step.id.to_s
+                          - id_last = Todo.where(step_id: step.id, todo_list_id: todolist.id).first.id
+                          %td{:name=> name, :droppable_todo => id, id: id_last}
+                        %td{:name=> "finish", :data => id_last, :droppable_todo => id}

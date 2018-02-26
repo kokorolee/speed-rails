@@ -1,0 +1,93 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper
+    %left-container.speed-border-radius
+      %div.container-speed-header
+        %div.left-header.speed-border-radius Workflow
+      %div.col-md-12.speed-search-box
+        -# = form_tag(frontend_team_path(resource.id), method: 'get') do
+        %form
+          %div.input-group
+            %input#search-todolist.form-control{:type =>"text", :placeholder =>"Search workflow name", name: 'q', value: params[:q].to_s}
+            %span.input-group-btn
+              %button.btn.btn-default{:type =>"button"}
+                %span.glyphicon.glyphicon-search
+      //Danh sach todo list ben trai
+      - @team = Team.find_by_id(params[:team_id])
+      %div.team-name.speed-panel
+        .speed-team-name.one-line-text
+          = @team.name
+          'workflow
+
+        %ul.container-today-task.workflows.wrapper-todo-team-list.remove-padding-left
+          - Workflow.where(parent_id: params[:team_id], :archived => [nil, false]).order("created_at DESC").each do |workflow|
+            = render 'layouts/speed-component/partial/left_container_workflow', workflow: workflow
+      = link_to new_frontend_team_workflow_path(params[:team_id]), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'btn speed-btn', id: 'createWorkflow' do
+        Create workflow
+    %right-container.speed-border-radius
+      -if params[:id].nil?
+        %div.right-header.speed-border-radius Workflow list
+        %div.panle.speed-panel              
+      -else
+        %div.right-header.speed-border-radius Workflow detail
+        %div.panle.speed-panel
+          %div.speed-panel-heading
+            = Workflow.find_by_id(params[:id]).name
+          .hash-tag
+            %div.row.workflow
+              %div.col-md-3.div-sum
+                - complete_count = 0;
+                - late_count = 0;
+                - problem_count = 0;
+                - TodoList.where(:category => "workflow",parent_id: params[:id]).order("created_at DESC").each do |todolist|
+                  - late_check = 0;
+                  - problem_check = 0
+                  - complete_check = 0
+                  - todolist.todos.each do |todo|
+                    -# check problem 1 todo problem => todo list problem
+                    - if todo.status=="undone"
+                      - complete_check = 1
+                      -if todo.due_date.strftime("%d/%m/%Y") < Time.now.strftime("%d/%m/%Y")
+                        - problem_check = 1
+                    - elsif todo.status=="late"
+                      -# check late 1 todo late => todo list late
+                      - late_check = 1
+
+                  - if complete_check==0
+                    - complete_count = complete_count + 1
+
+                  - problem_count = problem_count + problem_check
+                  - late_count = late_count + late_check
+
+                = TodoList.where(:category => "workflow",parent_id: params[:id]).count - complete_count
+                -# 4
+                %span
+                  running
+              %div.col-md-3.div-sum
+                = problem_count
+                %span
+                  problems
+              %div.col-md-3.div-sum
+                = late_count
+                %span
+                  late
+              %div.col-md-3.div-sum
+                -# 0
+                = complete_count
+                %span
+                  complete
+          -# %li.today-task-items.submenu
+          %div.col.md-12.speed-workflow
+            %div.col-md-12.wrapper-todo-team-list.wrapper-step-workflow
+              - StepWorkflow.where(workflow_id: params[:id]).order("id").each.with_index do |step,index|
+                %div.steps
+                  = index + 1
+                  \.
+                  = step.name
+          %a.btn.speed-btn.check-progress-btn{href: frontend_team_workflow_path(team_id: params[:team_id], id: params[:id])}
+            Check progress
+:javascript
+  $(document).ready( function() {
+    set_height_scroll('left-container', '.left-header', '.speed-search-box', '', '.speed-btn', '.wrapper-todo-team-list', 0);
+    set_height_scroll('right-container', '.right-header', '.speed-panel-heading', '.hash-tag', '.speed-btn', '.wrapper-workflow-step', 0);
+  });

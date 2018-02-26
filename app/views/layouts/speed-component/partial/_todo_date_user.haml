@@ -1,0 +1,69 @@
+-# todo khong private
+- if todo_detail.private!="private"
+  %div.row.today-task-items.limit-width-tast-todolist-show
+    %div.col-md-12.task-item
+      %input#todo_list_id{:type => "hidden", value: todo_detail.todo_list_id}
+      %div.checkbox
+        %div.glyphicon.glyphicon-option-vertical.icon-menu-task
+        %label.speed-lable-box.speed-lable-box__wrapper
+          - if todo_detail.status == "undone"
+            %input{:type => "checkbox", value: todo_detail.id}
+          -else
+            %input{:type => "checkbox", value: todo_detail.id , checked: true}
+          %span.cr.todos
+            %i.cr-icon.glyphicon.glyphicon-ok
+          = link_to frontend_todo_path(todo_detail, todo_list_id: todo_detail.todo_list_id), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'todo-name one-line-text todo-limit-width' do
+            = todo_detail.name
+          %span.task-deadline
+            %span.glyphicon.glyphicon-asterisk
+            -if (todo_detail.due_date)
+              %span.date
+                = todo_detail.due_date.strftime("%d/%m")
+          %span.task-member.team
+            %span.glyphicon.glyphicon-asterisk
+            - if todo_detail.category.to_s=="2"
+              %span.todo-type-metting
+                Metting
+            -else
+              %span.todo-user-name
+                = User.find_by_id(todo_detail.user_id).try(:fullname)
+
+- elsif todo_detail.user_id == current_user.id
+  %div.row.today-task-items.limit-width-tast-todolist-show
+    %div.col-md-12.task-item
+      %input#todo_list_id{:type => "hidden", value: todo_detail.todo_list_id}
+      %div.checkbox
+        %div.glyphicon.glyphicon-option-vertical.icon-menu-task
+        %label.speed-lable-box.speed-lable-box__wrapper
+          - if todo_detail.status == "undone"
+            %input{:type => "checkbox", value: todo_detail.id}
+          -else
+            %input{:type => "checkbox", value: todo_detail.id , checked: true}
+          %span.cr.todos
+            %i.cr-icon.glyphicon.glyphicon-ok
+          = link_to frontend_todo_path(todo_detail, todo_list_id: todo_detail.todo_list_id), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'todo-name one-line-text todo-limit-width' do
+            = todo_detail.name
+          %span.task-deadline
+            %span.glyphicon.glyphicon-asterisk
+            -if (todo_detail.due_date)
+              %span.date
+                = todo_detail.due_date.strftime("%d/%m")
+          %span.task-member.team
+            %span.glyphicon.glyphicon-asterisk
+            - if todo_detail.category.to_s=="2"
+              %span.todo-type-metting
+                Metting
+            -else
+              %span.todo-user-name
+                = User.find_by_id(todo_detail.user_id).try(:fullname)
+-# :javascript
+  $(document).ready( function() {
+    var item_todo__wrapper = $('.speed-lable-box__wrapper');
+    var item_width = item_todo__wrapper.width();
+
+    var ele_deadline_width = item_todo__wrapper.find('.task-deadline').outerWidth();
+    var ele_member_width = item_todo__wrapper.find('.task-member').outerWidth();
+    
+    item_todo__wrapper.find('.todo-limit-width').width(item_width - ele_deadline_width - ele_member_width - 20 +  "px");
+
+  } );

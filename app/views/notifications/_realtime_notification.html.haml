@@ -1,0 +1,26 @@
+%li
+  -if notification.category.to_s=="todo list"
+    = link_to notification.url do
+      -# = User.find_by_id(no
+      = User.find_by_id(notification.user_id).fullname
+      = notification.event
+      = notification.category
+      %strong
+        = TodoList.find_by_id(notification.parent_id).name
+      %span
+        at
+        = notification.created_at.strftime("%d %b. %Y")
+  -else
+    = link_to notification.url , "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal" do
+      -# = User.find_by_id(no
+      = User.find_by_id(notification.user_id).fullname
+      = notification.event
+      = notification.category
+      %strong
+        - if notification.category.to_s=="comment"
+          = Todo.find_by_id(notification.parent_id).name
+        - elsif notification.category.to_s=="todo"
+          = Todo.find_by_id(notification.parent_id).name
+      %span
+        at
+        = notification.created_at.strftime("%d %b. %Y")

@@ -1,0 +1,8 @@
+%tr
+  %td= partner.id
+  %td= partner.fullname
+  %td= partner.email
+  %td= partner.partner_type.name
+  %td.text-right
+    = link_to admin_partner_path(partner), class: 'btn btn-icon btn-xs', "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal" do
+      %i.fa.fa-edit

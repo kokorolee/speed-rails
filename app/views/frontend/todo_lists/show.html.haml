@@ -1,0 +1,41 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper
+    =render "layouts/speed-component/partial/left_contaier_team"
+    %right-container.speed-border-radius
+      %div.right-header.speed-border-radius Todo-list
+      - if @todos_s.present?
+        - @todos_s.where(:archived => [nil,false], :status => "undone").order("position,due_date DESC").each do |todo_detail|
+          .wrapper-todo-team
+            = render 'layouts/speed-component/partial/todo_date_user' , todo_detail: todo_detail
+      -else
+        %div.panle.speed-panel
+          - @todolist = TodoList.find_by_id(params[:id])
+          %div.speed-panel-heading
+            = @todolist.name
+          - if @todolist.hash_tag.present?
+            .hash-tag
+              @
+              = @todolist.hash_tag
+          -if @todolist.archived==nil or @todolist.archived==false
+            -# %a.btn.speed-btn.margin-left-20px{"data-target" => "#createTodoModal2", "data-toggle" => "modal", :type => "button"}
+              %i.fa.fa-plus
+              Add todo
+            = link_to new_frontend_todo_path(todo_list_id: params[:id]), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'btn speed-btn margin-left-20px' do
+              %i.fa.fa-plus
+              Add todo
+          - else
+            %a{:href => "#",class: 'btn speed-btn re-open-todo', data: @todolist.id}
+              Re-open todo list
+          .wrapper-todo-team-list
+            .wrapper-todo-team
+              - if !params[:format].nil?
+                - @todolist.todos.order("step_id,position,due_date,created_at DESC").where(:status => params[:format],:archived => [nil,false]).each do |todo_detail|
+                  = render 'layouts/speed-component/partial/todo_date_user' , todo_detail: todo_detail
+              - else
+                - @todolist.todos.order("step_id,position,created_at DESC").where(:archived => [nil,false]).each do |todo_detail|
+                  = render 'layouts/speed-component/partial/todo_date_user' , todo_detail: todo_detail
+:javascript
+  $(document).ready( function() {
+    set_height_scroll('right-container', '.right-header', '.speed-panel-heading', '.speed-btn', '', '.wrapper-todo-team-list', 0);
+  });

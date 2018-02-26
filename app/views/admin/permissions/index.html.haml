@@ -1,0 +1,28 @@
+%h1
+  Quản lý permission
+  .pull-right
+    = link_to new_admin_permission_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-filter
+    = link_to new_admin_permission_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-cloud-upload
+
+    = link_to new_admin_permission_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-cloud-download
+
+    = link_to new_admin_permission_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-plus
+      Thêm mới
+%hr
+
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+        %th #
+        %th Tên
+        %th Mô tả
+        %th.text-right
+      %tbody
+        - @collection.each do |collection|
+          = render 'permission', permission: collection

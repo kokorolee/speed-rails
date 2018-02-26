@@ -1,0 +1,130 @@
+.module.form-module#login-layout
+  .toggle
+    %i.fa.fa-times.fa-pencil
+
+  -# .form
+  -#   %h2 Người dùng đăng nhập
+  -#   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  -#     = f.input :email, required: false, autofocus: true, label: false, placeholder: 'Email'
+  -#     = f.input :password, required: false, label: false, placeholder: 'Password'
+  -#     = f.button :submit, "Đăng nhập"
+  -#     = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+
+  -# .cta
+  -#   = render "users/shared/links"
+
+  / LOGIN MODULE
+  .login
+    .wrap
+      / TOGGLE
+      #toggle-wrap
+        #toggle-terms
+          #cross
+            %span
+            %span
+      / TERMS
+      .terms
+        %h2 dp Terms of Service
+        %p.small Last modified: September 23, 2017
+        %h3 Welcome to dp
+      / RECOVERY
+      .recovery
+        %h2 Password Recovery
+        %p
+          Enter either the
+          %strong email address
+          or
+          %strong username
+          on the account and
+          %strong click Submit
+        %p We'll email instructions on how to reset your password.
+        = simple_form_for(resource, as: resource_name,:class => 'recovery-form', url: password_path(resource_name)) do |f|
+          = f.input :email, :input_html => { :class => 'input', :id => 'user_recover', :placeholder => "Enter Email or Username Here" }
+          = f.button :submit, 'submit'
+        -# %form.recovery-form{:action => "new_password_path(resource_name)", :method => "post"}
+          -# %input#user_recover.input{:placeholder => "Enter Email or Username Here", :type => "text"}/
+          -# %input.button{:type => "submit", :value => "Submit"}/
+        %p.mssg An email has been sent to you with further instructions.
+      / SLIDER
+      .content
+        / LOGO
+        .logo
+          %a{:href => "#"}
+            %img{:alt => "", :src => "http://res.cloudinary.com/dpcloudinary/image/upload/v1506186248/logo.png"}/
+        / SLIDESHOW
+        #slideshow
+          .one
+            %h2
+              %span EVENTS
+            %p Sign up to attend any of hundreds of events nationwide
+          .two
+            %h2
+              %span LEARNING
+            %p Thousands of instant online classes/tutorials included
+          .three
+            %h2
+              %span GROUPS
+            %p Create your own groups and connect with others that share your interests
+          .four
+            %h2
+              %span SHARING
+            %p Share your works and knowledge with the community on the public showcase section
+      / LOGIN FORM
+      .user
+        /
+          ACTIONS
+          <div class="actions">
+          <a class="help" href="#signup-tab-content">Sign Up</a><a class="faq" href="#login-tab-content">Login</a>
+          </div>
+        .form-wrap
+          / TABS
+          .tabs
+            %h3.login-tab
+              %a.log-in.active{:href => "#login-tab-content"}
+                %span
+                  Login
+                  %span
+          -#   %h3.signup-tab
+          -#     %a.sign-up{:href => "#signup-tab-content"}
+          -#       %span Sign Up
+          -# / TABS CONTENT
+          .tabs-content
+            / TABS CONTENT LOGIN
+            #login-tab-content.active
+              -# %form.login-form{:action => "", :method => "post"}
+              = simple_form_for(resource, as: resource_name, :class => 'login-form', url: session_path(resource_name)) do |f|
+                = f.input :email, required: false, autofocus: true, label: false, placeholder: 'Email', :input_html => { :class => 'input', :id => 'user_login' }
+                = f.input :password, required: true, label: false, placeholder: 'Password', :input_html => { :class => 'input', :id => 'user_pass' }
+                -# = f.input :remember_me, :input_html => { :class => 'checkbox', :id => 'remember_me' }, as: :boolean if devise_mapping.rememberable?
+                = f.button :submit, 'Login'
+                -# %input#user_login.input{:autocomplete => "off", :placeholder => "Email or Username", :type => "text"}/
+                -# %input#user_pass.input{:autocomplete => "off", :placeholder => "Password", :type => "password"}/
+                -# %input#remember_me.checkbox{:checked => "checked", :type => "checkbox"}/
+                -# %label{:for => "remember_me"} Remember me
+                -# %input.button{:type => "submit", :value => "Login"}/
+              .help-action
+                %p
+                  %i.fa.fa-arrow-left{"aria-hidden" => "true"}
+                  %a.forgot{:href => "#"} Forgot your password?
+            / TABS CONTENT SIGNUP
+            -# #signup-tab-content
+            -#   = simple_form_for(resource, as: resource_name, :class => 'signup-form', url: registration_path(resource_name)) do |f|
+            -#     = f.input :fullname, required: false, label: false, placeholder: 'Username', :input_html => { :class => 'input', :id => 'user_name' }
+            -#     = f.input :email, required: false, autofocus: true, label: false, placeholder: 'Email', :input_html => { :class => 'input', :id => 'user_email' }
+            -#     = f.input :phone, required: false, label: false, placeholder: 'Phone number', :input_html => { :class => 'input', :id => 'user_phone' }
+            -#     = f.input :password, required: false, label: false, placeholder: 'Password', :input_html => { :class => 'input', :id => 'user_pass' }
+            -#     = f.input :password_confirmation, required: true, label: false, placeholder: 'Password confirmation', :input_html => { :class => 'input', :id => 'user_password_confirmation' }
+            -#     = f.button :submit, 'Sign Up'
+            -#   -# %form.signup-form{:action => "", :method => "post"}
+            -#   -#   %input#user_email.input{:autocomplete => "off", :placeholder => "Email", :type => "email"}/
+            -#   -#   %input#user_name.input{:autocomplete => "off", :placeholder => "Username", :type => "text"}/
+            -#   -#   %input#user_pass.input{:autocomplete => "off", :placeholder => "Password", :type => "password"}/
+            -#   -#   %input.button{:type => "submit", :value => "Sign Up"}/
+            -#   .help-action
+            -#     %p By signing up, you agree to our
+            -#     %p
+            -#       %i.fa.fa-arrow-left{"aria-hidden" => "true"}
+            -#       %a.agree{:href => "#"} Terms of service
+
+  -# .cta
+  -#   = render "users/shared/links"

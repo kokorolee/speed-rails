@@ -1,0 +1,16 @@
+= simple_form_for [:admin, resource], html: { class: 'form-group', multipart: true } do |f|
+  - if resource.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - resource.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :fullname
+  = f.input :email
+  = f.input :phone
+  = f.association :partner_type, input_html: {class: 'choz form-control'}
+  = f.input :password
+  = f.input :password_confirm
+  .actions
+    = f.submit 'Lưu lại'

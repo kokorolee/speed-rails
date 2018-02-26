@@ -1,0 +1,9 @@
+%tr
+
+  %td= order.order_no
+  %td
+    %p.fullname= order.customer.fullname
+  %td.text-right
+    = link_to order_path(order), class: 'btn btn-sign-up-now btn-xs margin-top--5' do
+      In hoá đơn
+

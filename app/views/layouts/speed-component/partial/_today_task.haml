@@ -1,0 +1,44 @@
+%left-container.speed-border-radius.border-speed
+  %div.container-speed-header
+    %div.left-header.speed-border-radius today-task
+  %div.form-group.container-today-task.wrapper-todo-team-list.sortable.remove-padding-left
+    - current_user.todos.joins("LEFT JOIN todo_lists ON todo_lists.id = todos.todo_list_id").where(todo_lists: {:archived => [nil,false]},:status => 'undone', :archived => [nil,false]).order("position,due_date ASC").limit(5).each do |todo_detail|
+      -if !todo_detail.nil?
+        - if (todo_detail.todo_list.present? and todo_detail.todo_list.archived != true)
+          %div.col-md-12.task-item.todo-limit-width-left
+            %div.checkbox
+              %label.speed-lable-box.show1line
+                %input{:type => "checkbox", value: todo_detail.id}
+                %span.cr.todos
+                  %i.cr-icon.glyphicon.glyphicon-ok
+                %span.todos-content
+                  -# %a{"data-target" => "#todoDetailModal", "data-toggle" => "modal", :type => "button"}
+                    = todo_detail.name
+
+                  %a{:href => frontend_todo_path(todo_detail),  "data-toggle"=>"tooltip", "title"=>todo_detail.name, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal" , remote: true}
+                    = todo_detail.name
+      -#     -else
+      -#       - break
+:javascript
+  $(document).ready( function() {
+    set_height_scroll('left-container', '.left-header', '', '', '', '.wrapper-todo-team-list', 0);
+  });
+
+
+  // - todo_users = current_user.todos.joins("INNER JOIN todo_lists ON todos.todo_list_id = todo_lists.id").where("todo_lists.archived != true",:status => 'undone', :archived => [nil,false]).order("position,due_date ASC").limit(5)
+  //
+  // -# @post = Post.joins(:group => {:memberships => :user}).where(:memberships => {:user_id => current_user.id})
+  // -if !todo_users.nil?
+  //   - todo_users.each do |todo_detail|
+  //     %div.col-md-12.task-item
+  //       %div.checkbox
+  //         %label.speed-lable-box.show1line
+  //           %input{:type => "checkbox", value: todo_detail.id}
+  //           %span.cr.todos
+  //             %i.cr-icon.glyphicon.glyphicon-ok
+  //           %span.todos-content
+  //             %a{:href => frontend_todo_path(todo_detail),  "data-toggle"=>"tooltip", "title"=>todo_detail.name, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal"}
+  //               = todo_detail.name
+  // -else
+  //   %h5
+  //     No find todo

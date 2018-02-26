@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Your Company
+    = csrf_meta_tags
+    = favicon_link_tag 'goibacsi-icon.png'
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900", :rel => "stylesheet prefetch"}/
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    %script{:src => "https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"}
+
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+
+    - if current_user
+      = render 'layouts/header'
+    - if current_partner
+      = render 'layouts/header_partner'
+
+    = render 'layouts/modal'
+    .container-fluid
+      = yield
+    = render 'layouts/footer'

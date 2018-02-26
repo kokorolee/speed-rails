@@ -1,0 +1,25 @@
+.box
+  .row
+    .col-md-2
+      =link_to edit_customer_path(resource, params: {col: 'avatar', type: 'upload'}), class: 'pull-right', "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#myModal" do
+        = image_tag('', :title => '',:alt => '',class: 'img-responsive')
+    .col-md-8
+      %h3
+        %b= "#{resource.fullname}"
+
+    .col-md-2
+      =link_to edit_customer_path(resource, params: {col: 'first_name,last_name,email,phone_number,job_title'}), class: 'pull-right', "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#myModal" do
+        Edit
+
+/ .box
+/   %h3
+/     %b Attachments
+/   %p.text-center= "This is where attachments for #{resource.first_name} will live."
+/   .row
+/     - @attactments.each do |attachment|
+/       .col-md-4
+/         = image_tag(attachment.doc.url(:thumb), :title => '',:alt => '',class: 'img-responsive')
+/   %br
+/   %p.text-center
+/     =link_to edit_customer_path(resource, params: {col: '', type: 'attachments'}), class: 'btn btn-dropdown', "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#myModal" do
+/       Add an attachment

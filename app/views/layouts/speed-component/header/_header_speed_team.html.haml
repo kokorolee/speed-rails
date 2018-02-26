@@ -1,0 +1,74 @@
+%header.navbar.speed-header
+  =render "/layouts/speed-component/header/header"
+  %div.bottom-header.tab.tab-speed
+    - if flash[:notice]
+      .alert.alert-success.alert-dismissable
+        %a.close{:href => "#", 'data-dismiss' => 'alert', 'aria-label' => 'close'} x
+        = flash[:notice]
+    %ul.row.item-container
+      %li.col-md-2.item
+        - if !params[:team_id].nil?
+          %a{:href => frontend_team_path(params[:team_id])}
+            %span To-do List
+        - elsif !params[:id].nil?
+          %a{:href => frontend_team_path(params[:id])}
+            %span To-do List
+        - else
+          %a{:href =>"/teams"}
+            %span To-do List
+      %li.col-md-2.item
+        - if !params[:team_id].nil?
+          -# %a{:href => frontend_team_activities_path(params[:team_id])}
+          %a{:href => "#!"}
+            %span Activities
+        - elsif !params[:id].nil?
+          -#%a{:href => frontend_team_activities_path(params[:id])}
+          %a{:href => "#!"}
+            %span Activities
+        - else
+          -#%a{:href => "/teams"}
+          %a{:href => "#!"}
+            %span Activities
+      %li.col-md-2.item
+        %a{:href => "#!"}
+          %span Archived Todo List
+        -# - if !params[:team_id].nil?
+        -#   %a{:href => team_archived_todo_frontend_team_path(params[:team_id])}
+        -#     %span Archived Todo List
+        -# - elsif !params[:id].nil?
+        -#   %a{:href => team_archived_todo_frontend_team_path(params[:id])}
+        -#     %span Archived Todo List
+        -# - else
+        -#   %a{:href => "/teams"}
+        -#     %span Archived Todo List
+      - if current_user.super_role.to_s=="team" or current_user.super_role.to_s=="team_member"
+        %li.col-md-2.item
+          -if !params[:team_id].nil?
+            %a{:href => frontend_team_workloads_path(params[:team_id])}
+              %span Workloads
+          - elsif !params[:id].nil?
+            %a{:href => frontend_team_workloads_path(params[:id])}
+              %span Workloads
+      %li.col-md-2.item
+        - if !params[:team_id].nil?
+          %a{:href => frontend_team_workflows_path(params[:team_id])}
+            %span Workflow Manager
+        - elsif !params[:id].nil?
+          %a{:href => frontend_team_workflows_path(params[:id])}
+            %span Workflow Manager
+        - else
+          %a{:href => "/teams"}
+            %span Workflow Manager
+      %li.col-md-2.item
+        - if !params[:team_id].nil?
+          %a{:href => frontend_team_check_lists_path(params[:team_id])}
+            %span Check List
+        - elsif !params[:id].nil?
+          %a{:href => frontend_team_check_lists_path(params[:id])}
+            %span Check List
+        - else
+          %a{:href => "/teams"}
+            %span CheckList Manager
+      -# %li.col-md-2.item
+      -#   %a.item-current{:href =>"/members", "data-uri" => "/members"}
+      -#     Member

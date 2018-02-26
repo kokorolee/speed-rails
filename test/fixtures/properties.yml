@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  group_property_id: 1
+  property_type: 1
+  property_required: false
+  status: 1
+  can_modify: false
+
+two:
+  name: MyString
+  group_property_id: 1
+  property_type: 1
+  property_required: false
+  status: 1
+  can_modify: false

@@ -1,0 +1,50 @@
+.module.form-module.max-width
+  .toggle
+    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+  .form
+    .container
+      .main-content
+        .row
+          .col-md-4
+            = render 'info'
+          .col-md-8
+            .box.no-padding-bottom
+              = render 'content_nav'
+              .form-module.max-width{style: 'border:none;margin-top:2px;box-shadow: none;'}
+                = simple_form_for Note.new, html: { class: 'form-group', multipart: true } do |f|
+                  = f.input :message, label: false, placeholder: 'Note here', input_html: {class: 'form-control'}
+                  = f.input :table, as: :hidden, input_html: {value: 'contacts'}
+                  = f.input :owner_id, as: :hidden, input_html: {value: "#{resource.id}"}
+                  .act{style: 'width:100px;margin-top:10px;'}
+                    = f.submit 'Save'
+            .line.hidden-xs.hidden-sm
+
+            - @notes.each do |note|
+              .row
+                .col-md-1
+
+                .col-md-11
+                  .box
+                    .row
+                      .col-md-1
+                        .timeline.hidden-xs.hidden-sm
+                          %i.fa.fa-users
+                        = image_tag('', :title => '',:alt => '',class: 'img-responsive')
+                      .col-md-9
+                        %b You
+                        left a note about
+                        %b= "#{resource.fullname}"
+                      .col-md-2
+                        .dropdown.pull-right
+                          %button#dropdownMenuButton.btn.btn-xs.btn-secondary.btn-dropdown.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                            Actions
+                            %span.caret
+                          %ul.dropdown-menu{"aria-labelledby" => "dropdownMenuButton", style: 'min-width: 120px;'}
+                            %li
+                              %a.dropdown-item{:href => "#"} Edit
+                            %li
+                              %a.dropdown-item{:href => "#"} Delete
+
+                    %hr
+                    = note.message

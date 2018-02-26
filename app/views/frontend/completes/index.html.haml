@@ -1,0 +1,21 @@
+=render "layouts/speed-component/header/header_speed_todo"
+//tach ra 1 cum
+%speed-container
+  %div.row.wrapper
+    -todo_users = current_user.todos.where(:status => 'undone',:archived => [nil,false]).order("position,due_date ASC")
+    =render "layouts/speed-component/partial/today_task", todo_users: todo_users
+    // du lieu backlog
+    %right-container.speed-border-radius.border-speed
+      %div.right-header.speed-border-radius Completed
+      %div.panel.panel-default.speed-panel.wrapper-todo-team-list.remove-padding-left
+        %todo-list-name
+          %div.todo-list-panel.wrapper-todo-list.clearfix
+            %div.todo-list.completed
+              - current_user.todos.where(:status => ['late','done'],:archived => [nil,false]).order("position,due_date ASC").each do |todo_detail|
+                - if !todo_detail.nil?
+                  - if (todo_detail.todo_list.present? and todo_detail.todo_list.archived != true)
+                    =render "layouts/speed-component/partial/todo_date_user", todo_detail: todo_detail
+    :javascript
+      $(document).ready( function() {
+        set_height_scroll('right-container', '.right-header', '', '', '', '.wrapper-todo-team-list', 0);
+      });

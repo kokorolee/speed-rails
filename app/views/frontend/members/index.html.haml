@@ -1,0 +1,63 @@
+=render "layouts/speed-component/header/header_speed_manager"
+%speed-container.speed-team
+  %div.row.wrapper
+    %div.workloads-main.background
+      %div.workloads-head.speed-border-radius
+        Member
+
+      %div.col-md-12.speed-search-box.form-inline
+        = link_to new_frontend_user_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'btn speed-btn' do
+          Add new member
+        %div.input-group.form-group
+          %input.form-control{:type =>"text", :placeholder =>"Filter by title"}
+          %span.input-group-btn
+            %button.btn.btn-default{:type =>"button"}
+              %span.glyphicon.glyphicon-triangle-bottom
+        %div.input-group.form-group
+          %input.form-control#search-member{:type =>"text", :placeholder =>"Search member name"}
+          %span.input-group-btn
+            %button.btn.btn-default{:type =>"button"}
+              %span.glyphicon.glyphicon-search
+      %div.workloads-body.workloads-body-team.background
+        %table.table.table-fixed#member-table
+          %thead
+            %tr.result
+              %th.col-xs-4.col-md-4#member.sortStyle
+                Member
+                %span.fa.fa-sort.speed-sort-btn
+              %th.col-xs-2.col-md-2#title.sortStyle
+                Title
+                %span.fa.fa-sort.speed-sort-btn
+              %th.col-xs-6.col-md-6#team.sortStyle
+                Team
+                %span.fa.fa-sort.speed-sort-btn
+
+          %tbody.speed-scroll.wrapper-todo-team-list
+            - User.all.each do |member|
+              %tr.user-info
+                %td.col-xs-4.col-md-4
+                  -# %a{:href => view_member_frontend_workloads_path(member.id)}
+                  %span.user-name
+                    - if member.fullname.present?
+                      = member.fullname
+                  %span.edit-user
+                    %a.glyphicon.glyphicon-edit{:href => frontend_user_path(member.id), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal"}
+                  %span.remove-user
+                    %a.glyphicon.glyphicon-remove{:href => "#!"}
+                %td.col-xs-2.col-md-2
+                  %span.user-title
+                    = member.role.name if member.role_id.present?
+                  -# %span.edit-user
+                    %a.glyphicon.glyphicon-edit{:href => admin_user_path(member.id), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal"}
+
+                %td.col-xs-6.col-md-6.one-line-text
+                  %span
+                    = member.teams.where(archived: [nil, false]).pluck(:name).join('&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp').html_safe
+                    &nbsp
+                  -# %span.edit-user
+                    %a.glyphicon.glyphicon-edit{:href => "#!", "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal"}
+
+      :javascript
+        $(document).ready( function() {
+          set_height_scroll('.workloads-main', '.workloads-head', '.speed-search-box', '', '.speed-btn', '.wrapper-todo-team-list', 20);
+        });

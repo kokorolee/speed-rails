@@ -1,0 +1,15 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper.workloads-main
+    %div.workloads-head Danhgiaxe’s member workload
+
+    %div.col-md-12.speed-search-box.form-inline
+      %div.input-group#datetimepicker1.form-group
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-calendar
+        %input.form-control{:type =>"text",  :placeholder =>"Click here to choose week"}
+      %div.input-group.form-group
+        %input.form-control{:type =>"text", :placeholder =>"Search todo list by name"}
+        %span.input-group-btn
+          %button.btn.btn-default{:type =>"button"}
+            %span.glyphicon.glyphicon-search

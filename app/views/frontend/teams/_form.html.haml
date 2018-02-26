@@ -1,0 +1,17 @@
+= simple_form_for [:frontend, resource], html: { class: 'form-group', multipart: true } do |f|
+  - if resource.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - resource.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col-md-12
+      = f.input :name, label: 'Team Name', input_html: {class:'speed-input require', placeholder: "Enter team name"}
+    .col-md-12
+      = f.input :desc, label: 'Description', input_html: {class:'speed-input', placeholder: "Write Something"}
+    .col-md-12
+      = f.association :users, collection: User.all.map{|u| [u.fullname, u.id] }, input_html: {class: 'choz speed-input'}
+
+      -# .actions
+      -#   = f.submit 'Create Team', class: "btn speed-btn submit-btn"

@@ -1,0 +1,28 @@
+%h1
+  Loại đối tác
+  .pull-right
+    = link_to new_admin_partner_type_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-filter
+    = link_to new_admin_partner_type_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-cloud-upload
+
+    = link_to new_admin_partner_type_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now-without-bg btn-xs' do
+      %i.fa.fa-cloud-download
+
+    = link_to new_admin_partner_type_path, "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'btn btn-sign-up-now btn-xs' do
+      %i.fa.fa-plus
+      Thêm mới
+%hr
+
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+        %th #
+        %th Tên Loại đối tác
+        %th Chiết khấu
+        %th.text-right
+      %tbody
+        - @collection.each do |collection|
+          = render 'partner_type', partner_type: collection

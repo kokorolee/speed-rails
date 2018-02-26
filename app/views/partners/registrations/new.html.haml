@@ -1,0 +1,16 @@
+.module.form-module
+  .toggle
+    %i.fa.fa-times.fa-pencil
+
+  .form
+    %h2 Người dùng đăng ký
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = f.input :fullname, required: false, autofocus: true, label: false, placeholder: 'Họ và tên'
+      = f.input :email, required: false, autofocus: true, label: false, placeholder: 'Email'
+      = f.input :phone, required: false, autofocus: true, label: false, placeholder: 'Số điện thoại'
+
+      = f.input :password, required: false, label: false, placeholder: 'Password'
+      = f.input :password_confirmation,  label: false,required: true, placeholder: 'Password confirmation'
+      = f.button :submit, "Đăng ký"
+  .cta
+    = render "users/shared/links"

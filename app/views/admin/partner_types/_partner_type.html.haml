@@ -1,0 +1,9 @@
+%tr
+  %td= partner_type.id
+  %td= partner_type.name
+  %td= "#{partner_type.reduction}%"
+  %td.text-right
+    = link_to admin_partner_type_path(partner_type), data: {toggle: "modal", target: "#myModal"}, class: 'btn btn-xs btn-warning' do
+      %i.fa.fa-pencil
+    = link_to admin_partner_type_path(partner_type), method: :delete, confirm: ('Are you sure?'), class: 'btn btn-xs btn-danger' do
+      %i.fa.fa-trash

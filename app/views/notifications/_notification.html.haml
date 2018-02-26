@@ -1,0 +1,67 @@
+- if !notification['user_list'].nil?
+  -if (notification['user_list'].include?(current_user.id.to_s))
+    %li{name: notification['id'],style: "background-color: #F5F5F5"}
+      - if notification['category']=="todo list"
+        = link_to notification['url'] do
+          = notification['user']
+          = notification['event']
+          = notification['category']
+          %strong
+            =notification['name']
+          %span
+            at
+            = notification['date']
+      -else
+        = link_to notification['url'] , "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal" do
+          = notification['user']
+          = notification['event']
+          = notification['category']
+          %strong
+            =notification['name']
+          %span
+            at
+            = notification['date']
+  -else
+    %li{name: notification['id']}
+      - if notification['category']=="todo list"
+        = link_to notification['url'] do
+          = notification['user']
+          = notification['event']
+          = notification['category']
+          %strong
+            =notification['name']
+          %span
+            at
+            = notification['date']
+      -else
+        = link_to notification['url'] , "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal" do
+          = notification['user']
+          = notification['event']
+          = notification['category']
+          %strong
+            =notification['name']
+          %span
+            at
+            = notification['date']
+-else
+  %li{name: notification['id']}
+    - if notification['category']=="todo list"
+      = link_to notification['url'] do
+        = notification['user']
+        = notification['event']
+        = notification['category']
+        %strong
+          =notification['name']
+        %span
+          at
+          = notification['date']
+    -else
+      = link_to notification['url'] , "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal" do
+        = notification['user']
+        = notification['event']
+        = notification['category']
+        %strong
+          =notification['name']
+        %span
+          at
+          = notification['date']

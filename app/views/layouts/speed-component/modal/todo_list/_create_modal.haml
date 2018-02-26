@@ -1,0 +1,70 @@
+#createTodoListModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h2.modal-title Create Todo List
+      .modal-body
+        %form#new_todo_list.simple_form.form-group{"accept-charset" => "UTF-8", :action => "/todo_lists", :enctype => "multipart/form-data", :method => "post", :novalidate => "novalidate"}
+          %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+          %input{:name => "authenticity_token", :type => "hidden", :value => "Xu3pjwiNCv8kEVhXtVyHYhlFEE2abGeXKXUJEZ7gb3H3NrVSGcyHmithOjm4YWLdEFR+o7YmrQoqagpxCzkxww=="}/
+          .row.form-todo-list
+            .col-md-12
+              .input.hidden.todo_list_team_id
+                %input#todo_list_team_id.hidden{:name => "todo_list[team_id]", :type => "hidden", :value => "13"}/
+              .input.hidden.todo_list_category
+                %input#todo_list_category.hidden{:name => "todo_list[category]", :type => "hidden", :value => "1"}/
+            .label-form
+              .input.string.required.todo_list_name
+                %label.string.required{:for => "todo_list_name"}
+                  %abbr{:title => "required"} *
+                  To-do List Name
+                %input#todo_list_name.string.required.speed-input.require{:name => "todo_list[name]", :placeholder => "Enter your todo list name", :type => "text"}/
+            .label-form
+              .input.string.optional.todo_list_hash_tag
+                %label.string.optional{:for => "todo_list_hash_tag"} HashTag
+                %input#todo_list_hash_tag.string.optional.speed-input.last{:name => "todo_list[hash_tag]", :placeholder => "Enter your todo list hashtag", :type => "text"}/
+            .label-form
+              Type
+            .wrapper-add-todo-list
+              %label.container.project-radio
+                Project
+                %input{:checked => "true", :name => "type", :type => "radio"}/
+                %span.checkmark
+              %label.container.workload-radio
+                Workflow
+                %input{:name => "type", :type => "radio"}/
+                %span.checkmark
+              %label.container.question-radio
+                Question
+                %input{:name => "type", :type => "radio"}/
+                %span.checkmark
+            .wrapper-workflow.hide
+              .label-form Workflow
+              .input.select.optional.todo_list_parent_id
+                %label.select.optional{:for => "todo_list_parent_id"} Parent
+                %select#todo_list_parent_id.select.optional.user-role.speed-input{:name => "todo_list[parent_id]"}
+                  %option{:value => ""}
+              .step-workflow-create-todo
+                %span.title-step
+                  Step
+                .row.workflow-step
+                  .col-md-7.step-name
+                    User Flow
+                  .col-md-5.step-assign-to
+                    %input.speed-input.margin-0{:placeholder => "click to assign"}/
+            .wrapper-question.hide
+              .label-form Question
+              %div
+                %span
+                  Deadline Question
+                %input.speed-input.date-week.date-week-edit.require{:name => "deadline", :type => "text"}/
+              .question
+                %input#stt-question{:name => "stt", :type => "hidden"}/
+              #add-question.add-question
+                %span.glyphicon.glyphicon-plus
+                Add question
+      .actions
+        %button.btn.speed-btn.submit-btn
+          Create New To-do List

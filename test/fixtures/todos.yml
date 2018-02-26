@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  todo_list_id: 1
+  check_list_id: 1
+  type: 1
+  name: MyString
+  desc: MyText
+  created_by: 2017-12-07 03:30:33
+  updated_by: 2017-12-07 03:30:33
+  status: 1
+  due_date: 2017-12-07 03:30:33
+  completed_at: 1
+  files: MyString
+
+two:
+  todo_list_id: 1
+  check_list_id: 1
+  type: 1
+  name: MyString
+  desc: MyText
+  created_by: 2017-12-07 03:30:33
+  updated_by: 2017-12-07 03:30:33
+  status: 1
+  due_date: 2017-12-07 03:30:33
+  completed_at: 1
+  files: MyString

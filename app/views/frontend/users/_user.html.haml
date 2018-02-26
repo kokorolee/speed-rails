@@ -1,0 +1,13 @@
+%tr
+  %td= user.id
+  %td= user.fullname
+  %td= user.email
+  - @keys.each do |pm|
+    %td
+      - user.property_matches.each do |p|
+        = p.property_key == pm.downcase ? p.property_value : ""
+  %td.text-right
+    = Role.find_by_id(user.role_id).name
+  %td.text-right
+    = link_to admin_user_path(user), class: 'btn btn-icon btn-xs', "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal" do
+      %i.fa.fa-edit

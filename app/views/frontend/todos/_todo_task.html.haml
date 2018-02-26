@@ -1,0 +1,17 @@
+%div.row.today-task-items
+  %input#todo_list_id{:type => "hidden", value: todo_detail.todo_list_id}
+  %div.col-md-12.task-item
+    %span.glyphicon.glyphicon-option-vertical.icon-menu-task
+    %div.checkbox
+      %label.speed-lable-box
+        %input{:type => "checkbox", value: todo_detail.id}
+        %span.cr.todos
+          %i.cr-icon.glyphicon.glyphicon-ok
+          -# %a{"data-target" => "#todoDetailModal", "data-toggle" => "modal", :type => "button"}
+
+        = link_to frontend_todo_path(todo_detail), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#foxyModal", class: 'todo-name one-line-text' do
+          =todo_detail.name
+        %span.task-deadline
+          %span.glyphicon.glyphicon-asterisk
+          %span.date
+            = todo_detail.due_date.strftime("%d/%m") if todo_detail.due_date.present?

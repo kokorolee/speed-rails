@@ -1,0 +1,26 @@
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Speed
+    = csrf_meta_tags
+    = favicon_link_tag 'goibacsi-icon.png'
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+
+
+    = stylesheet_link_tag 'application', media: 'all'
+
+    = javascript_include_tag 'application'
+
+  %body
+
+
+    = render 'layouts/modal'
+    = render 'layouts/speed-component/modal/create_todo_modal'
+    = render 'layouts/speed-component/modal/view_workload'
+    -# = render 'layouts/speed-component/modal/todo_list/create_modal'
+    -# = render 'layouts/speed-component/modal/team/create_modal'
+    -# = render 'layouts/speed-component/modal/todo/create_modal'
+
+    .container-fluid
+      = yield
+      .modal-waiting

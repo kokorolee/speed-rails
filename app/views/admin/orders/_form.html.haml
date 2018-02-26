@@ -1,0 +1,25 @@
+= simple_form_for [:admin, resource], html: { class: 'form-group', multipart: true } do |f|
+  - if @order.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@order.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - @order.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col-md-12
+      = f.input :order_no, input_html: {class: 'form-control', value: "HNW_#{Time.now.to_i}"}
+      = f.input :order_date, input_html: {class: 'form-control', value: "HNW_#{Time.now}"}
+      = f.input :state, input_html: {class: 'form-control'}
+      = f.association :customer, collection: Customer.all.map{|c| [c.fullname, c.id]}, input_html: {class: 'form-control'}
+
+
+
+
+
+
+
+  .row
+    %br
+    .col-md-12
+      .actions
+        = f.submit 'Lưu lại'

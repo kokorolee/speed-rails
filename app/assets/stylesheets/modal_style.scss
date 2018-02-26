@@ -1,0 +1,40 @@
+.modal-header{
+  text-align: center;
+  border: 0;
+}
+
+#todoDetailModal{
+  .modal-content{
+    width: $modal_width_lg;
+  }
+}
+#createTodoModal2{
+  .modal-content{
+    padding-left: 20px;
+  }
+  #todo_files{
+    display: block;
+    position: absolute;
+    top: -10px;
+    opacity: 0;
+  }
+  .upload-file, .adv-setting{
+    color: $color_1;
+    margin-top: 10px;
+    span.upload-title{
+      font-family:  $font_name_1;
+    }
+    &:hover,{
+      cursor: pointer;
+    }
+  }
+   #todo_files:hover{
+     cursor: pointer;
+   }
+  .user-role{
+    border: 1px solid #63acbf !important;
+  }
+  .hide-op{
+    opacity: 0;
+  }
+}

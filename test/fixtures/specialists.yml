@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  name: MyString
+  language: MyString
+  availability: MyString
+  is_feature: false
+
+two:
+  code: MyString
+  name: MyString
+  language: MyString
+  availability: MyString
+  is_feature: false

@@ -1,0 +1,61 @@
+=render "layouts/speed-component/header/header_speed_team"
+%speed-container.speed-team
+  %div.row.wrapper
+    %div.workloads-main.background
+      %div.workloads-head.speed-border-radius
+        Activity
+      -# %div.col-md-12.speed-search-box.form-inline
+      -#   %a{:href => "#!", id: "more-activities", class: "speed-btn btn"}
+      -#     More notifications
+      -#   %div.input-group.form-group
+      -#     %input.form-control{:type =>"text", :placeholder =>"Filter by title"}
+      -#     %span.input-group-btn
+      -#       %button.btn.btn-default{:type =>"button"}
+      -#         %span.glyphicon.glyphicon-triangle-bottom
+      -#   %div.input-group.form-group
+      -#     %input.form-control#search-member{:type =>"text", :placeholder =>"Search member name"}
+      -#     %span.input-group-btn
+      -#       %button.btn.btn-default{:type =>"button"}
+      -#         %span.glyphicon.glyphicon-search
+        //tach ra 1 cum
+      -# .workloads-body.workloads-body-team.background
+        %table.table.table-fixed#activity-table
+          %thead
+            %tr.result
+              %th.col-xs-3.col-md-3#member.sortStyle
+                Member
+                %span.fa.fa-sort.speed-sort-btn
+              %th.col-xs-6.col-md-6#title.sortStyle
+                Activity
+              %th.col-xs-3.col-md-3#time.sortStyle
+                Time
+          %tbody.speed-scroll.wrapper-todo-team-list
+            - Notification.where(:team_id => params[:team_id]).order("created_at DESC, parent_id DESC, category DESC").limit(10).each do |notification|
+              %tr.user-info
+                %td.col-xs-3.col-md-3
+                  &nbsp
+                  %span.user-name
+                    =User.find_by_id(notification.user_id).fullname
+                %td.col-xs-6.col-md-6
+                  &nbsp
+                  %span.user-title
+                    = notification.event
+                    = notification.category
+                    - if notification.category.to_s=="comment"
+                      on
+                      %strong
+                        = Todo.find_by_id(notification.parent_id).name
+                    - else
+                      %strong
+                        - if notification.category.to_s=="todo"
+                          = Todo.find_by_id(notification.parent_id).name
+                        - elsif notification.category.to_s=="todo list"
+                          = TodoList.find_by_id(notification.parent_id).name
+                %td.col-xs-3.col-md-3
+                  &nbsp
+                  %span
+                    = notification.created_at.strftime("%k:%M:%S - %d/%m/%Y")
+      :javascript
+        $(document).ready( function() {
+          set_height_scroll('.workloads-main', '.workloads-head', '.speed-search-box', '', '.speed-btn', '.wrapper-todo-team-list', 20);
+        });

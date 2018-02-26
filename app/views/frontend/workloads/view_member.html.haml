@@ -1,0 +1,97 @@
+%speed-container.speed-team.viewWorkloadModal-top
+  %div.row.wrapper
+    %div.workloads-main.background.workload-width-modal
+      %div.workloads-head.speed-border-radius
+        = Team.find_by_id(params[:team_id]).name
+        ’s member workload
+      %div.col-md-12.speed-search-box.form-inline.padding-left-right-20px.remove-padding-bottom
+        - if params[:date].present?
+          - data = params[:date]
+        -else
+          - data = Date.today.strftime("%Y-%m-%d")
+        %div.input-group.form-group.speed-date-input
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
+          %input.form-control#datetimepicker-member{:type =>"text",  value: data}
+        %div.input-group.form-group
+          %input.form-control{:type =>"text", :placeholder =>"Search todo list by name"}
+          %span.input-group-btn
+            %button.btn.btn-default{:type =>"button"}
+              %span.glyphicon.glyphicon-search
+        %div.view-member
+          = @user.fullname
+          %input#user_id{type: "hidden", value: @user.id}
+          %span.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+
+      %div.workloads-body.workloads-body-team.background.speed-height.speed-team-workload
+        %table.table.workload
+          %thead
+            %tr.nav.nav-tabs.table-text-center
+              %td.active
+                %a{"data-toggle" => "tab", :href => "#mon"} Monday
+              %td
+                %a{"data-toggle" => "tab", :href => "#tues"} Tuesday
+              %td
+                %a{"data-toggle" => "tab", :href => "#wed"} Wednesday
+              %td
+                %a{"data-toggle" => "tab", :href => "#thurs"} Thursday
+              %td
+                %a{"data-toggle" => "tab", :href => "#fri"} Friday
+              %td
+                %a{"data-toggle" => "tab", :href => "#sat"} Saturday
+              %td
+                %a{"data-toggle" => "tab", :href => "#sun"} Sunday
+        .tab-content.clearfix.wrapper-todo-team-list
+          #mon.tab-pane.active.wrapper-workload.speed-scroll
+            .speed-scroll-line
+            .wrapper-workload-member
+              =render "workload_member", todo: @mon.listtodos
+              -# =render "total_working", todo: @mon
+          #tues.tab-pane.wrapper-workload.speed-scroll
+            .speed-scroll-line
+            .wrapper-workload-member
+              =render "workload_member", todo: @tue.listtodos
+              -# =render "total_working", todo: @tue
+
+          #wed.tab-pane.wrapper-workload.speed-scroll
+            .speed-scroll-line
+            .wrapper-workload-member
+              =render "workload_member",todo: @web.listtodos
+              -# =render "total_working", todo: @web
+
+          #thurs.tab-pane.wrapper-workload.speed-scroll
+            .speed-scroll-line
+            .wrapper-workload-member
+              =render "workload_member", todo: @thu.listtodos
+              -# =render "total_working", todo: @thu
+
+          #fri.tab-pane.wrapper-workload.speed-scroll
+            .speed-scroll-line
+            .wrapper-workload-member
+              =render "workload_member", todo: @fri.listtodos
+              -# =render "total_working", todo: @fri
+          #sat.tab-pane.wrapper-workload.speed-scroll
+            .speed-scroll-line
+            .wrapper-workload-member
+              =render "workload_member",  todo: @sat.listtodos
+              -# =render "total_working", todo: @sat
+          #sun.tab-pane.wrapper-workload.speed-scroll
+            .speed-scroll-line
+            .wrapper-workload-member
+              =render "workload_member",  todo: @sun.listtodos
+              -# =render "total_working", todo: @sun
+        .workloadTotal#workload_mon.hide
+          =render "total_working", todo: @mon
+        .workloadTotal#workload_tue.hide
+          =render "total_working", todo: @tue
+        .workloadTotal#workload_web.hide
+          =render "total_working", todo: @web
+        .workloadTotal#workload_thu.hide
+          =render "total_working", todo: @thu
+        .workloadTotal#workload_fri.hide
+          =render "total_working", todo: @fri
+        .workloadTotal#workload_sat.hide
+          =render "total_working", todo: @sat
+        .workloadTotal#workload_sun.hide
+          =render "total_working", todo: @sun

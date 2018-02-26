@@ -1,0 +1,12 @@
+=render "layouts/speed-component/header/header_speed_team"
+- @team = Team.find_by_id(params[:team_id])
+%speed-container.speed-team
+  %div.row.wrapper
+    =render "layouts/speed-component/partial/left_contaier_team"
+
+    %right-container.speed-border-radius
+      %div.right-header.speed-border-radius Todo-list
+      - if @todos_s.present?
+        - @todos_s.each do |todo_detail|
+          %div.wrapper-todo-team
+            = render 'layouts/speed-component/partial/todo_date_user' , todo_detail: todo_detail

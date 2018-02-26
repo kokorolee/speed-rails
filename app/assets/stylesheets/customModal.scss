@@ -1,0 +1,183 @@
+#createTodoModal, #foxyModal {
+  .form{
+    position: absolute;
+    background: $color_4;
+    border-radius: $border_radius;
+  }
+  .simple_form {
+    padding-bottom: 0;
+    border-radius: 5px;
+  }
+
+  .modal-dialog.modal-lg {
+    margin: 0 auto 30px;
+    top: 5%;
+  }
+}
+
+#foxyModal{
+  .modal{
+    z-index: 2000;
+  }
+  .form, .form-todo-detail{
+    width: $modal_width_lg;
+  }
+  .modal-dialog.modal-lg {
+    width: $modal_width_lg;
+  }
+  .modal-dialog.modal-lg {
+    width: $modal_width_lg;
+    .modal-content {
+      width: $modal_width_lg;
+    }
+  }
+}
+#createTodoModal{
+  .form{
+    width: $modal_width_md;
+  }
+  .modal-dialog.modal-lg {
+    width: $modal_width_md;
+  }
+  .modal-dialog.modal-lg {
+    width: $modal_width_md;
+    .modal-content {
+      width: $modal_width_md;
+    }
+  }
+}
+
+#createTodoModal,
+#foxyModal {
+  abbr {
+    display: none;
+  }
+
+  .close {
+    color: $color_8;
+    z-index: 1000000;
+  }
+
+  .container-fluid {
+    // width: 500px;
+    border-radius: 2px;
+    background: $container_background;
+
+    .form-control-create {
+      width: 100%;
+      border: 0 solid #000;
+      border-bottom: 1px solid $color_8;
+      background: $container_background;
+    }
+  }
+  // background: $container_background;
+  .simple_form {
+    padding: 0 20px 20px;
+    background: $container_background;
+
+    input {
+      margin: 20px 0;
+      padding-top: 6px;
+      font-family: 'roboto';
+      font-size: $font_size_md;
+      color: #000;
+      padding: 0;
+    }
+    textarea{
+      height: 30px ;
+    }
+  }
+
+  input::placeholder {
+    color: $placeholder_color;
+  }
+  .form-module {
+    // max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .modal-content {
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .adv-setting {
+    margin: 20px;
+    text-align: right;
+    width: 40% !important;
+
+    span {
+      color: $color_1;
+    }
+  }
+
+  #uploadFile .glyphicon.glyphicon-plus {
+    float: left;
+  }
+
+  #adv-setting .glyphicon.glyphicon-cog,
+  #uploadFile .glyphicon.glyphicon-plus {
+    padding-right: 5px;
+  }
+
+  span#adv-setting:hover {
+    cursor: pointer;
+  }
+
+  button.close {
+    color: #7b7b7b;
+    font-size: 26px;
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    opacity: 0.8;
+    z-index: 10;
+  }
+
+  .upload-file {
+    // margin: 20px 0;
+    color: $color_1;
+    position: relative;
+    span.glyphicon.glyphicon-plus{
+      position: absolute;
+      top: 80%;
+      transform: translateY(-80%);
+      font-family: $font_name_1;
+    }
+    span:hover, input[type="file"] {
+      cursor: pointer;
+    }
+    input[type="file"]{
+      background: red;
+      width: 100px;
+      height: 30px;
+      opacity: 0;
+    }
+  }
+  .wrapper-attach-file-uploaded {
+    text-align: right;
+    color: #6b6b6b;
+    font-style: italic;
+    .remove-attach-file {
+      cursor: pointer;
+      color: #b30303;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+  }
+}
+#viewWorkloadModal{
+  .viewWorkloadModal-top{
+    top: 0 !important;
+    .wrapper{
+      margin-top: 0;
+      background: white;
+    }
+  }
+  .wordload-bottom span.lable{
+    padding-left: 0px;
+  }
+  .container-fluid{
+    background: #fff;
+  }
+}

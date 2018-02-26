@@ -1,0 +1,110 @@
+#createTodoModal2.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h2.modal-title Create Todo List
+      .modal-body
+        %form#new_todo.simple_form.form-group.form-create-todo{"accept-charset" => "UTF-8", :action => "/todos", :enctype => "multipart/form-data", :method => "post", :novalidate => "novalidate"}
+          -# %input{:name => "utf8", :type => "hidden", :value => "✓"}
+          -# %input{:name => "authenticity_token", :type => "hidden", :value => "nidnXmJOhHlxIrwgiOc08eZNfvEti9mnuK+u85MbRyAQsLziQFopt0jXc2ZljP7a0z5Q01D/bC96cl/HquyS5w=="}
+          .row
+            - if @todo.present?
+              -team = Team.find_by_id(TodoList.find_by_id(params[:todo_list_id]).team_id)
+            - if params[:team_id].present?
+              -team = Team.find_by_id(params[:team_id])
+            - elsif params[:todo_list_id].present?
+              -team = Team.find_by_id(TodoList.find_by_id(params[:todo_list_id]).team_id)
+            -else
+              -team = Team.find_by_id(params[:id])
+            .input.hidden.todo_category
+              %input#todo_category.hidden.speed-input.category{:name => "todo[category]", :type => "hidden", :value => "1"}/
+            .col-md-12.margin-input
+              .input.hidden.todo_todo_list_id
+                %input#todo_todo_list_id.hidden.speed-input{:name => "todo[todo_list_id]", :type => "hidden", :value => "6"}/
+            .col-md-12.margin-input
+              .input.string.required.todo_name
+                %label.string.required{:for => "todo_name"}
+                  Name
+                %input#todo_name.string.required.speed-input.require{:name => "todo[name]", :placeholder => "Enter your todo name", :type => "text"}/
+            .col-md-12.margin-input
+              .input.select.required.todo_user
+                %label.select.required{:for => "todo_user_id"}
+                  Assigned to:
+                %select#todo_user_id.select.required.speed-input.require{:name => "todo[user_id]"}
+                  - team.users.each do |user|
+                    %option{:value => user.id}
+                      = user.fullname
+            .col-md-12.margin-input
+              .input.select.optional.todo_users
+                %label.select.optional{:for => "todo_user_ids"} Related to:
+                %input{:name => "todo[user_ids][]", :type => "hidden", :value => ""}/
+                %select#todo_user_ids.select.optional.speed-input.choz{:multiple => "multiple", :name => "todo[user_ids][]", :style => "display: none;"}
+                  - team.users.each do |user|
+                    %option{:value => user.id}
+                      = user.fullname
+            .col-md-12.margin-input
+              .input.text.optional.todo_desc
+                %label.text.optional{:for => "todo_desc"} Note
+                %textarea#todo_desc.text.optional.speed-input{:name => "todo[desc]", :placeholder => "Type something"}
+            .col-md-7.margin-input
+              .col-md-12.duedate
+                %span.col-md-4.deadline-title
+                  Deadline
+                %input#datetimepicker1.col-md-7.speed-input.duedate-create-todo.require{:label => "Duedate", :name => "todo[due_date]", :placeholder => "Click here to set deadline", :type => "text"}/
+            .col-md-5.margin-input.todo-type-hide.hide-op
+              .col-md-6.todo-type.metting
+                .checkbox
+                  %label#lable-metting.speed-lable-box
+                    %input{:type => "checkbox"}/
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
+                    Metting
+              .col-md-6.todo-type
+                .checkbox
+                  %label.speed-lable-box
+                    %input{:type => "checkbox"}/
+                    %span.cr
+                      %i.cr-icon.glyphicon.glyphicon-ok
+                    Private
+            #location.col-md-12.margin-input
+            .col-md-12.upload-file
+              %span#uploadFile
+                %span.glyphicon.glyphicon-plus
+                Attach File
+              .input.file.optional.todo_files
+                %label.file.optional{:for => "todo_files"} Attach File
+                %input#todo_files.file.optional.speed-input{:name => "todo[files]", :type => "file"}/
+            .col-md-offset-6.col-md-6.adv-setting
+              %span#adv-setting
+                .glyphicon.glyphicon-cog
+                Advance settings
+            #createTodo.hide
+              .col-md-12.margin-input
+                .label-form Checklist
+                %select.user-role.speed-input.check_list{:name => "todo[check_list_id]"}
+                  %option
+              .col-md-12.margin-input
+                .input.float.optional.todo_estimate
+                  %label.float.optional{:for => "todo_estimate"} Estimate
+                  %input#todo_estimate.numeric.float.optional.speed-input{:min => "0", :name => "todo[estimate]", :placeholder => "Estimate time", :step => "any", :type => "number", :value => "0"}/
+              .col-md-12.margin-input.hide
+                .input.select.required.todo_status
+                  %label.select.required{:for => "todo_status"}
+                    Status
+                  %select#todo_status.select.required.speed-input.margin-input{:name => "todo[status]"}
+                    %option{:value => "done"} Done
+                    %option{:selected => "selected", :value => "undone"} Undone
+                    %option{:value => "late"} Late
+              .col-md-12.margin-input
+                .input.select.optional.todo_parent_id
+                  %label.select.optional{:for => "todo_user_ids"} Dependence:
+                  %input{:name => "todo[user_ids][]", :type => "hidden", :value => ""}/
+                  %select#todo_user_ids.select.optional.speed-input.choz{:multiple => "multiple", :name => "todo[user_ids][]", :style => "display: none;"}
+                    - TodoList.find_by_id(@todo_list.id).todos.each do |user|
+                      %option{:value => user.id}
+                        = user.name
+        .actions
+          %button.btn.speed-btn.submit-btn
+            Create New Todo

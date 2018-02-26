@@ -1,0 +1,12 @@
+%header.navbar.speed-header
+  =render "/layouts/speed-component/header/header"
+  -# %div.bottom-header.tab.tab-speed
+  -#   - if flash[:notice]
+  -#     .alert.alert-success.alert-dismissable
+  -#       %a.close{:href => "#", 'data-dismiss' => 'alert', 'aria-label' => 'close'} x
+  -#       = flash[:notice]
+  -#   %ul.row.item-container
+  -#     - if current_user.super_role.to_s=="team_member" or current_user.super_role.to_s=="member"
+  -#       %li.col-md-2.item.active
+  -#         %a{:href =>"/members"}
+  -#           %span Member

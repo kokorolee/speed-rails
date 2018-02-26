@@ -1,0 +1,15 @@
+= simple_form_for resource, html: { class: 'form-group', multipart: true } do |f|
+  - if resource.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - resource.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.input :fullname
+  = f.input :email
+  = f.input :password
+  = f.input :password_confirm
+
+  .actions
+    = f.submit 'Lưu lại'

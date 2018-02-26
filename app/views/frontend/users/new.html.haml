@@ -1,0 +1,16 @@
+.module.form-module.max-width
+
+  .form
+    .toggle
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+    .result
+    %h2.padding-left-20px
+      Add Member
+    = render 'form'
+    .actions
+      %button.btn.speed-btn.submit-btn
+        Add Member
+  -#   = f.submit 'Create new member', class: "btn speed-btn"
+  -# -# .cta
+  -#   = link_to 'Trở về', admin_users_path

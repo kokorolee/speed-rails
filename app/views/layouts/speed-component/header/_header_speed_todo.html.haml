@@ -1,0 +1,27 @@
+%header.navbar.speed-header
+  =render "/layouts/speed-component/header/header"
+  %div.bottom-header.tab.tab-speed
+    - if flash[:notice]
+      .alert.alert-success.alert-dismissable
+        %a.close{:href => "#", 'data-dismiss' => 'alert', 'aria-label' => 'close'} x
+        = flash[:notice]
+    %ul.row.item-container
+      %li.col-md-2.item.active
+        %a{:href =>"/todos"}
+          %span Todo-List
+      %li.col-md-2.item
+        %a{:href =>"/backlogs"}
+          %span Backlog
+      %li.col-md-2.item
+        %a{:href =>"/duesoons"}
+          %span DueSoon
+      %li.col-md-2.item
+        %a{:href =>"/completes"}
+          %span Complete
+      %li.col-md-2.item
+        %a{:href =>"/notifications"}
+          %span Notifications
+:javascript
+  $(document).ready(function(){
+    $('.header-middle-container').find('.item.task-item span.icon-triagle-top').addClass('active');
+  })

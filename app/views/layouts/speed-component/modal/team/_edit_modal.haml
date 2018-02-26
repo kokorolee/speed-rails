@@ -1,0 +1,54 @@
+#createTeamModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h2.modal-title Edit Team
+      .modal-body
+        %form#new_team.simple_form.form-group{"accept-charset" => "UTF-8", :action => "/teams", :enctype => "multipart/form-data", :method => "post", :novalidate => "novalidate"}
+          %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+          %input{:name => "authenticity_token", :type => "hidden", :value => "EEKPJIAtEWJGAO2lJcLGwMzXRJl1/ySVsdE/zqI6bTq5mdP5kWycB0lwj8so/yN/xcYqd1m17giyzjyuN+MziA=="}/
+          .row
+            .col-md-12
+              .input.string.required.team_name
+                %label.string.required{:for => "team_name"}
+                  Team Name
+                %input#team_name.string.required.speed-input.require{:name => "team[name]", :placeholder => "Enter team name", :type => "text"}/
+            .col-md-12
+              .input.text.optional.team_desc
+                %label.text.optional{:for => "team_desc"} Description
+                %textarea#team_desc.text.optional.speed-input{:name => "team[desc]", :placeholder => "Write Something"}
+            .col-md-12
+              .input.select.optional.team_users
+                %label.select.optional{:for => "team_user_ids"} Users
+                %input{:name => "team[user_ids][]", :type => "hidden", :value => ""}/
+                %select#team_user_ids.select.optional.choz.speed-input{:multiple => "multiple", :name => "team[user_ids][]", :style => "display: none;"}
+                  %option{:value => "1"} Trương Liêu
+                  %option{:value => "2"} Quan Vũ
+                  %option{:value => "3"} Điển Vi
+                  %option{:value => "4"} Mã Siêu
+                  %option{:value => "5"} Hoàng Trung
+                  %option{:value => "6"} Hứa Chử
+                  %option{:value => "7"} Tiểu Bá Vương Tôn Sách
+                  %option{:value => "8"} Chúc Dung
+                  %option{:value => "9"} Bộ Luyện Sư
+                  %option{:value => "10"} Biện Thị
+                  %option{:value => "11"} Thái Diễm
+                  %option{:value => "12"} Tôn Thượng Hương
+                  %option{:value => "13"} Đại Kiều
+                  %option{:value => "14"} Tiểu Kiều
+                  %option{:value => "15"} Vương Nguyên Cơ
+                  %option{:value => "16"} Chân Lạc
+                  %option{:value => "17"} Điêu thuyền
+                  %option{:value => "18"} Lưu Bị
+                  %option{:value => "19"} Tàu Tháo
+                #team_user_ids_chosen.chosen-container.chosen-container-multi{:style => "width: 535px;", :title => ""}
+                  %ul.chosen-choices
+                    %li.search-field
+                      %input.default{:autocomplete => "off", :style => "width: 173px;", :type => "text", :value => "Select Some Options"}/
+                  .chosen-drop
+                    %ul.chosen-results
+            .actions
+              %button.btn.speed-btn.submit-btn
+                Create New Todo

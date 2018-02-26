@@ -1,0 +1,51 @@
+%li.today-task-items.submenu
+  %div.col.md-12
+    %div.checkbox.todo-list-name-left
+      %label.speed-lable-box
+        %input{:type => "checkbox"}
+        - if !params[:team_id].nil?
+          %a.todo-name.one-line-text.left{:href => frontend_team_todo_list_path(team_id: params[:team_id], id: todo_list.id)}= todo_list.name
+          %span.todo-option-left
+            -if todo_list.category != "workflow"
+              = link_to edit_frontend_team_todo_list_path(team_id: params[:team_id], id: todo_list), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'edit-todo-left' do
+                Edit
+            -# %a{:href => "#!",class: 'edit-todo-left delete-todo-list', data: todo_list.id}
+            -#   Delete
+        - else
+          -# %a{"data-target" => "#todoDetailModal", "data-toggle" => "modal", :type => "button"}
+          %a.todo-name.one-line-text.left{:href => frontend_team_todo_list_path(team_id: params[:id], id: todo_list.id)}= todo_list.name
+          %span.todo-option-left
+            -if todo_list.category != "workflow"
+              = link_to edit_frontend_team_todo_list_path(team_id: params[:id], id: todo_list), "data-keyboard" => false, "data-backdrop" => "static", "data-toggle"=>"modal", "data-target"=>"#createTodoModal", class: 'edit-todo-left' do
+                Edit
+            -# %a{:href => "#!",class: 'edit-todo-left delete-todo-list', data: todo_list.id}
+            -#   Delete
+  %ul.ul_submenu
+    - if (params[:team_id]).nil?
+      - id = params[:id]
+    - else
+      - id = params[:team_id]
+    -# %li.status-lable
+      %div.abc
+        %a.todo-name{:href => frontend_team_todo_list_path(team_id: id, id: todo_list)}
+          All (
+          =todo_list.todos.where(:archived => [nil,false]).count
+          )
+    %li.status-lable
+      %div
+        %a.todo-name{:href => frontend_team_todo_list_path(team_id: id, id: todo_list, format: "undone")}
+          Undone (
+          =todo_list.todos.where(:archived => [nil,false]).get_todo_by_status('undone').count
+          )
+    %li.status-lable
+      %div.abc
+        %a.todo-name{:href => frontend_team_todo_list_path(team_id: id, id: todo_list, format: "done")}
+          Done (
+          =todo_list.todos.where(:archived => [nil,false]).get_todo_by_status('done').count
+          )
+    %li.status-lable
+      %div.abc
+        %a.todo-name{:href => frontend_team_todo_list_path(team_id: id, id: todo_list, format: "late")}
+          Late (
+          =todo_list.todos.where(:archived => [nil,false]).get_todo_by_status('late').count
+          )

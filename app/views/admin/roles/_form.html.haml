@@ -1,0 +1,12 @@
+= simple_form_for [:admin, resource], html: { class: 'form-group', multipart: true } do |f|
+  - if resource.errors.any?
+    - resource.errors.full_messages.each do |msg|
+      = render_flash_message(msg, 'error')
+  .form-group
+    = f.input :name, placeholder: 'Tên role', input_html: {class: 'form-control'}
+  .form-group
+    = f.input :desc, placeholder: 'Mô tả', input_html: {class: 'form-control'}
+  .form-group
+    = f.association :permissions, collection: Permission.all.map{|u| [u.action, u.id] }, input_html: {class: 'choz'}
+  .form-group.text-center
+    = f.submit 'Create', class: "btn btn-pink btn-upgrade"

@@ -1,0 +1,50 @@
+= simple_form_for [:admin, resource], html: { class: 'form-group', multipart: true } do |f|
+  - if resource.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - resource.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col-md-6
+      = f.input :code
+      = f.input :title
+      = f.input :fullname
+    .col-md-6
+      = f.input :phone_number
+      = f.input :email
+      = f.input :note
+  .row
+    .col-md-12
+      = f.association :partners, label: 'Khách của đối tác', collection: Partner.all.map {|p| [p.fullname, p.id]},input_html: {class: 'form-control choz'}
+  - @group_properties.each do |group|
+    - if group.properties.present?
+      %h4= group.name
+      .row
+        - if resource.property_matches.blank?
+          - group.properties.each do |p|
+            = f.simple_fields_for :property_matches, resource.property_matches.build do |f2|
+
+              .col-md-6
+                = f2.input :property_id, as: :hidden, input_html: {value: p.id}
+                = f2.input :property_key, as: :hidden, input_html: {value: p.internal_name}
+                - if p.property_type == 'file_upload'
+                  = f2.input :photo, as: :image_preview, label: p.name
+                - else
+                  = f2.input :property_value, label: p.name
+
+        - else
+          = f.simple_fields_for :property_matches do |f2|
+            .col-md-6
+              = f2.input :property_id, as: :hidden
+              = f2.input :property_key, as: :hidden
+              - if f2.object.property.property_type == 'file_upload'
+                = f2.input :photo, as: :attachment_preview, label: f2.object.property_key.capitalize
+              - else
+                = f2.input :property_value, label: f2.object.property_key.capitalize
+
+
+
+
+  .actions
+    = f.submit 'Lưu lại'

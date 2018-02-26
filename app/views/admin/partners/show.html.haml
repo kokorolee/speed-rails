@@ -1,0 +1,11 @@
+.module.form-module.max-width
+  .toggle
+    %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+  .form
+    .result
+    %h2 Cập nhật đối tác
+    = render 'form'
+
+  .cta
+    = link_to 'Trở về', admin_partners_path
