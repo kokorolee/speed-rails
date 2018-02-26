@@ -25,16 +25,16 @@ class Frontend::UsersController < FrontendController
   def create
 
     create! do |success, failure|
-      success.html { redirect_to admin_root_path,
+      success.html { redirect_to frontend_root_path,
         notice: "User has been updated." }
-      failure.html {redirect_to admin_root_path(),
+      failure.html {redirect_to frontend_root_path(),
         notice: "Can not update user."}
     end
   end
 
   protected
     def redirect_home
-      redirect_to admin_users_path
+      redirect_to frontend_users_path
     end
 
     def properties
