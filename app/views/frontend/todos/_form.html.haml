@@ -85,7 +85,10 @@
         -#     %span.glyphicon.glyphicon-plus
         -#     Add question
       .col-md-12.margin-input
-        = f.input :estimate, label: 'Estimate', input_html: {class:'speed-input', placeholder: 'Estimate time' ,value: 0, min: 0}
+        - if resource.estimate.present?
+          = f.input :estimate, label: 'Estimate', input_html: {class:'speed-input', placeholder: 'Estimate time' , min: 0}
+        -else
+          = f.input :estimate, label: 'Estimate', input_html: {class:'speed-input', placeholder: 'Estimate time' ,value: 0, min: 0}
       .col-md-12.margin-input.hide
         = f.input :status, label: 'Status', input_html: {class:'speed-input margin-input'}, selected: 'undone'
       .col-md-12.margin-input

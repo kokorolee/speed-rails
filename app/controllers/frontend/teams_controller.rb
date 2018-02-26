@@ -8,6 +8,11 @@ class  Frontend::TeamsController < FrontendController
   # khong cho user vao team k thuoc
   def check_use_team
     if !(params[:id]).nil?
+      if resource.archived == true
+        redirect_to frontend_root_path,
+        notice: "URL not found";
+      end
+
       users = resource.users
       if !(users.include?(current_user))
         redirect_to frontend_root_path,
@@ -32,7 +37,7 @@ class  Frontend::TeamsController < FrontendController
       success.html {
         redirect_to frontend_team_path(resource),
         notice: "Team has been created."}
-      failure.html { redirect_to frontend_team_path(resource),
+      failure.html { redirect_to frontend_root_path,
         notice: "Can not create team."}
     end
   end
@@ -64,8 +69,7 @@ class  Frontend::TeamsController < FrontendController
     else
       update! do |success, failure|
         success.html {
-          Notification.create(event: "updated", user_id: current_user.id, category: "todo list",team_id:resource.id, parent_id: resource.id , url: "teams/"+resource.id.to_s+"/todo_lists/"+resource.id.to_s)
-            redirect_to frontend_root_path,
+            redirect_to frontend_team_path(resource),
           notice: "Team has been updated." }
         failure.html {  redirect_to frontend_root_path,
           notice: "Can not update Team."}

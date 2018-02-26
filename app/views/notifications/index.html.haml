@@ -25,16 +25,12 @@
                         =render "notifi_partial", notification: notification
                     -else
                       =render "notifi_partial", notification: notification
--#                 #read.speed-tabs-content.current
--#                   - @notifications.each do |notification|
--#                     =render "notifi_partial", notification: notification
--#               %div#notificationFooter
--# -#
--#     :javascript
--#       $(document).ready( function() {
--#         set_height_scroll('right-container', '.right-header', '.speed-panel-wrapper', '', '', '.wrapper-todo-team-list', 0);
--#
--#       });
+
+    :javascript
+      $(document).ready( function() {
+        set_height_scroll('right-container', '.right-header', '.speed-panel-wrapper', '', '', '.wrapper-todo-team-list', 0);
+
+      });
 -#
 -# =render "layouts/speed-component/header/header_speed_todo"
 -# %speed-container.speed-team

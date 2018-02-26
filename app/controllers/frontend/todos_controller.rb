@@ -89,7 +89,6 @@ class  Frontend::TodosController < FrontendController
   # Check done
   def update
     # update data check list
-    # binding.pry
     if !resource.step_id.nil? and params[:name]!="update_position" and params[:name]!= "check_done"
       redirect_to frontend_team_todo_list_path(team_id: resource.todo_list.team_id, id: resource.todo_list.id),
       notice: "Cannot edit, delete todo in Workflow!"

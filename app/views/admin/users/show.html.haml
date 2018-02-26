@@ -27,7 +27,7 @@
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
             Private
-      - if current_user.super_role=="member" or current_user.super_role=="team_member"
+      - if current_user.super_role=="member" or current_user.super_role=="team_member" or resource.role.name = "admin"
         %div.label-form
           = f.input :role_id,collection: Role.all.map{|u| [u.name, u.id] }, input_html: {class: 'select speed-input require'}
         %div.label-form Perission
