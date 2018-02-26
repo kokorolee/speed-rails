@@ -2604,7 +2604,8 @@ textarea::placeholder {
   .option {
     padding: 4px 0;
     -webkit-transition: 0.5s;
-
+    text-align: left;
+    padding-left: 10px;
     a.todo-name {
       display: block;
       float: initial;
@@ -2987,4 +2988,8 @@ table.workload{
 }
 .margin-left-70px{
   margin-left: 70px;
+}
+
+.table-member-width{
+  height: 90%;
 }
