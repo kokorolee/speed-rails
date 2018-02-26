@@ -4,7 +4,7 @@ class Admin::OrdersController < AdminController
 
   assign_created_by :order
   assign_updated_by :order
-  before_filter :prepare_data, only: ['index', 'new', 'show']
+  before_action :prepare_data, only: ['index', 'new', 'show']
   # layout :false, only: ['new', 'edit']
   respond_to :html, :js
 

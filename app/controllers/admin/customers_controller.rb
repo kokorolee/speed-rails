@@ -2,8 +2,8 @@ class Admin::CustomersController < AdminController
   inherit_resources
   layout 'blank', only: ['new', 'edit']
   respond_to :html, :js
-  before_filter :properties, only: ['new', 'edit', 'show']
-  before_filter :set_partner, only: ['create', 'update']
+  before_action :properties, only: ['new', 'edit', 'show']
+  before_action :set_partner, only: ['create', 'update']
   assign_params :code, :fullname,:title, :phone_number, :source_id, :private, :assign_user_id, :state_id, :created_by, :updated_by, :email, :note, property_matches_attributes: [:id, :object_id, :property_key, :property_value, :property_id, :photo], partner_ids: []
 
 

@@ -2,7 +2,7 @@ class Admin::PartnersController < AdminController
   inherit_resources
   layout 'blank', only: ['new', 'show']
   respond_to :html, :js
-  # before_filter :properties, only: ['index','new', 'edit', 'show']
+  # before_action :properties, only: ['index','new', 'edit', 'show']
 
   assign_params :id, :password, :email, :fullname,:phone, :partner_type_id
 
