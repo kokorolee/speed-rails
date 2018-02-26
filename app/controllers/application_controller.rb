@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
     end
 
     self.class_eval %Q"
-      before_filter :add_#{params_key.to_s}_#{column_name.to_s}, only: #{actions}
+      before_action :add_#{params_key.to_s}_#{column_name.to_s}, only: #{actions}
 
       private
       def add_#{params_key.to_s}_#{column_name.to_s}
