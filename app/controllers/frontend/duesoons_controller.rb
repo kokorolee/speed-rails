@@ -7,7 +7,7 @@ class Frontend::DuesoonsController < FrontendController
 
     @this_week = current_user.todos.where(:status => 'undone',due_date: @today_d.at_beginning_of_week..@today_d.at_end_of_week, :archived => [nil,false]).order("position,due_date ASC")
 
-    @today = current_user.todos.where(:status => 'undone', :due_date => @today_d..@today_d, :archived => [nil,false]).order("position,due_date ASC")
+    @today = current_user.todos.where(:status => 'undone', :due_date => @today_d, :archived => [nil,false]).order("position,due_date ASC")
     # binding.pry
   end
 

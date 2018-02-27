@@ -1289,8 +1289,11 @@ $(window).on('load', function(){
     // console.log('phan tram: ' + scrollPercent);
 
     if(scrollAmount + heigth_ >= scrollHeight ){
-      if ($('#idnotifi').attr('name')>$('.wrapper-one-todo-list').length)
-        AjaxNotificationView()
+      if ($('.wrapper-one-todo-list').length < parseInt($('#idnotifi').attr('name')) && $('#idnotifi').attr('name') >=1)
+        {
+				
+					AjaxNotificationView()
+				}
     }
 
     function AjaxNotificationView() {
@@ -1305,6 +1308,8 @@ $(window).on('load', function(){
             offset: offset
           }
         }).success(function(result) {
+					if (JSON.parse(result).length < 10)
+						$('#idnotifi').attr('name',0)
           $.each(JSON.parse(result), function(k,v) {
             if ($.inArray($('#id_user').val(),v.user_list)==-1)
               if (v.category == "todo list")
