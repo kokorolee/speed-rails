@@ -1,3 +1,4 @@
 /tmp
 /log
+/public
 *.rake_tasks~
