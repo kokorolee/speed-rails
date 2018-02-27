@@ -1,56 +1,58 @@
-= simple_form_for [:frontend, resource], html: { class: 'form-group', multipart: true } do |f|
-  - if resource.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
-      %ul
-        - resource.errors.full_messages.each do |msg|
-          %li= msg
-  .row.form-todo-list
-    .col-md-12
-      = f.input :team_id, :as => :hidden, input_html: {value: params[:team_id]}
-      = f.input :category, :as => :hidden, input_html: {value: 1}
-    %div.label-form
-      = f.input :name, label: 'To-do List Name', input_html: {class:'speed-input require', placeholder: "Enter your todo list name"}
-    %div.label-form
-      = f.input :hash_tag, :label=> "HashTag", input_html: {class:'speed-input last',  placeholder: "Enter your todo list hashtag"}
-    %div.label-form
-      Type
-    %div.wrapper-add-todo-list
-      %label.container.project-radio
-        Project
-        %input{:type =>"radio", :name =>"type", :checked =>"true"}
-        %span.checkmark
-      %label.container.workload-radio
-        Workflow
-        %input{:type =>"radio", :name =>"type"}
-        %span.checkmark
-      %label.container.question-radio
-        Question
-        %input{:type =>"radio", :name =>"type"}
-        %span.checkmark
-    %div.wrapper-workflow.hide
-      %div.label-form Workflow
-      = f.input :parent_id, collection: Workflow.where(:parent_id => params[:team_id], :archived => [nil, false]).map{|u| [u.name, u.id] }, input_html: {class: 'user-role speed-input speed-select'}
-      %div.step-workflow-create-todo
-        -# %span.title-step
-        -#   Step
-        -# %div.row.workflow-step
-        -#   %div.col-md-7.step-name
-        -#     User Flow
-        -#   %div.col-md-5.step-assign-to
-        -#     %input.speed-input.margin-0{:placeholder =>"click to assign"}
+= simple_form_for [:frontend, resource], html: { class: 'form-group event-add-division', multipart: true } do |f|
+  .wrapper-todo-team-list-css
+    - if resource.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
+        %ul
+          - resource.errors.full_messages.each do |msg|
+            %li= msg
+    
+    .row.form-todo-list
+      .col-md-12
+        = f.input :team_id, :as => :hidden, input_html: {value: params[:team_id]}
+        = f.input :category, :as => :hidden, input_html: {value: 1}
+      %div.label-form
+        = f.input :name, label: 'To-do List Name', input_html: {class:'speed-input require', placeholder: "Enter your todo list name"}
+      %div.label-form
+        = f.input :hash_tag, :label=> "HashTag", input_html: {class:'speed-input last',  placeholder: "Enter your todo list hashtag"}
+      %div.label-form
+        Type
+      %div.wrapper-add-todo-list
+        %label.container.project-radio
+          Project
+          %input{:type =>"radio", :name =>"type", :checked =>"true"}
+          %span.checkmark
+        %label.container.workload-radio
+          Workflow
+          %input{:type =>"radio", :name =>"type"}
+          %span.checkmark
+        %label.container.question-radio
+          Question
+          %input{:type =>"radio", :name =>"type"}
+          %span.checkmark
+      %div.wrapper-workflow.hide
+        %div.label-form Workflow
+        = f.input :parent_id, collection: Workflow.where(:parent_id => params[:team_id], :archived => [nil, false]).map{|u| [u.name, u.id] }, input_html: {class: 'user-role speed-input speed-select'}
+        %div.step-workflow-create-todo
+          -# %span.title-step
+          -#   Step
+          -# %div.row.workflow-step
+          -#   %div.col-md-7.step-name
+          -#     User Flow
+          -#   %div.col-md-5.step-assign-to
+          -#     %input.speed-input.margin-0{:placeholder =>"click to assign"}
 
-    %div.wrapper-question.hide
-      %div.label-form Question
-      %div.hide
-        %span
-          Deadline Question
-        %input{class: "speed-input date-week date-week-edit require",name: "deadline", type:"text"}
-      %div.question
-        %input#stt-question{:type =>"hidden", name: "stt"}
-      %div.add-question#add-question
-        %span.glyphicon.glyphicon-plus
-        Add question
+      %div.wrapper-question.hide
+        %div.label-form Question
+        %div.hide
+          %span
+            Deadline Question
+          %input{class: "speed-input date-week date-week-edit require",name: "deadline", type:"text"}
+        %div.question
+          %input#stt-question{:type =>"hidden", name: "stt"}
+        %div.add-question#add-question
+          %span.glyphicon.glyphicon-plus
+          Add question
 
   -# .actions
   -#   = f.submit 'Add todo-list', class: "btn speed-btn"

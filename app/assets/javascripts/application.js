@@ -730,7 +730,46 @@ $( document ).ajaxComplete(function( event, request, settings ) {
   })
 });
 
-	function set_height_scroll(wrapper, el1, el2, el3, el4, el_set_heigth, outWidth){
+
+// *****START SET SCROLL FORM
+    // 1. add class before ".form-todo-list": .wrapper-todo-team-list-css
+    // 2. Add class into simple_form: .event-add-division
+    // 3. import file script into haml file: = javascript_include_tag 'set_scroll_form_crud'
+    // import: 
+    // 1. Todolist: crud form
+    // 2. Todo: crud form
+
+  function set_height_scroll_only(wrapper, el1, el2, el3, el4, el_set_heigth, outWidth){
+    var wrapper_el = $(wrapper);
+    var h_wrapper = wrapper_el.height();
+    var h_el1 = wrapper_el.find(el1).outerHeight(true);
+    var h_el2 = wrapper_el.find(el2).outerHeight(true);
+    var h_el3 = wrapper_el.find(el3).outerHeight(true);
+    var h_el4 = wrapper_el.find(el4).outerHeight(true);
+
+    var set_height_element = h_wrapper - h_el1 - h_el2 - h_el3 - h_el4 - 40 - outWidth;
+    wrapper_el.find(el_set_heigth).css('height', set_height_element + 'px');
+  }
+
+  $(document).ajaxComplete( function() {
+    set_height_scroll_only('.form-module .form', '.padding-left-20px', '', '', '', '.wrapper-todo-team-list-css', 50);
+    if ($('.form-todo-list').height() > $('.wrapper-todo-team-list-css').height() && $('.division').length < 1) {
+      $('.form-group').append("<div class='division'></div>");
+    } else {
+      $('.form-group').remove("div.division");
+    }
+    $(".add-question, .remove-question, input[type='radio'], #adv-setting").click(function (e) { 
+      if ($('.form-todo-list').height() > $('.wrapper-todo-team-list-css').height() && $('.division').length < 1) {
+        $('.event-add-division').append("<div class='division'></div>");
+      } else {
+        $('.event-add-division').remove("div.division");
+      }
+    });
+  });
+// *****END SET SCROLL FORM
+
+
+function set_height_scroll(wrapper, el1, el2, el3, el4, el_set_heigth, outWidth){
   // wrapper -> el wrapper khu vực cần xử lý height
   // el1, el2, el3 -> các el cần trừ height
   // el_set_height -> el cần add height được xử lý
@@ -1275,7 +1314,7 @@ $(window).on('load', function(){
     if(scrollAmount + heigth_ >= scrollHeight ){
       if ($('.wrapper-one-todo-list').length < parseInt($('#idnotifi').attr('name')) && $('#idnotifi').attr('name') >=1)
         {
-
+				
 					AjaxNotificationView()
 				}
     }

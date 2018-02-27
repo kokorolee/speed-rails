@@ -121,9 +121,6 @@ $(document).ready(function() {
 
   // //change form when click edit comment
 
-
-
-
   $('.edit.edit-comment').on('click', function(){
   var selector = $(this);
     editComment(selector);

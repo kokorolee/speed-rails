@@ -2264,6 +2264,43 @@ input.form-control.date-week{
   padding: 15px;
 }
 
+// START add css form CRUD todo, todlist
+.wrapper-todo-team-list-css {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0 10px;
+  max-height: 450px;
+  &::-webkit-scrollbar-track {
+    // -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar {
+    display: initial;;
+    width: 6px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color_1;
+    border-radius: 4px;
+  }
+}
+
+.event-add-division {
+  position: relative;
+  div.division {
+    width: 1px;
+    color: $color_1;
+    background: $color_1;
+    height: 95%;
+    position: absolute;
+    top: 0;
+    right: 22px;
+    z-index: 1;
+  }
+}
+// END add css form CRUD todo, todlist
+
+
 .wrapper-question,
 .wrapper-workflow {
   margin-top: 0;

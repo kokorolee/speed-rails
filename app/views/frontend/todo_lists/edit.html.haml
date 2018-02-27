@@ -6,116 +6,117 @@
     .result
     %h2.padding-left-20px
       Update Todo-List
-    = simple_form_for [:frontend, resource], html: { class: 'form-group', multipart: true } do |f|
-      - if resource.errors.any?
-        #error_explanation
-          %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
-          %ul
-            - resource.errors.full_messages.each do |msg|
-              %li= msg
-      .row.form-todo-list
-        .col-md-12
-          = f.input :team_id, :as => :hidden, input_html: {value: params[:team_id]}
-        %div.label-form
-          = f.input :name, label: 'To-do List Name', input_html: {class:'speed-input require', placeholder: "Enter your todo list name"}
-        %div.label-form
-          = f.input :hash_tag, :label=> "HashTag", input_html: {class:'speed-input last',  placeholder: "Enter your todo list hashtag"}
-        %div.label-form
-          Type
-        %div.wrapper-add-todo-list
-          - case resource.category
-            - when "project"
-              %label.container.project-radio
-                Project
-                %input{:type =>"radio", :name =>"type", :checked =>"true"}
-                = f.input :category, :as => :hidden, input_html: {value: 1}
-                %span.checkmark
-              %label.container.workload-radio
-                Workflow
-                %input{:type =>"radio", :name =>"type"}
-                %span.checkmark
-              %label.container.question-radio
-                Question
-                %input{:type =>"radio", :name =>"type"}
-                %span.checkmark
-            - when "workflow"
-              %label.container.project-radio
-                Workflow
-                %input{:type =>"radio", :name =>"type", :checked =>"true"}
-                = f.input :category, :as => :hidden, input_html: {value: 2}
-                %span.checkmark
-            - when "question"
-              %label.container.project-radio
-                Question
-                %input{:type =>"radio", :name =>"type", :checked =>"true"}
-                = f.input :category, :as => :hidden, input_html: {value: 3}
-                %span.checkmark
+    = simple_form_for [:frontend, resource], html: { class: 'form-group event-add-division', multipart: true } do |f|
+      .wrapper-todo-team-list-css
+        - if resource.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(resource.errors.count, "error")} prohibited this contact from being saved:"
+            %ul
+              - resource.errors.full_messages.each do |msg|
+                %li= msg
+        .row.form-todo-list
+          .col-md-12
+            = f.input :team_id, :as => :hidden, input_html: {value: params[:team_id]}
+          %div.label-form
+            = f.input :name, label: 'To-do List Name', input_html: {class:'speed-input require', placeholder: "Enter your todo list name"}
+          %div.label-form
+            = f.input :hash_tag, :label=> "HashTag", input_html: {class:'speed-input last',  placeholder: "Enter your todo list hashtag"}
+          %div.label-form
+            Type
+          %div.wrapper-add-todo-list
+            - case resource.category
+              - when "project"
+                %label.container.project-radio
+                  Project
+                  %input{:type =>"radio", :name =>"type", :checked =>"true"}
+                  = f.input :category, :as => :hidden, input_html: {value: 1}
+                  %span.checkmark
+                %label.container.workload-radio
+                  Workflow
+                  %input{:type =>"radio", :name =>"type"}
+                  %span.checkmark
+                %label.container.question-radio
+                  Question
+                  %input{:type =>"radio", :name =>"type"}
+                  %span.checkmark
+              - when "workflow"
+                %label.container.project-radio
+                  Workflow
+                  %input{:type =>"radio", :name =>"type", :checked =>"true"}
+                  = f.input :category, :as => :hidden, input_html: {value: 2}
+                  %span.checkmark
+              - when "question"
+                %label.container.project-radio
+                  Question
+                  %input{:type =>"radio", :name =>"type", :checked =>"true"}
+                  = f.input :category, :as => :hidden, input_html: {value: 3}
+                  %span.checkmark
 
 
-        -if resource.category == "workflow"
-          %div.wrapper-workflow
-            %div.label-form Workflow
-            = f.input :parent_id, collection: Workflow.where(:parent_id => params[:team_id]).map{|u| [u.name, u.id] }, input_html: {class: 'user-role speed-input'}, selected: resource.parent_id
-            %div.step-workflow-create-todo
-              %span.title-step
-                Step
-              - steps = StepWorkflow.where(workflow_id: resource.parent_id).order("id")
-              - steps.each do |step|
-                - todo = Todo.where(step_id:step.id, todo_list_id: resource.id).first
-                %div.row.workflow-step
-                  %div.col-md-12.step-name
-                    =todo.name
-                  %div.row
-                    %div.col-md-5
-                      %input{value: todo.due_date.strftime("%Y-%m-%d"), class: "speed-input remove-margin remove-padding date-week date-week-edit input-create-todo-wf require",name: "deadline-"+step.id.to_s, type:"text"}
-                    %div.col-md-7.step-assign-to
-                      %spa.col-md-4.title.remove-margin.remove-padding
-                        Assign to
-                      %select.col-md-8.speed-input.remove-margin.remove-padding.select2{name: "name_step_"+step.id.to_s}
-                        %option{value: todo.user_id, selected: true,}
-                          = User.find_by_id(todo.user_id).fullname
-                        - Team.find_by_id(resource.team_id).users.each do |user|
-                          -if todo.user_id != user.id
-                            %option{value: user.id}
-                              = user.fullname
+          -if resource.category == "workflow"
+            %div.wrapper-workflow
+              %div.label-form Workflow
+              = f.input :parent_id, collection: Workflow.where(:parent_id => params[:team_id]).map{|u| [u.name, u.id] }, input_html: {class: 'user-role speed-input'}, selected: resource.parent_id
+              %div.step-workflow-create-todo
+                %span.title-step
+                  Step
+                - steps = StepWorkflow.where(workflow_id: resource.parent_id).order("id")
+                - steps.each do |step|
+                  - todo = Todo.where(step_id:step.id, todo_list_id: resource.id).first
+                  %div.row.workflow-step
+                    %div.col-md-12.step-name
+                      =todo.name
+                    %div.row
+                      %div.col-md-5
+                        %input{value: todo.due_date.strftime("%Y-%m-%d"), class: "speed-input remove-margin remove-padding date-week date-week-edit input-create-todo-wf require",name: "deadline-"+step.id.to_s, type:"text"}
+                      %div.col-md-7.step-assign-to
+                        %spa.col-md-4.title.remove-margin.remove-padding
+                          Assign to
+                        %select.col-md-8.speed-input.remove-margin.remove-padding.select2{name: "name_step_"+step.id.to_s}
+                          %option{value: todo.user_id, selected: true,}
+                            = User.find_by_id(todo.user_id).fullname
+                          - Team.find_by_id(resource.team_id).users.each do |user|
+                            -if todo.user_id != user.id
+                              %option{value: user.id}
+                                = user.fullname
 
-        -elsif resource.category == "question"
-          %div.wrapper-question
-            %div.label-form Question
-            %div.hide
-              %span
-                Deadline Question
-              %input{value: resource.todos.last.due_date,class: "speed-input remove-margin remove-padding date-week date-week-edit input-create-todo-wf require",name: "deadline", type:"text"}
-            %div.question
-              -todos = resource.todos.where(user_id: current_user.id, category: "question")
-              %input#stt-question{:type =>"hidden", name: "stt", value: todos.count}
-              - todos.each.with_index do |todo,index|
-                %div.question-wrapper
-                  %span
-                    %span.step-question{id: "num num"+(index + 1).to_s}
-                      = index + 1
-                  %input.speed-input.speed-question.require{name: "question"+(index + 1).to_s, type: "text", value: todo.name}
-                  %span.glyphicon.glyphicon-remove.remove-question
+          -elsif resource.category == "question"
+            %div.wrapper-question
+              %div.label-form Question
+              %div.hide
+                %span
+                  Deadline Question
+                %input{value: resource.todos.last.due_date,class: "speed-input remove-margin remove-padding date-week date-week-edit input-create-todo-wf require",name: "deadline", type:"text"}
+              %div.question
+                -todos = resource.todos.where(user_id: current_user.id, category: "question")
+                %input#stt-question{:type =>"hidden", name: "stt", value: todos.count}
+                - todos.each.with_index do |todo,index|
+                  %div.question-wrapper
+                    %span
+                      %span.step-question{id: "num num"+(index + 1).to_s}
+                        = index + 1
+                    %input.speed-input.speed-question.require{name: "question"+(index + 1).to_s, type: "text", value: todo.name}
+                    %span.glyphicon.glyphicon-remove.remove-question
 
-          %div.add-question#add-question
-            %span.glyphicon.glyphicon-plus
-            Add question
-        - else
-          %div.wrapper-workflow.hide
-            %div.label-form Workflow
-            = f.input :parent_id, collection: Workflow.where(:parent_id => params[:team_id], :archived => [nil, false]).map{|u| [u.name, u.id] }, input_html: {class: 'user-role speed-input speed-select'}
-            %div.step-workflow-create-todo
-          %div.wrapper-question.hide
-            %div.label-form Question
-            %div.hide
-              %span
-                Deadline Question
-              %input{class: "speed-input date-week date-week-edit require",name: "deadline", type:"text"}
-            %div.question
-              %input#stt-question{:type =>"hidden", name: "stt"}
             %div.add-question#add-question
               %span.glyphicon.glyphicon-plus
               Add question
+          - else
+            %div.wrapper-workflow.hide
+              %div.label-form Workflow
+              = f.input :parent_id, collection: Workflow.where(:parent_id => params[:team_id], :archived => [nil, false]).map{|u| [u.name, u.id] }, input_html: {class: 'user-role speed-input speed-select'}
+              %div.step-workflow-create-todo
+            %div.wrapper-question.hide
+              %div.label-form Question
+              %div.hide
+                %span
+                  Deadline Question
+                %input{class: "speed-input date-week date-week-edit require",name: "deadline", type:"text"}
+              %div.question
+                %input#stt-question{:type =>"hidden", name: "stt"}
+              %div.add-question#add-question
+                %span.glyphicon.glyphicon-plus
+                Add question
 
 
     .actions
