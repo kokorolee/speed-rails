@@ -1,4 +1,4 @@
- // @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,300italic&subset=latin,vietnamese);
+// @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,700,300italic&subset=latin,vietnamese);
 @import "login";
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
@@ -17,13 +17,14 @@
 /*
  *= require jquery.ui.all
  */
-
 body,
 html {
   background-color: $color_5;
+
   font-family: 'Roboto';
   font-size: $font_size_md;
   line-height: $line_height_default;
+
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-text-size-adjust: 100%;
@@ -31,12 +32,13 @@ html {
 
   ::-webkit-scrollbar {
     display: none;
-    }
+  }
 }
 
 .container-fluid {
   margin: 0;
   padding: 0;
+
   background: $color_5;
 
   .show {
@@ -54,21 +56,25 @@ html {
   a:hover {
     text-decoration: none;
   }
-ul {
-  list-style: none;
-}
+
+  ul {
+    list-style: none;
+  }
+
   label {
     font-weight: $font_weight_sm;
   }
 
   .notfound {
     height: 100%;
+
     text-align: center;
   }
 }
 
 .select2-container {
   width: 300px !important;
+
   font-family: $font_name_1;
 }
 
@@ -82,6 +88,7 @@ label:hover {
 
 .scrollbar {
   float: left;
+
   width: 100%;
   margin-bottom: 25px;
 }
@@ -94,7 +101,9 @@ label:hover {
   position: relative;
   top: 50%;
   left: 50%;
+
   overflow: hidden;
+
   transform: translate(-50%, -50%);
   text-align: center;
 }
@@ -103,23 +112,29 @@ label:hover {
   position: absolute;
   top: 50%;
   left: 50%;
+
   width: 100%;
   height: auto;
+
   transform: translate(-50%, -50%);
 }
 
 .speed-header {
+  position: fixed;
+  z-index: 10;
+
   width: 100%;
   height: 85px;
   margin: 0;
+
   border: 0 solid;
-  position: fixed;
-  z-index: 10;
+
   .top-header {
     width: 100%;
     height: 40px;
     margin: 0;
     padding: 0;
+
     background: $color_1;
     background: $background_gradient;
   }
@@ -130,8 +145,10 @@ label:hover {
   height: 50%;
   margin: 0;
   padding: 0;
+
   background: $container_background;
   box-shadow: 1px 1px $border_color;
+
   &.tab {
     position: initial;
 
@@ -146,13 +163,18 @@ label:hover {
   .item-container {
     position: relative;
     left: 50%;
+
     width: 100%;
     height: 45px;
     margin: 0 auto;
     padding: 0 10%;
+
     list-style: none;
+
     transform: translateX(-50%);
+
     background: $container_background;
+
     line-height: 45px;
   }
 
@@ -161,8 +183,10 @@ label:hover {
 
     span {
       text-decoration: none;
+
       opacity: $opacity_md;
       color: $color_6;
+
       font-size: $font_size_md;
     }
 
@@ -170,6 +194,7 @@ label:hover {
       a,
       span {
         opacity: $opacity_lg;
+
         font-weight: $font_weight_md;
       }
     }
@@ -179,6 +204,7 @@ label:hover {
     a {
       display: block;
     }
+
     a:hover {
       cursor: pointer;
       text-decoration: none;
@@ -199,70 +225,90 @@ label:hover {
   cursor: pointer;
 }
 
-.header-middle-container .item,
 .header-middle-container,
+.header-middle-container .item,
 .header-right-container .user-info .user-name .btn-username {
   font-size: $font_size_lg;
   font-weight: $font_weight_md !important;
 }
-.dropdown-speed:hover{
-  ul.dropdown-menu-speed{
+
+.dropdown-speed:hover {
+  ul.dropdown-menu-speed {
     display: block;
   }
 }
+
 ul.dropdown-menu-speed {
+  position: absolute;
+
+  display: none;
   overflow: hidden;
-  max-width: 300px;
+
   width: 300px;
+  max-width: 300px;
   padding: 10px;
+
+  text-align: left;
   white-space: nowrap;
   text-overflow: ellipsis;
-  background: $color_7;
-  text-align: left;
-  position: absolute;
+
   border-radius: $border-radius;
-  display: none;
+  background: $color_7;
+
   li {
     display: flex;
+
     a {
       display: block;
       overflow: hidden;
       // width: 300px;
+
       width: 100%;
       max-width: 300px;
       padding: 8px;
+
       -webkit-transition: 0.5s;
       transition: 0.5s;
       /* Safari */
       text-overflow: ellipsis;
+
       color: $color_4;
+
       font-size: $font_size_sm;
       font-weight: $font_weight_sm;
     }
 
     &:hover {
-      background: $color_3;
-      border-radius: $border_radius;
       text-align: center;
+
+      border-radius: $border_radius;
+      background: $color_3;
+
       a {
         border-radius: $border_radius;
       }
     }
   }
-
 }
+
 .header-middle-container {
   display: block;
+
   height: 100%;
 
   .item {
     position: relative;
+    z-index: 11;
+
     float: left;
+
     width: 100px;
     height: 100%;
+
     text-align: center;
+
     line-height: 2.5;
-    z-index: 11;
+
     a {
       color: $color_4;
     }
@@ -275,9 +321,11 @@ ul.dropdown-menu-speed {
       li.open a {
         background: transparent;
       }
+
       a.dropdown-toggle {
         height: 100%;
         padding: 0;
+
         &:focus {
           background: transparent;
         }
@@ -294,13 +342,18 @@ ul.dropdown-menu-speed {
     // z-index: 1;
     top: 65%;
     left: 50%;
+
     display: none;
+
     transform: translate(-50%);
+
     color: $color_4;
+
     font-size: 25px;
 
     &.active {
       display: block;
+
       background: none;
     }
   }
@@ -312,8 +365,10 @@ ul.dropdown-menu-speed {
   .user-info {
     width: 100%;
     height: 100%;
+
     &.speed-img {
       z-index: 100;
+
       overflow: inherit;
     }
 
@@ -321,8 +376,10 @@ ul.dropdown-menu-speed {
       position: relative;
       z-index: 0;
       top: 50%;
+
       width: 20px;
       height: 20px;
+
       transform: translateY(-50%);
     }
 
@@ -330,14 +387,18 @@ ul.dropdown-menu-speed {
       position: relative;
       z-index: 2;
       top: 50%;
+
       transform: translateY(-50%);
       text-align: left;
+
       color: $color_4;
 
       button {
         &.user-name {
           left: 10px;
+
           width: 80%;
+
           font-size: $font_size_md;
         }
       }
@@ -350,82 +411,96 @@ ul.dropdown-menu-speed {
     }
   }
 }
-.remove-padding-left{
+
+.remove-padding-left {
   padding-left: 0 !important;
 }
-.remove-margin-left{
+
+.remove-margin-left {
   margin-left: 0 !important;
 }
-.padding-left-right-20px{
+
+.padding-left-right-20px {
   padding: 0 20px;
 }
-.margin-left-20px{
+
+.margin-left-20px {
   margin-left: 20px !important;
 }
-.padding-left-20px{
+
+.padding-left-20px {
   padding-left: 20px;
 }
 
 speed-container {
-  width: 100%;
-  min-height: $container_min_height !important;
   position: relative;
   top: 85px;
+
+  width: 100%;
+  min-height: $container_min_height !important;
+
   .wrapper {
-    min-height: $container_min_height;
     max-width: $container_width_lg;
+    min-height: $container_min_height;
     margin: 20px auto;
 
     left-container,
     right-container {
       position: relative;
+
       float: left;
       overflow: hidden;
+
       height: 100%;
       max-height: calc(100% - 140px);
       margin: 0 10px 20px 7.33333%;
+
       border: 1px solid $border_color;
       background: $container_background !important;
     }
 
     .left-header,
     .right-header,
-    .workloads-head,
-     {
+    .workloads-head {
       // padding-left: $padding_left_container;
       margin-bottom: 25px !important;
     }
-    .wrapper-todo-team-list,
+
     .container-today-task,
-    ul.speed-tabs,
-    .speed-panel-heading,
     .left-header,
     .right-header,
+    .speed-panel-heading,
     .workloads-head,
+    .wrapper-todo-team-list,
     .wrapper-todo-team-list tr span.edit-user,
-    .wrapper-todo-team-list tr span.remove-user{
+    .wrapper-todo-team-list tr span.remove-user,
+    ul.speed-tabs {
       padding-left: $padding_left_container;
     }
-    table.table tbody.wrapper-todo-team-list{
+
+    table.table tbody.wrapper-todo-team-list {
       padding-left: 0;
-      tr td{
+
+      tr td {
         padding: $padding_left_container;
       }
     }
 
     .wrapper-todo-team-list tr span.edit-user,
-    .wrapper-todo-team-list tr span.remove-user{
+    .wrapper-todo-team-list tr span.remove-user {
       display: none;
     }
 
     .wrapper-todo-team-list tr:hover,
-    .wrapper-todo-team-list tr:hover{
-      td{
+    .wrapper-todo-team-list tr:hover {
+      td {
         background-color: rgb(223, 234, 240);
       }
+
       span.edit-user,
-      span.remove-user{
+      span.remove-user {
         display: inline;
+
         a:hover {
           color: $color_3 !important;
         }
@@ -433,31 +508,37 @@ speed-container {
     }
 
     li.today-task-items.submenu {
-        padding-bottom: 20px;
+      padding-bottom: 20px;
     }
-    li.today-task-items.submenu:hover{
-      .ul_submenu{
+
+    li.today-task-items.submenu:hover {
+      .ul_submenu {
         display: block;
       }
     }
+
     .left-header,
     .right-header,
     .workloads-head {
       float: left;
+
       width: 100%;
       height: 40px;
       margin: 0 auto;
+
       text-align: left;
       text-transform: capitalize;
+
       color: $color_4;
       background: $color_1;
       background: $background_gradient;
+
       font-size: $font_size_lg;
       line-height: 40px;
     }
 
     left-container {
-      width: 30% !important ;
+      width: 30% !important;
       max-width: $left_container_width;
       margin: 0 10px 0 3.33333%;
 
@@ -489,10 +570,13 @@ speed-container {
 
     .num-task {
       float: left;
+
       width: 50px;
       height: 40px;
+
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
+
       font-weight: $font_weight_md !important;
       line-height: 40px;
     }
@@ -509,8 +593,10 @@ speed-container {
       .todo-list-name {
         margin-top: 0;
         margin-bottom: 20px;
+
         opacity: $opacity_lg;
         color: $color_6;
+
         font-size: $font_size_sm;
         font-weight: $font_weight_md;
       }
@@ -520,10 +606,12 @@ speed-container {
 
 .speed-panel {
   float: left;
+
   width: 100%;
   margin-bottom: 25px;
+
   border: none;
-  border-radius: $border_radius;;
+  border-radius: $border_radius;
   background: $container_background !important;
   background-color: $container_background;
   -webkit-box-shadow: none;
@@ -535,12 +623,14 @@ speed-container {
   }
 
   .speed-panel-heading {
-    font-size: $font_size_lg;
     text-align: left;
     text-transform: capitalize;
+
     opacity: $opacity_lg;
     color: $color_18;
     background: $container_background !important;
+
+    font-size: $font_size_lg;
   }
 
   .panle-body {
@@ -554,26 +644,28 @@ speed-container {
   }
   // notification page
   .speed-padding-container {
-    padding: 20px;
     margin: 0;
+    padding: 20px;
+
     .wrapper-one-todo-list {
       .today-task-items {
         .task-item {
           .user-name-noti {
             display: inline-block;
           }
+
           .event-noti {
             display: inline-block;
-
           }
+
           .catagory-noti {
             display: inline-block;
-            vertical-align: bottom;
 
+            vertical-align: bottom;
           }
+
           .timestamp-noti {
             display: inline-block;
-
           }
         }
       }
@@ -581,19 +673,22 @@ speed-container {
   }
 }
 // START SCROLLBAR - SCROLL RAIL
-
 /*************** SCROLLBAR BASE CSS ***************/
 .scroll-wrapper {
   position: relative;
+
   clear: both;
   overflow-x: hidden !important;
+
   padding: 0 !important;
 
   > .scroll-content {
     position: relative !important;
     top: 0;
     left: 0;
+
     overflow: scroll !important;
+
     box-sizing: content-box !important;
     width: auto !important;
     max-width: none !important;
@@ -601,6 +696,7 @@ speed-container {
     max-height: none;
     margin: 0;
     padding: 0;
+
     border: none !important;
 
     &::-webkit-scrollbar {
@@ -612,6 +708,7 @@ speed-container {
 
 .scroll-element {
   display: none;
+
   box-sizing: content-box;
 
   div {
@@ -645,7 +742,9 @@ speed-container {
     > textarea {
       position: relative !important;
       top: 0;
+
       overflow: scroll !important;
+
       box-sizing: border-box;
       width: 100% !important;
       max-width: none !important;
@@ -653,6 +752,7 @@ speed-container {
       max-height: none !important;
       margin: 0;
       padding: 2px;
+
       border: none !important;
       outline: none;
 
@@ -668,9 +768,12 @@ speed-container {
   > .scroll-element {
     position: absolute;
     z-index: 5;
+
     overflow: hidden;
+
     margin: 0;
     padding: 0;
+
     border: none;
     background-color: $background_color_1;
 
@@ -679,12 +782,15 @@ speed-container {
       z-index: 10;
       top: 0;
       left: 0;
+
       display: block;
       overflow: hidden;
+
       width: 100%;
       height: 100%;
       margin: 0;
       padding: 0;
+
       border: none;
     }
 
@@ -711,6 +817,7 @@ speed-container {
   > .scroll-element.scroll-x {
     bottom: 0;
     left: 0;
+
     width: 100%;
     min-width: 100%;
     height: 12px;
@@ -718,18 +825,21 @@ speed-container {
 
     .scroll-bar {
       top: 3px;
+
       min-width: 10px;
       height: 7px;
     }
 
     .scroll-element_outer {
       left: 5px;
+
       height: 15px;
     }
 
     .scroll-element_size {
       top: 5px;
       left: -10px;
+
       height: 2px;
     }
   }
@@ -737,6 +847,7 @@ speed-container {
   > .scroll-element.scroll-y {
     top: 0;
     right: 0;
+
     width: 12px;
     height: 100%;
     min-height: 100%;
@@ -744,29 +855,34 @@ speed-container {
 
     .scroll-bar {
       left: 3px;
+
       width: 6px;
       min-height: 10px;
     }
 
     .scroll-element_outer {
       top: 5px;
+
       width: 15px;
     }
 
     .scroll-element_size {
       top: -10px;
       left: 5px;
+
       width: 2px;
     }
   }
 
   > .scroll-content.scroll-scrolly_visible {
     left: -17px;
+
     margin-left: 17px;
   }
 
   > .scroll-content.scroll-scrollx_visible {
     top: -17px;
+
     margin-top: 17px;
   }
 
@@ -794,14 +910,20 @@ speed-container {
 
 .task-item {
   position: relative;
+
   display: inline-block;
+
   padding-bottom: 20px;
+
   .icon-menu-task {
     position: absolute;
     z-index: 5;
-    top: 0px;
+    top: 0;
+
     width: 25px;
+
     color: #e1e1e1;
+
     font-size: 20px;
   }
 
@@ -815,8 +937,11 @@ speed-container {
 
   .task-deadline {
     float: left;
+
     margin: 0 10px 0 0;
+
     color: $color_11;
+
     font-size: $font_size_sm;
 
     span.date {
@@ -826,6 +951,7 @@ speed-container {
 
   .task-deadline.task {
     float: left;
+
     color: $color_3;
   }
 
@@ -835,7 +961,9 @@ speed-container {
 
   .task-member {
     margin: 0 10px;
+
     text-transform: capitalize;
+
     color: $color_3;
   }
 
@@ -858,7 +986,8 @@ speed-container {
     .active {
       color: $color_1;
     }
-    li.status-lable:last-child{
+
+    li.status-lable:last-child {
       margin-bottom: 20px;
     }
   }
@@ -872,15 +1001,19 @@ $lines-to-show3: 3;
   /* Fallback for non-webkit */
   display: -webkit-box;
   overflow: hidden;
+  -webkit-box-orient: vertical;
   // max-width: 400px;
+
   height: 24px;
+
   text-overflow: ellipsis;
   /* Fallback for non-webkit */
   // margin: 10px 0;
+
   font-size: $font_size_md;
   line-height: 1;
+
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
   // max-width: 90%;
 }
 
@@ -888,20 +1021,26 @@ label.speed-lable-box {
   span.cr.todos.show1line {
     float: inherit;
   }
-  .todos-content a, .one-line-text.left {
+
+  .one-line-text.left,
+  .todos-content a {
     color: $color_6 !important;
   }
 
-  .todos-content{
+  .todos-content {
     position: relative;
     bottom: 4px;
+
     line-height: 1.5;
+
     a {
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+
       color: #000;
-      transition: .5s;
-      -webkit-transition: .5s;
+
       &:hover {
-        color:  #2e90b4;
+        color: #2e90b4;
       }
     }
   }
@@ -920,12 +1059,14 @@ label.speed-lable-box:hover {
 
   .edit:hover {
     cursor: pointer;
+
     color: $color_1;
   }
 }
 
 .speed-lable-box-edit {
   float: right;
+
   padding-right: 30px;
 }
 //tab: https://codepen.io/MightyShaban/pen/zLykK?q=tabs&order=popularity&depth=everything&show_forks=false
@@ -934,62 +1075,79 @@ $color: blue; // TAB ~~~~~~~~~~~~~~~ (.)(.)
 
 .tab {
   position: relative;
+
   overflow: hidden;
   // margin-bottom: 20px;
   // padding-top: 50px;
+
   width: 70%;
   margin: 0 auto;
+
   color: #888;
   background: $container_background;
+
   font-weight: 400;
   // font-family: 'Roboto', sans-serif;
   line-height: 1.5;
+
   -webkit-font-smoothing: antialiased;
 }
 
 .tabs {
   position: relative;
+
   display: table;
   overflow: hidden;
+
   width: 100%;
   margin: 0;
 
   li {
     position: relative;
+
     float: left;
     overflow: hidden;
+
     margin: 0 30px;
     padding: 0;
+
     line-height: 38px;
   }
 
   a {
     display: block;
+
     padding: 0 20px;
+
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     text-decoration: none;
     letter-spacing: 0;
+
     color: #888;
     outline: none;
     background-color: $container_background;
+
     font-weight: 500;
   }
 }
 
 .tabs_item {
   display: none;
+
   padding: 30px 0;
 
   h4 {
     color: $color;
+
     font-size: 20px;
     font-weight: bold;
   }
 
   img {
     float: left;
+
     width: 200px;
     margin-right: 30px;
   }
@@ -1002,7 +1160,6 @@ $color: blue; // TAB ~~~~~~~~~~~~~~~ (.)(.)
 .current a {
   color: $color_6;
 }
-
 // .current {
 //   a {
 //     span {
@@ -1036,6 +1193,7 @@ $color: blue; // TAB ~~~~~~~~~~~~~~~ (.)(.)
 .wrapper-todo-team-list {
   // overflow-y:scroll;
   overflow: hidden;
+
   min-height: 237px;
   margin-bottom: 10px;
   padding-right: 15px;
@@ -1048,7 +1206,9 @@ $color: blue; // TAB ~~~~~~~~~~~~~~~ (.)(.)
     position: absolute;
     z-index: 9999;
     left: 0;
+
     width: 2px;
+
     background: black;
   }
 }
@@ -1056,22 +1216,24 @@ $color: blue; // TAB ~~~~~~~~~~~~~~~ (.)(.)
 .wrapper-step-workflow {
   min-height: 250px !important;
 }
-
 // .wrapper-todo-team {
 //   padding-left: 0;
 // }
 
 .speed-search-box {
   width: 100%;
+
   text-align: right;
 
-  &.form-inline{
+  &.form-inline {
     padding-top: 10px;
     padding-bottom: 25px;
   }
-  input{
-    border-right: 0px;
+
+  input {
+    border-right: 0;
   }
+
   .speed-date-input {
     .input-group-addon {
       border: 0 solid #ccc;
@@ -1082,8 +1244,9 @@ $color: blue; // TAB ~~~~~~~~~~~~~~~ (.)(.)
       -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
       -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
       transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
       border: 0 solid #ccc;
-      border-radius: $border_radius;;
+      border-radius: $border_radius;
       background-color: $container_background;
       background-image: none;
       -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.075);
@@ -1093,31 +1256,37 @@ $color: blue; // TAB ~~~~~~~~~~~~~~~ (.)(.)
 
   .glyphicon-search {
     color: $color_1;
+
     font-weight: 400;
   }
 }
 
-
 li.status-lable {
   display: gird;
+
   height: 20px;
   margin-top: $padding_left_container;
+
   list-style-type: none;
 
   div {
     width: 100px;
+
     color: $color_16;
+
     font-weight: 400;
   }
 }
 
 .input-todo-datetime {
   border: 0;
+
   font-size: $font_size_md;
 }
 
 .lable-date {
   display: inline;
+
   padding: 0;
 }
 
@@ -1127,43 +1296,54 @@ li.status-lable {
   }
 }
 
-
 .speed-btn {
   margin: 15px;
   padding: 8px 24px;
+
   color: $color_4 !important;
   border: none;
   background: $color_1; //fall back
   background: $btn_gradient;
+
   font-size: $font_size_md;
 }
 
-.btn-left-container{
+.btn-left-container {
   position: absolute;
   bottom: 25px;
   left: 45%;
+
   transform: translateX(-50%);
 }
+
 .speed-todo-list-name {
   padding: 0 35px;
+
   text-transform: capitalize;
+
   color: $color_13;
+
   font-size: $font_size_md;
 
   .workflow {
     padding-top: 10px;
+
     color: #505050;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
     font-size: $font_size_lg;
     font-size: $font_size_md;
 
     .div-sum {
       padding: 15px 0;
+
       color: $color_3;
+
       font-size: $font_size_md;
 
       span {
         padding-left: 5px;
+
         color: #505050;
       }
     }
@@ -1172,18 +1352,22 @@ li.status-lable {
 
 .glyphicon-asterisk {
   margin: 0 20px;
+  margin-bottom: 4px;
+
   transform: translate(-50%);
   vertical-align: middle;
+
   color: $color_2;
   border-radius: 10px;
   background-color: $color_2;
+
   font-size: 6px;
-  margin-bottom: 4px;
 }
 
 .input-group-btn {
   button {
     height: 34px;
+
     border-left: unset;
   }
 }
@@ -1199,7 +1383,9 @@ li.status-lable {
     position: absolute;
     bottom: 0;
     left: 50%;
+
     margin-bottom: 50px;
+
     transform: translate(-50%, -50%);
   }
 
@@ -1212,6 +1398,7 @@ li.status-lable {
       .speed-lable-box-edit,
       strong {
         text-transform: capitalize;
+
         font-size: $font_size_md;
         font-weight: 400;
       }
@@ -1220,17 +1407,20 @@ li.status-lable {
 
   .steps {
     padding: 10px 5px;
+
     color: #505050;
   }
 }
 
 .btn-edit {
   padding: 5px;
+
   border: 1px solid;
 }
 
 .menu-duesoon {
   padding: 20px !important;
+
   font-weight: normal !important;
 
   a {
@@ -1244,6 +1434,7 @@ li.status-lable {
 
 form.new_workflow {
   background-color: #aa4069 !important;
+
   font-weight: normal !important;
 }
 
@@ -1251,6 +1442,7 @@ form.new_workflow {
   width: 100%;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
+
   border: unset;
   border-bottom: 1px solid $color_5;
 
@@ -1277,33 +1469,46 @@ form.new_workflow {
 
 .input-step {
   float: left;
+
   width: 90%;
+
   .relative {
     position: relative;
+
     .previous-steps {
-      padding: 0 !important;
-      margin: 0 !important;
-      border: 0;
-      border-bottom: 1px solid $color_5;
-      color: #95989A;
       position: absolute;
       top: 15px;
       right: 0;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
       cursor: pointer;
+
+      color: #95989A;
+      border: 0;
+      border-bottom: 1px solid $color_5;
+
       &:first-child {
         display: none;
       }
+
       .glyphicon.glyphicon-one-fine-dot {
-        overflow: hidden;
-        line-height: inherit;
-        float: left;
         top: 0;
         left: -7px;
+
+        float: left;
+        overflow: hidden;
+
+        line-height: inherit;
       }
+
       .glyphicon.glyphicon-one-fine-dot:before {
-        content:"\25cf";
-        font-size: 15px;
+        content: "\25cf";
+
         color: #95989A;
+
+        font-size: 15px;
       }
     }
   }
@@ -1311,17 +1516,21 @@ form.new_workflow {
 
 .step-lable {
   float: left;
+
   width: 5% !important;
   margin: 15px 0;
 }
 
 .icon-delete {
-  cursor: pointer;
   float: left;
+
   width: 3%;
   margin-top: 8px;
-  color: #adb1b9;
   padding-top: 10px;
+
+  cursor: pointer;
+
+  color: #adb1b9;
 }
 
 .add-more-step {
@@ -1331,35 +1540,39 @@ form.new_workflow {
 
 .set-dealine {
   margin: 15px 0;
-  color: #adadad;
   padding-right: 15px;
+
+  color: #adadad;
+
   input {
     margin: 0 !important;
+
     border: unset;
   }
 }
 
 .workloads-main {
   position: relative;
+
+  width: $container_width_lg;
   min-height: 500px;
   // background: rgb(184, 133, 169);
   margin: 0 auto;
-  width: $container_width_lg;
 
   .speed-btn {
     float: left;
+
     margin: 0;
   }
 
-
-
   .workloads-head {
-
     select {
       height: 100%;
       padding: 0 10px;
+
       border: 0;
       background: $color_3;
+
       font-weight: 400;
 
       option {
@@ -1389,6 +1602,7 @@ form.new_workflow {
 
     td {
       padding: 20px 0;
+
       border: unset;
 
       a {
@@ -1399,6 +1613,7 @@ form.new_workflow {
     .show-workloads {
       tr.result {
         color: $color_12;
+
         font-weight: 400;
 
         a {
@@ -1421,6 +1636,7 @@ form.new_workflow {
       tr.result:hover {
         // background: rgba(#000000, 0.34);
         color: rgba(#000000, 1);
+
         font-weight: 400;
 
         a {
@@ -1442,6 +1658,7 @@ form.new_workflow {
     table.table {
       margin: 0;
       padding: 10px;
+
       border: 0 solid $color_4;
 
       thead {
@@ -1450,6 +1667,7 @@ form.new_workflow {
 
       thead tr td {
         padding: 0 !important;
+
         text-align: center;
 
         &:hover a {
@@ -1459,13 +1677,17 @@ form.new_workflow {
 
         a {
           display: block;
+
           padding: 12px;
+
           -webkit-transition: 0.5s;
           transition: 0.5s;
           /* Safari */
           text-decoration: none;
+
           opacity: $opacity_md;
           color: $color_8;
+
           font-weight: 400;
         }
       }
@@ -1474,6 +1696,7 @@ form.new_workflow {
     .wordload-member {
       .task-todolist-name {
         margin-left: 15px;
+
         color: $scrollbar_color;
       }
     }
@@ -1482,12 +1705,13 @@ form.new_workflow {
       margin: 10px;
     }
 
-    .active {
+    ß .active {
       // font-weight: 600;
     }
 
     th {
       border: unset;
+
       font-weight: 400;
     }
 
@@ -1503,21 +1727,23 @@ form.new_workflow {
 
   .table > thead:first-child > tr:first-child > th {
     padding-left: 20px;
+
     border: unset;
   }
-
 }
 
 .wordload-bottom {
   position: absolute;
-  bottom: 0;
-  width: 100%;
+  bottom: -20%;
   left: 20px;
+
+  width: 100%;
 
   span.lable {
     padding-left: 50px;
     // margin-left: 100px;
     // font-weight: 600;
+
     font-size: $font_size_md;
 
     span {
@@ -1528,7 +1754,9 @@ form.new_workflow {
 
   strong {
     padding: 0 15px;
+
     color: $color_2;
+
     font-size: $font_size_md;
     font-weight: 400;
   }
@@ -1538,6 +1766,7 @@ form.new_workflow {
   position: absolute;
   bottom: 0;
   left: 50%;
+
   transform: translateX(-50%);
 }
 
@@ -1545,22 +1774,29 @@ form.new_workflow {
   width: auto;
   min-width: 5%;
   margin: 20px 10px;
+
   font-size: $font_size_lg;
 }
 
 .form-todo-detail {
   overflow: hidden;
+
   height: 85%;
   margin: 0;
-  border-radius: $border_radius;;
+
+  border-radius: $border_radius;
   background: $container_background;
-  .wapper-content.box{
-    max-width: 590px ;
+
+  .wapper-content.box {
+    max-width: 590px;
   }
-  .checkbox{
-    margin: 20px;
+
+  .checkbox {
     z-index: 10000;
-    .todo-details{
+
+    margin: 20px;
+
+    .todo-details {
       margin-top: 20px;
     }
   }
@@ -1568,44 +1804,59 @@ form.new_workflow {
   .content {
     height: 90%;
     margin-top: 0;
-    span.desc{
+
+    span.desc {
       color: #878787;
+
       font-size: $font_size_sm;
     }
+
     span.date {
       color: #8C8C8C;
     }
 
-    span.date, span.note {
+    span.date,
+    span.note {
       font-weight: $font_weight_sm;
     }
-    .relateto, .assignto{
+
+    .assignto,
+    .relateto {
       color: $color_1;
     }
-  .well-component {
-    margin-top: 25px;
-    font-size: $font_size_md;
-    font-weight: $font_weight_sm;
-    color: $color_6;
-    p.note{
-      color: $color_12;
-    }
-    &.last{
-      margin-bottom: 20px;
+
+    .well-component {
+      margin-top: 25px;
+
+      color: $color_6;
+
+      font-size: $font_size_md;
+      font-weight: $font_weight_sm;
+
+      p.note {
+        color: $color_12;
+      }
+
+      &.last {
+        margin-bottom: 20px;
+      }
     }
   }
-}
-h4.todo-name{
-  font-size: $font_size_lg;
-  font-weight: $font_weight_md;
-  color: $color_8;
-  // padding-left: 40px;
-  padding-top: 20px;
-}
+
+  h4.todo-name {
+    // padding-left: 40px;
+    padding-top: 20px;
+
+    color: $color_8;
+
+    font-size: $font_size_lg;
+    font-weight: $font_weight_md;
+  }
 
   .attachment,
   .avatar {
     position: relative;
+
     width: 100px;
     height: 100px;
     margin-top: 0;
@@ -1613,24 +1864,33 @@ h4.todo-name{
     img {
       position: absolute;
       left: 50%;
+
       width: 80px;
       height: 80px;
+
       transform: translateX(-50%);
+
       border-radius: $border_radius;
+
       object-fit: cover;
     }
   }
-  .attachment{
+
+  .attachment {
     padding: 0;
   }
+
   .add-attachment {
     height: 75px;
     margin-left: 5px;
+
     .wrapper-upload {
       overflow: hidden;
+
       width: 80px;
       height: 80px;
       margin-left: 5px;
+
       .image-upload > input {
         display: none;
       }
@@ -1638,19 +1898,24 @@ h4.todo-name{
       .image-upload {
         width: 80px;
         margin-top: 0;
+
         cursor: pointer;
         text-align: center;
 
         .btn-add-attachment {
           overflow: hidden;
+
           width: 80px;
           height: 80px;
           margin-top: 0;
           padding: 14px;
+
           cursor: pointer;
-          color: $color_3  ;
-          border: 1px solid $color_3  ;
-          border-radius: $border_radius;;
+
+          color: $color_3;
+          border: 1px solid $color_3;
+          border-radius: $border_radius;
+
           font-size: 19px;
           line-height: 1;
         }
@@ -1664,6 +1929,7 @@ h4.todo-name{
     input {
       width: 100%;
       height: 50px;
+
       border-radius: 2px;
     }
 
@@ -1671,6 +1937,7 @@ h4.todo-name{
       img {
         width: 50px;
         height: 50px;
+
         border-radius: 11px;
       }
     }
@@ -1683,28 +1950,34 @@ h4.todo-name{
 
         .box-comment {
           margin-top: 0;
+
           vertical-align: top;
-          .comment-user{
+
+          .comment-user {
             width: 44px;
-            padding: 0;
             margin: 0;
+            padding: 0;
           }
+
           .box-comment-input {
             max-width: 545px;
+
             .box-comment-sortby {
-              text-align: right;
-              font-weight: $font_weight_md;
               padding-top: 20px;
+
+              text-align: right;
+
+              font-weight: $font_weight_md;
+
               select.custom-select {
                 color: $color_8;
                 border: none;
                 background: transparent;
+
                 font-weight: 400;
               }
             }
           }
-
-
         }
 
         .comment_content {
@@ -1720,42 +1993,52 @@ h4.todo-name{
           max-width: 545px;
           height: 50px !important;
           padding-left: 10px;
+
           border-color: $border_color;
-          border-radius: $border_radius;;
+          border-radius: $border_radius;
+
           line-height: 26px;
 
           &::-webkit-input-placeholder {
             /* Chrome/Opera/Safari */
             color: $placeholder_color;
+
             font-size: $font_size_md;
           }
 
           &::-moz-placeholder {
             /* Firefox 19+ */
             color: $placeholder_color;
+
             font-size: $font_size_md;
           }
 
           &:-ms-input-placeholder {
             /* IE 10+ */
             color: $placeholder_color;
+
             font-size: $font_size_md;
           }
 
           &:-moz-placeholder {
             /* Firefox 18- */
             color: $placeholder_color;
+
             font-size: $font_size_md;
           }
         }
       }
     }
+
     .box-comment-user {
+      float: left;
+
       margin: 0;
       padding: 0 10px;
-      float: left;
+
       .wrapper-img {
         overflow: hidden;
+
         max-width: 50px;
         max-height: 50px;
         margin: 0;
@@ -1763,11 +2046,14 @@ h4.todo-name{
         img {
           width: 50px;
           height: 50px;
-          border-radius: $border_radius;;
+
+          border-radius: $border_radius;
+
           object-fit: cover;
         }
       }
     }
+
     .comment-content-wrapper {
       padding: 0 20px;
 
@@ -1779,13 +2065,16 @@ h4.todo-name{
 
           .comment-user-role {
             margin-top: 5px;
+
             color: #878787;
           }
 
           .comment-user-content {
-            font-size: $font_size_sm;
             margin-top: 5px;
+
             color: $color_8;
+
+            font-size: $font_size_sm;
           }
 
           .delete,
@@ -1798,6 +2087,7 @@ h4.todo-name{
         .avatar-comment-user {
           .wrapper-img {
             overflow: hidden;
+
             max-width: 50px;
             max-height: 50px;
             margin: 0;
@@ -1805,7 +2095,9 @@ h4.todo-name{
             img {
               width: 50px;
               height: 50px;
-              border-radius: $border_radius;;
+
+              border-radius: $border_radius;
+
               object-fit: cover;
             }
           }
@@ -1817,6 +2109,7 @@ h4.todo-name{
   .comment-content-wrapper {
     .comment-content-user {
       margin-top: 30px;
+
       .comment-content {
         .form-hidden-comment {
           margin: 0;
@@ -1858,70 +2151,74 @@ h4.todo-name{
 
 label.container {
   position: relative;
+
   display: block;
   float: left;
+
   width: 33.333333% !important;
   margin-top: 20px;
   margin-bottom: 12px;
   padding-left: 35px;
+
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
   font-size: $font_size_md;
 }
 /* Hide the browser's default radio button */
-
 label.container input {
   position: absolute;
+
   $opacity_xs: 0;
 }
 /* Create a custom radio button */
-
 .checkmark {
   position: absolute;
   top: 0;
   left: 0;
+
   width: 24px;
   height: 24px;
-  border: 1px solid $color_3  ;
+
+  border: 1px solid $color_3;
   border-radius: 50%;
   background-color: $container_background;
 }
 /* On mouse-over, add a grey background color */
-
 label.container:hover input ~ .checkmark {
-  border: 1px solid $color_3  ;
+  border: 1px solid $color_3;
   background-color: $container_background;
 }
 /* When the radio button is checked, add a blue background */
-
 label.container input:checked ~ .checkmark {
-  border: 1px solid $color_3  ;
+  border: 1px solid $color_3;
   background-color: $container_background;
 }
 /* Create the indicator (the dot/circle - hidden when not checked) */
-
 .checkmark:after {
   position: absolute;
+
   display: none;
+
   content: "";
 }
 /* Show the indicator (dot/circle) when checked */
-
 label.container input:checked ~ .checkmark:after {
   display: block;
 }
 /* Style the indicator (dot/circle) */
-
 label.container .checkmark:after {
   top: 5px;
   left: 5px;
+
   width: 12px;
   height: 12px;
+
   border-radius: 50%;
-  background: $color_3  ;
+  background: $color_3;
 }
 
 .actions {
@@ -1934,6 +2231,7 @@ label.container .checkmark:after {
 @media (min-width: 992px) {
   .container-scroll > .row {
     overflow-x: auto;
+
     white-space: nowrap;
   }
 
@@ -1949,22 +2247,25 @@ label.container .checkmark:after {
 
 .container-scroll > .row > .col-md-2 {
   text-align: center;
+
   font-weight: bold;
 }
 
 .workflow-body {
   // background: rgb(76, 136, 147);
-  .pane.pane--tablel .pane-hScroll .pane-vScroll table{
-    tbody{
-      tr:nth-child(2n){
+  .pane.pane--tablel .pane-hScroll .pane-vScroll table {
+    tbody {
+      tr:nth-child(2n) {
         background: #FCFCFC;
       }
     }
   }
+
   .space {
     width: 320;
     min-width: 5%;
     margin: 20px 10px;
+
     font-size: $font_size_lg;
   }
 
@@ -1973,6 +2274,7 @@ label.container .checkmark:after {
       // height: 500px;
       .workflow-step {
         width: 200px;
+
         background: rgb(176, 136, 156);
 
         span.step {
@@ -1984,36 +2286,45 @@ label.container .checkmark:after {
 
   table {
     width: 100%;
+
     table-layout: fixed;
+
     border-collapse: collapse;
     background: white;
   }
 
   .name {
     width: 250px;
+
     font-weight: 400;
   }
 
   td,
   th {
-    text-align: right;
     overflow: hidden;
+
     width: 200px;
     height: 80px;
     padding: 8px 16px;
+
+    text-align: right;
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
+
     color: $color_6;
 
     i {
       margin: 8px 0;
-      font-size: 25px;
+
       color: $color_1;
+
+      font-size: 25px;
     }
 
     .date {
       color: $color_8;
+
       font-size: $color_7;
     }
   }
@@ -2030,17 +2341,21 @@ label.container .checkmark:after {
   .pane-vScroll {
     overflow-x: hidden;
     overflow-y: auto;
+
     margin: 0;
+
     background: $container_background;
 
     .scroll-x {
       display: block !important;
+
       height: 6px;
     }
   }
 
   .pane--table2 {
     overflow-x: scroll;
+
     width: 400px;
   }
 
@@ -2054,6 +2369,7 @@ label.container .checkmark:after {
     display: block;
     overflow-x: hidden;
     overflow-y: scroll;
+
     height: 200px;
   }
 
@@ -2066,7 +2382,9 @@ label.container .checkmark:after {
 .one-line-text {
   display: block;
   overflow: hidden;
+
   max-width: 400px;
+
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -2080,12 +2398,13 @@ label.container .checkmark:after {
     display: block;
     // width: 55%;
     overflow: hidden;
+
     max-width: 500px;
+
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 }
-
 // .dropdown-menu {
 //   width: 250px;
 //   text-overflow: ellipsis;
@@ -2109,6 +2428,7 @@ label.container .checkmark:after {
 todo-list-name {
   .todo-list-name.todos {
     margin-top: 10px;
+
     opacity: $opacity_lg;
     color: $color_6;
   }
@@ -2124,6 +2444,7 @@ todo-list-name {
 
 span.todo-in {
   margin-right: 10px;
+
   opacity: 0.7;
   color: $color_12;
 }
@@ -2149,7 +2470,9 @@ span.todo-in {
 .team-name,
 .workflow-name {
   position: relative;
+
   padding-left: 25px;
+
   font-size: $font_size_md;
 
   ul {
@@ -2157,17 +2480,21 @@ span.todo-in {
 
     ul {
       padding-left: $padding_left_container;
+
       color: $color_8 !important;
+
       font-size: $font_size_md;
     }
   }
 
   .speed-btn {
     position: absolute;
-    left: 40%;
-    transform: translateX(-40%);
-    color: $color_1;
     bottom: 25px;
+    left: 40%;
+
+    transform: translateX(-40%);
+
+    color: $color_1;
   }
 }
 
@@ -2182,27 +2509,33 @@ span.todo-in {
 .chosen-container-multi .chosen-choices,
 .speed-input {
   width: 100%;
+  margin: 10px 0 !important;
+
   border: 0;
   border-bottom: 1px solid $color_5 !important;
   background: $container_background;
-  margin: 10px 0 !important;
+
   &.last {
     margin-bottom: 35px !important;
   }
-  &.input-wf{
+
+  &.input-wf {
     width: 80% !important;
   }
 }
-.speed-select{
+
+.speed-select {
   border-bottom: 1px solid $color_1 !important;
 }
-input.form-control.date-week{
+
+input.form-control.date-week {
   border: 0 solid #000;
   border-bottom: 1px solid $color_5;
 }
 
 .speed-password {
   display: block;
+
   width: 60%;
 }
 
@@ -2215,6 +2548,7 @@ input.form-control.date-week{
 
   .checkbox {
     float: left;
+
     width: 50%;
     margin: 0;
     padding: 0;
@@ -2229,21 +2563,25 @@ input.form-control.date-week{
   position: absolute;
   top: 50%;
   right: 15px;
+
   width: 40%;
 }
 
 .label-form {
   margin: 10px 0;
+
   font-weight: 400;
 }
 
 .user-role {
   height: 40px;
   margin-bottom: 20px;
+
   color: $color_1;
   border: 1px solid $color_1;
   border-radius: 3px;
   background: $container_background;
+
   font-weight: 400;
 }
 
@@ -2252,10 +2590,11 @@ input.form-control.date-week{
 }
 
 .wrapper-add-todo-list {
-  padding-left: 10px;
   height: 60px;
+  padding-left: 10px;
+
   input[type="checkbox"],
-  input[type="radio"]{
+  input[type="radio"] {
     display: none;
   }
 }
@@ -2263,43 +2602,51 @@ input.form-control.date-week{
 .form-todo-list {
   padding: 15px;
 }
-
 // START add css form CRUD todo, todlist
+
 .wrapper-todo-team-list-css {
-  overflow-y: scroll;
   overflow-x: hidden;
-  padding: 0 10px;
+  overflow-y: scroll;
+
   max-height: 450px;
+  padding: 0 10px;
+
   &::-webkit-scrollbar-track {
     // -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
     background-color: transparent;
   }
+
   &::-webkit-scrollbar {
-    display: initial;;
+    display: initial;
+
     width: 6px;
+
     background-color: transparent;
   }
+
   &::-webkit-scrollbar-thumb {
-    background-color: $color_1;
     border-radius: 4px;
+    background-color: $color_1;
   }
 }
 
 .event-add-division {
   position: relative;
+
   div.division {
-    width: 1px;
-    color: $color_1;
-    background: $color_1;
-    height: 95%;
     position: absolute;
+    z-index: 1;
     top: 0;
     right: 22px;
-    z-index: 1;
+
+    width: 1px;
+    height: 95%;
+
+    color: $color_1;
+    background: $color_1;
   }
 }
 // END add css form CRUD todo, todlist
-
 
 .wrapper-question,
 .wrapper-workflow {
@@ -2314,6 +2661,7 @@ input.form-control.date-week{
 
     .step-name {
       padding-bottom: 20px;
+
       font-size: $font_size_md;
     }
   }
@@ -2328,7 +2676,9 @@ ul.context-menu-list {
 
     a {
       display: block;
+
       padding: 10px 30px;
+
       color: #333;
     }
 
@@ -2353,7 +2703,9 @@ ul.context-menu-list {
 .add-question {
   padding-top: 20px;
   padding-left: 40px;
+
   cursor: pointer;
+
   color: $color_1;
 }
 
@@ -2365,31 +2717,39 @@ ul.context-menu-list {
   height: 5px;
   margin-top: 70px;
 }
+
 ul.speed-tabs.speed-panel-wrapper {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
+
 ul.speed-tabs {
   list-style: none;
 }
 
 ul.speed-tabs li {
   display: inline-block;
+
   width: 150px;
+
   cursor: pointer;
+
   opacity: $opacity_md;
-  background: none;
   color: $color_18;
+  background: none;
 }
 
 ul.speed-tabs li.current {
   opacity: $opacity_lg;
   color: $color_6;
+
   font-weight: $font_weight_md;
 }
 
 .speed-tabs-content {
   display: none;
+
   padding-left: 0;
+
   background: $container_background;
 }
 
@@ -2408,15 +2768,20 @@ ul.speed-tabs li.current {
 
 .todo-name {
   float: left;
+
+  min-width: 100px;
+
   text-transform: capitalize;
+
   color: $color_8;
+
   font-size: $font_size_md;
   font-weight: 400;
-  min-width: 100px;
 }
 
 .form-todo-detail .comment input::placeholder {
   color: $color_7;
+
   font-size: $font_size_md;
   font-weight: 400;
 }
@@ -2434,26 +2799,33 @@ ul.speed-tabs li.current {
   z-index: 3;
   top: 0;
   left: -60px;
+
   display: none;
+
   width: 65px;
+
   color: $color_8;
   border: 1px solid;
   border-radius: 2px;
   background: $container_background;
+
   font-size: $font_size_md;
 
   .option {
     padding: 8px 0;
+
     text-align: center;
 
     .todo-details {
       color: $color_8;
+
       font-size: $font_size_md;
     }
   }
 
   .option:hover {
     cursor: pointer;
+
     background: $color_5;
   }
 }
@@ -2461,6 +2833,7 @@ ul.speed-tabs li.current {
 a.active-arrow {
   position: absolute;
   top: 50%;
+
   transform: translateY(-50%);
 }
 
@@ -2477,9 +2850,9 @@ a.active-arrow {
   padding: 0;
 
   span.col-md-4 {
+    width: 29.333333%;
     margin: 0;
     padding: 4px 0 0;
-    width: 29.333333%;
   }
 
   .duedate-create-todo {
@@ -2488,7 +2861,9 @@ a.active-arrow {
     padding-right: 0 !important;
     padding-left: 0;
     padding-left: 0 !important;
+
     border: 0;
+
     font-size: $font_size_md;
   }
 }
@@ -2503,48 +2878,57 @@ textarea::placeholder {
 
 ::placeholder {
   color: $color_14;
+
   font-size: $font_size_md;
 }
 
 .edit-todo-left {
   padding-left: 20px;
+
   color: $color_15;
+
   font-weight: unset;
 }
-
 // .speed-team-show {
 //   .today-task-items {
 //     padding-left: 15px;
 //   }
 // }
 
-.comment-control, .mark-important {
+.comment-control,
+.mark-important {
   margin-top: 5px;
+
   font-size: $font_size_xs-plus-1;
-
 }
-.comment-content-wrapper{
 
+.comment-content-wrapper {
   .delete-comment,
   .edit {
     color: $color_1;
-    a{
+
+    a {
       color: $color_1;
     }
   }
-  .mark-important{
+
+  .mark-important {
     color: $color_3;
-    a{
+
+    a {
       color: $color_3;
     }
   }
-
 }
 
 .wrapper-workload-member {
   padding-top: 35px;
   padding-left: 20px;
-  .view-member-workload{  top: 0 !important ; }
+
+  .view-member-workload {
+    top: 0 !important;
+  }
+
   .task-item .icon-menu-task {
     top: 8px;
   }
@@ -2558,7 +2942,9 @@ textarea::placeholder {
 .clearfix:before {
   display: block;
   overflow: hidden;
+
   height: 0;
+
   content: ".";
 }
 
@@ -2570,11 +2956,11 @@ textarea::placeholder {
   zoom: 1;
 }
 /* IE < 8 */
-
 .todo-option-left {
-  // width: 40px;
-  font-size: $font_size_md;
   display: flex;
+  // width: 40px;
+
+  font-size: $font_size_md;
 }
 
 .display-gird {
@@ -2583,9 +2969,11 @@ textarea::placeholder {
 
 .chosen-choices {
   background-image: unset;
-  li.search-field{
-    input{
+
+  li.search-field {
+    input {
       margin: 0 !important;
+
       color: $placeholder_color !important;
     }
   }
@@ -2617,11 +3005,12 @@ textarea::placeholder {
 
 .wrapper-step-workflow {
   position: relative;
+
   padding: 0;
 
   .steps {
-    padding: 20px 0 0 20px;
     max-width: 675px;
+    padding: 20px 0 0 20px;
   }
 }
 
@@ -2630,23 +3019,30 @@ textarea::placeholder {
   z-index: 100 !important;
   bottom: 0;
   left: -999;
+
   display: initial;
   overflow: hidden;
+
   height: 60px;
+
   text-align: center;
-  border: 1px solid $color_3  ;
-  border-radius: $border_radius;;
+
+  border: 1px solid $color_3;
+  border-radius: $border_radius;
   background: $container_background;
 
   .option {
     padding: 4px 0;
+    padding-left: 10px;
+
     -webkit-transition: 0.5s;
     text-align: left;
-    padding-left: 10px;
+
     a.todo-name {
       display: block;
       float: initial;
-      color: $color_3   !important;
+
+      color: $color_3 !important;
     }
 
     &:hover {
@@ -2663,22 +3059,26 @@ textarea::placeholder {
   width: 85%;
   height: calc($font_size_md*$line_height_default);
   margin-bottom: 20px;
-  font-size: $font_size_md;
-  font-weight: $font_weight_md;
+
   color: $color_6;
 
+  font-size: $font_size_md;
+  font-weight: $font_weight_md;
 }
 
 #createWorkflow {
   position: absolute;
   bottom: 0;
   left: 50%;
+
   transform: translateX(-50%);
 }
 
 .speed-user {
   width: 100%;
+
   table-layout: fixed;
+
   white-space: nowrap;
 
   .member {
@@ -2696,6 +3096,7 @@ textarea::placeholder {
 
 .speed-sort-btn {
   margin-left: 15px;
+
   color: $sort_button_color;
 }
 
@@ -2705,6 +3106,7 @@ textarea::placeholder {
 
 .speed-user td {
   overflow: hidden;
+
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -2714,6 +3116,7 @@ textarea::placeholder {
 
   tbody {
     overflow-y: auto;
+
     width: 100%;
     min-height: 200px;
     max-height: 600px;
@@ -2742,8 +3145,9 @@ textarea::placeholder {
 
 thead {
   tr {
-    border-radius: $border_radius;
     border-bottom: 1px solid $border_color;
+    border-radius: $border_radius;
+
     th {
       background-color: $table_top_color;
     }
@@ -2762,6 +3166,7 @@ thead {
 
 .table-fixed tbody {
   overflow-y: auto;
+
   width: 100%;
 }
 
@@ -2776,52 +3181,17 @@ thead {
 .table-fixed tbody td,
 .table-fixed thead > tr > th {
   float: left;
+
   border-bottom-width: 0;
 }
 
 .table-fixed thead > tr > th:hover {
   cursor: pointer;
 }
-// @media screen and (min-height: 500px) {
-//   .wrapper-step-workflow {
-//     height: 200px !important;
-//   }
-//
-//   .table-fixed tbody {
-//     height: 300px;
-//   }
-// }
-// @media screen and (min-height: 600px) {
-//   .wrapper-step-workflow {
-//     height: 250px !important;
-//   }
-//
-//   .table-fixed tbody {
-//     height: 400px;
-//   }
-// }
-// @media screen and (min-height: 1000px) {
-//   .wrapper-step-workflow {
-//     height: 500px !important;
-//   }
-//
-//   .table-fixed tbody {
-//     height: 500px;
-//   }
-// }
-// @media screen and (min-height: 1600px) {
-//   .wrapper-step-workflow {
-//     height: 700px !important;
-//   }
-//
-//   .table-fixed tbody {
-//     height: 700px;
-//   }
-// }
-
 
 span.input-error {
   color: red;
+
   font-size: $font_size_md;
   font-style: italic;
 }
@@ -2834,199 +3204,271 @@ span.cr.todos.todo-details {
   position: absolute;
   top: -5px;
   left: 10px;
+
   width: 49px;
   height: 49px;
-  text-align: center;
-  color: #95989a;
-  font-size: 14px;
   padding: 8px;
+
+  text-align: center;
+
+  color: #95989a;
+
+  font-size: 14px;
+
   .glyphicon-ok:before {
+    margin-left: -12px !important;
+    padding: 12px 16px !important;
+
     color: $color_4;
     border: 0;
     border-radius: 4px !important;
     background: #56a8c5;
+
     font-size: 24px !important;
-    padding: 12px 16px !important;
-    margin-left: -12px !important;
   }
 }
 
-.hash-tag{
+.hash-tag {
   padding-left: $padding_left_container;
 }
+
 .glyphicon-option-vertical:before {
   margin-left: -5px;
 }
-.error-alert{
+
+.error-alert {
   color: red;
+
   font-size: $font_size_xs;
   font-style: italic;
 }
+
 .remove-margin {
-  margin: 0 !important
+  margin: 0 !important;
 }
-.remove-padding{
+
+.remove-padding {
   padding: 0 !important;
 }
-.step-assign-to{
-  .title{
+
+.step-assign-to {
+  .title {
     font-weight: $font_weight_md;
   }
-  .speed-input{
+
+  .speed-input {
     width: 58.3333333333%;
   }
 }
 
-.fix-padding-auto{
+.fix-padding-auto {
   padding-left: 60px;
 }
-  .view-member {
-    position: relative;
-    height: 40px;
-    text-align: center;
-    background: #f0f0f0;
-    font-size: $font_size_lg;
-    line-height: 18px;
-    padding: 10px 0;
-    margin-top: 20px;
 
-    span.close {
-      position: absolute;
-      top: 50%;
-      right: 30px;
-      transform: translateY(-50%);
-      padding-right: 10px;
-    }
+.view-member {
+  position: relative;
+
+  height: 40px;
+  margin-top: 20px;
+  padding: 10px 0;
+
+  text-align: center;
+
+  background: #f0f0f0;
+
+  font-size: $font_size_lg;
+  line-height: 18px;
+
+  span.close {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+
+    padding-right: 10px;
+
+    transform: translateY(-50%);
   }
-  table.table{
-    margin: 20px;
-    max-width: 1130px;
-  }
-  #activity-table tr{
-    display: flex;
-  }
+}
+
+table.table {
+  max-width: 1130px;
+  margin: 20px;
+}
+
+#activity-table tr {
+  display: flex;
+}
 // .event-noti, .timestamp-noti, .user-name-noti{
 //   display: inline-block;
 //   float: left;
 // }
-.user-name-noti{
+
+.user-name-noti {
   color: $color_3_1;
 }
-.event-noti, .timestamp-noti{
+
+.event-noti,
+.timestamp-noti {
   color: $color_11;
 }
-.catagory-noti{
+
+.catagory-noti {
   color: $color_6;
 }
-label.file.optional{
+
+label.file.optional {
   display: none;
 }
-#btn_add_attach_file_comment{
+
+#btn_add_attach_file_comment {
   position: absolute;
   top: $padding_left_container;
   right: $padding_left_container;
 }
-#datum_files{
-  width: 80px;
+
+#datum_files {
   position: absolute;
   top: 50%;
-  height:80px;
-  // background: rebeccapurple;
-  opacity: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+
+  width: 80px;
+  height: 80px;
   margin: 0 !important;
 
+  transform: translate(-50%, -50%);
+  // background: rebeccapurple;
+
+  opacity: 0;
 }
 
-.dropdown-menu > li > a.one-line-text:hover, .dropdown-menu > li > a.one-line-text:focus{
+.dropdown-menu > li > a.one-line-text:focus,
+.dropdown-menu > li > a.one-line-text:hover {
   color: $color_4;
 }
-.dropdown-menu > li.add-team > a:hover, .dropdown-menu > li.add-team > a:focus{
+
+.dropdown-menu > li.add-team > a:focus,
+.dropdown-menu > li.add-team > a:hover {
   color: $color_3_1;
 }
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
-  background-color: unset;
+
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover {
   color: $color_4;
+  background-color: unset;
 }
 
 ul.dropdown-menu li.add-team {
-    text-align: center;
-    color: $color_2;
+  text-align: center;
+
+  color: $color_2;
 }
+
 ul.dropdown-menu li.add-team a {
-    color: $color_2;
+  color: $color_2;
 }
+
 ul.dropdown-menu li.add-team:hover {
-    background: unset;
+  background: unset;
 }
+
 ul.dropdown-menu li.add-team:hover a {
-    color: $color_2;
+  color: $color_2;
 }
-.chosen-container-multi .chosen-choices li.search-choice{
-  background-image: unset;
+
+.chosen-container-multi .chosen-choices li.search-choice {
   background-color: rgba(255, 255, 255, 0);
+  background-image: unset;
 }
-.chosen-container-multi .chosen-choices li.search-choice{
+
+.chosen-container-multi .chosen-choices li.search-choice {
   border: 0;
   box-shadow: unset;
 }
-.chosen-container-multi .chosen-choices{
+
+.chosen-container-multi .chosen-choices {
   margin: 0 !important;
 }
-tr.user-info{
+
+tr.user-info {
   height: 50px;
-  .one-line-text{
+
+  .one-line-text {
     max-width: unset !important;
   }
 }
-.user_password{
-  .checkbox.inline-checkbox{
-    padding-left: 60px;
+
+.user_password {
+  .checkbox.inline-checkbox {
     padding-top: 10px;
+    padding-left: 60px;
   }
 }
-.table-text-center{
+
+.table-text-center {
   text-align: center;
 }
-.remove-padding-bottom{
+
+.remove-padding-bottom {
   padding-bottom: 0 !important;
 }
-table.workload{
+
+table.workload {
   margin: 0 auto;
 }
 
-.wrapper-todo-team{
+.wrapper-todo-team {
   max-width: 700px;
 }
-.workload-width-modal{
+
+.workload-width-modal {
   width: 100% !important;
 }
 
-#viewWorkloadModal{
-  .table > thead > tr > td.active, .table > thead > tr > th.active, .table > thead > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr > td.active, .table > tbody > tr > th.active, .table > tbody > tr.active > td, .table > tbody > tr.active > th, .table > tfoot > tr > td.active, .table > tfoot > tr > th.active, .table > tfoot > tr.active > td, .table > tfoot > tr.active > th{
+#viewWorkloadModal {
+  .table > tbody > tr > td.active,
+  .table > tbody > tr > th.active,
+  .table > tbody > tr.active > td,
+  .table > tbody > tr.active > th,
+  .table > tfoot > tr > td.active,
+  .table > tfoot > tr > th.active,
+  .table > tfoot > tr.active > td,
+  .table > tfoot > tr.active > th,
+  .table > thead > tr > td.active,
+  .table > thead > tr > th.active,
+  .table > thead > tr.active > td,
+  .table > thead > tr.active > th {
     background: transparent !important;
-    a{
+
+    a {
       color: #000 !important;
     }
   }
 }
-.width-40{
+
+.width-40 {
   width: 40% !important;
 }
-.limit-width-tast-todolist-show{
+
+.limit-width-tast-todolist-show {
   max-width: 700px;
 }
-.todo-limit-width-left{
+
+.todo-limit-width-left {
   max-width: 285px;
 }
-.input-create-todo-wf{
+
+.input-create-todo-wf {
   padding-left: $padding_left_container;
 }
-.margin-left-70px{
+
+.margin-left-70px {
   margin-left: 70px;
 }
 
-.table-member-width{
+.table-member-width {
   height: 90%;
+}
+
+.check-box-password {
+  width: auto !important;
 }
