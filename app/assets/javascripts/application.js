@@ -171,7 +171,7 @@ function setWidthTodoName (){
 		// console.log(total)
 		if(total > total_width){
 		// console.log('change ' + $(this));
-			var set_width  = total - (todo_user_width +todo_user_width +deadline_width);
+			var set_width  = total - (todo_user_width +todo_user_width);
 			todo_name_selector.width(set_width);
 			console.log('set_width: ' + set_width);
 		}
@@ -764,22 +764,6 @@ function set_height_scroll_by_screen(wrapper, el1, el2, el3, el4, el_set_heigth,
   wrapper_el.find(el_set_heigth).css('height', set_height_element + 'px');
 }
 
-function limitTextRight (){
-  var wrapperWidth = $('right-container').width();
-  // console.log(wrapperWidth);
-  $('right-container').find('.task-item').each(function(){
-    // console.log($(this).find('.todo-name.one-line-text').width());
-
-    var todo_width = $(this).find('.todo-name.one-line-text').width();
-
-      if (todo_width >= wrapperWidth){
-        $(this).find('.todo-name.one-line-text').css({
-            'width' : '550px'
-        });
-        $(this).find('.task-member.team').hide();
-      }
-  });
-}
 function limitTextLeft(){
   var wrapperWidth = $('left-container').find('.team-name.speed-panel').width() - 100;
   // console.log(wrapperWidth);
@@ -832,10 +816,10 @@ $(window).on('load', function(){
   });
 
   limitTextWorkload ();
-  limitTextRight();
+	setWidthTodoName ();
   limitTextLeft();
   $('.tab-link').on('click', function(){
-    limitTextRight();
+		setWidthTodoName ();
   });
 
   $(".select-select2").select2();
@@ -1291,7 +1275,7 @@ $(window).on('load', function(){
     if(scrollAmount + heigth_ >= scrollHeight ){
       if ($('.wrapper-one-todo-list').length < parseInt($('#idnotifi').attr('name')) && $('#idnotifi').attr('name') >=1)
         {
-				
+
 					AjaxNotificationView()
 				}
     }
