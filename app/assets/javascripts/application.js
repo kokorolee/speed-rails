@@ -26,12 +26,12 @@
 //   $(this).parents('.comment-user-content').show();
 // }
 //show pass
-$('.speed-lable-box').find('span').on('click', function() {
-  selector = $('.password.optional.speed-input.speed-password.require');
+$('.check-box-password').find('span').on('click', function() {
+  selector = $('.password.optional.speed-input.speed-password');
   if (selector.attr('type') === "password") {
-    $('.password.optional.speed-input.speed-password.require').removeAttr("type");
+    $('.password.optional.speed-input.speed-password').removeAttr("type");
   } else {
-    $('.password.optional.speed-input.speed-password.require').attr("type", "password");
+    $('.password.optional.speed-input.speed-password').attr("type", "password");
   }
 })
 
