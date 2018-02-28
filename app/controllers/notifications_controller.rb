@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_any!
   def index
     notification_ids = []
     current_user.teams.each do |team|
