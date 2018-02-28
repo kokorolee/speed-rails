@@ -3477,8 +3477,8 @@ table.workload {
   background: transparent;
 }
 .chosen-container-single .chosen-single{
-  border: 0px;
-  box-shadow: unset;
+  border: 0px !important;
+  box-shadow: unset !important;
   border-bottom: 1px solid $color_5 !important;
-  border-radius: 0px;
+  border-radius: 0px !important;
 }

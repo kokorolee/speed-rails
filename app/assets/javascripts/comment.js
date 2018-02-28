@@ -98,14 +98,12 @@ $(document).ready(function() {
   var form = $('#new_comment');
   form.find('.comment_content').keyup(function(e) {
     if (e.keyCode == 13) {
-      // console.log(1);
       $('.col-md-10.box-comment-input.wrapper-attach-file-uploaded').remove()
         $("body").addClass("loading");
         setTimeout(function(){
           $('#new_comment').submit();
           $('#comment_content').val('')
           $('.comment-content-user').remove();
-          // console.log(2);
         }, 3000)
 
         setTimeout(function(){
