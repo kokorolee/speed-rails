@@ -18,7 +18,6 @@
 //= require jquery.ui.position.min
 //= require comment
 //= require todo
-// require turbolinks
 //= require_tree .
 
 // function saveComment(){
@@ -199,30 +198,30 @@ $(window).on('shown.bs.modal', function() {
   }
 });
 
-$(document).on('turbolinks:load', function() {
-  activeMondayViewMember();
-  toggleMenuTeam();
-  displayIconMenuTeam();
-  activeTabDueSoon();
-  activeItemMenubottom();
-  toggleAdvSettingCreateTodo();
-  setWidthTodoName();
-  setColorTodoName();
-  addClassActiveMenu();
-
-  // set content right
-  set_height_scroll('right-container', '.right-header', '', '', '', '.wrapper-todo-team-list', 0);
-  set_height_scroll('.speed-duesoon', '.right-header', '.speed-panel-wrapper', '', '', '.wrapper-todo-team-list', 0);
-  set_height_scroll('right-container', '.right-header', '.speed-panel-heading', '.speed-todo-list-name', '.col.md-12.speed-wordflow', '.wrapper-workflow-step', 200);
-  set_height_scroll_by_screen('.speed-duesoon', '.speed-header', '.workloads-head', '.pane-hscroll-show', '', '.wrapper-todo-team-list', 250);
-  set_height_scroll('.workloads-main', '.workloads-head', '.speed-search-box', '', '.speed-btn', '.wrapper-todo-team-list', 20);
-
-  $(function() {
-    $("#sortable").sortable();
-    $("#sortable").disableSelection();
-  });
-
-});
+// $(document).on('turbolinks:load', function() {
+//   activeMondayViewMember();
+//   toggleMenuTeam();
+//   displayIconMenuTeam();
+//   activeTabDueSoon();
+//   activeItemMenubottom();
+//   toggleAdvSettingCreateTodo();
+//   setWidthTodoName();
+//   setColorTodoName();
+//   addClassActiveMenu();
+//
+//   // set content right
+//   set_height_scroll('right-container', '.right-header', '', '', '', '.wrapper-todo-team-list', 0);
+//   set_height_scroll('.speed-duesoon', '.right-header', '.speed-panel-wrapper', '', '', '.wrapper-todo-team-list', 0);
+//   set_height_scroll('right-container', '.right-header', '.speed-panel-heading', '.speed-todo-list-name', '.col.md-12.speed-wordflow', '.wrapper-workflow-step', 200);
+//   set_height_scroll_by_screen('.speed-duesoon', '.speed-header', '.workloads-head', '.pane-hscroll-show', '', '.wrapper-todo-team-list', 250);
+//   set_height_scroll('.workloads-main', '.workloads-head', '.speed-search-box', '', '.speed-btn', '.wrapper-todo-team-list', 20);
+//
+//   $(function() {
+//     $("#sortable").sortable();
+//     $("#sortable").disableSelection();
+//   });
+//
+// });
 
 $(document).ready(function() {
   //init
