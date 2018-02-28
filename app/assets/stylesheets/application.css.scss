@@ -3472,3 +3472,13 @@ table.workload {
 .check-box-password {
   width: auto !important;
 }
+
+.chosen-container-single .chosen-single{
+  background: transparent;
+}
+.chosen-container-single .chosen-single{
+  border: 0px;
+  box-shadow: unset;
+  border-bottom: 1px solid $color_5 !important;
+  border-radius: 0px;
+}
